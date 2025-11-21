@@ -1,1 +1,168 @@
+/* =========================================
+   1. CORE SETTINGS & ACCESSIBILITY
+   ========================================= */
+:root {
+    /* The "Spring" easing for high-end UI feel */
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+/* Disable animations if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================
+   2. AMBIENT BACKGROUND ANIMATIONS
+   ========================================= */
+
+/* The Organic Floating Orbs */
+@keyframes orb-float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* A subtle "breathing" effect for the glass cards */
+@keyframes glass-breath {
+    0%, 100% { border-color: var(--glass-border); }
+    50% { border-color: rgba(99, 102, 241, 0.3); }
+}
+
+/* =========================================
+   3. SCROLL ENTRY ANIMATIONS
+   ========================================= */
+/* 
+   These classes are initially hidden. 
+   We will use JS to add the class 'active' when they scroll into view.
+*/
+
+/* 1. The "Apple" Style Blur Reveal (Best for Text) */
+.reveal-blur {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+    transition: all 1s var(--ease-smooth);
+}
+
+.reveal-blur.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* 2. The "Card" Pop Up (Best for Grids) */
+.reveal-pop {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+    transition: all 0.8s var(--ease-spring);
+}
+
+.reveal-pop.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* 3. Staggered Delays (So items don't appear all at once) */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* =========================================
+   4. TEXT & HERO EFFECTS
+   ========================================= */
+
+/* Gradient Flow for the main "NovaSphere" Title */
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-text {
+    background-size: 200% auto;
+    animation: gradient-flow 5s ease infinite;
+}
+
+/* The "Typewriter" cursor blink */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* =========================================
+   5. MICRO-INTERACTIONS (Hover States)
+   ========================================= */
+
+/* Magnetic Button Hover */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shine effect passing through button */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+/* Link Underline Animation */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Icon Pulse on Hover */
+.glass-card:hover i {
+    animation: pulse-icon 1s infinite;
+}
+
+@keyframes pulse-icon {
+    0% { transform: scale(1); text-shadow: 0 0 0 rgba(99, 102, 241, 0); }
+    50% { transform: scale(1.1); text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+    100% { transform: scale(1); text-shadow: 0 0 0 rgba(99, 102, 241, 0); }
+}
