@@ -48,10 +48,10 @@
     <section style="height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px;">
         <div class="container">
             <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block;">Est. 2025</span>
-            <h1 style="margin-bottom: 1.5rem;">We Build Digital <br> <span style="background: linear-gradient(45deg, var(--accent-color), #purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Serenity.</span></h1>
-            <p style="max-width: 600px; margin: 0 auto 2.5rem;">NovaSphere Studio combines technical expertise with creative vision to build productivity tools and health-focused apps that solve real-world problems.</p>
+            <h1 class="reveal-blur" style="margin-bottom: 1.5rem;">We Build Digital <br> <span style="background: linear-gradient(45deg, var(--accent-color), #purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Serenity.</span></h1>
+            <p class="reveal-blur delay-200" style="max-width: 600px; margin: 0 auto 2.5rem;">NovaSphere Studio combines technical expertise with creative vision to build productivity tools and health-focused apps that solve real-world problems.</p>
             
-            <div class="cta-group">
+            <div class="cta-group reveal-blur delay-400">
                 <a href="portfolio.html" class="btn btn-primary">View Our Apps</a>
                 <a href="#mission" class="btn glass" style="margin-left: 15px; color: var(--text-primary);">Our Mission</a>
             </div>
@@ -63,21 +63,21 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
             
             <!-- Card 1 -->
-            <div class="glass glass-card" style="padding: 2.5rem;">
+            <div class="glass glass-card reveal-pop delay-100" style="padding: 2.5rem;">
                 <i class='bx bx-layer' style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;"></i>
                 <h3>Simplicity</h3>
                 <p style="margin-top: 1rem;">We strip away the clutter. Our interfaces are designed to be intuitive, letting users focus on what actually matters.</p>
             </div>
 
             <!-- Card 2 -->
-            <div class="glass glass-card" style="padding: 2.5rem;">
+            <div class="glass glass-card reveal-pop delay-200" style="padding: 2.5rem;">
                 <i class='bx bx-code-alt' style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;"></i>
                 <h3>Performance</h3>
                 <p style="margin-top: 1rem;">Clean code leads to smooth experiences. We optimize every line to ensure reliability across all devices.</p>
             </div>
 
             <!-- Card 3 -->
-            <div class="glass glass-card" style="padding: 2.5rem;">
+            <div class="glass glass-card reveal-pop delay-300" style="padding: 2.5rem;">
                 <i class='bx bx-heart' style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;"></i>
                 <h3>Well-being</h3>
                 <p style="margin-top: 1rem;">Technology should improve life, not consume it. Our apps are tools for organization and health.</p>
@@ -91,18 +91,25 @@
     </footer>
 
     <!-- Load Scripts -->
-    <script src="js/theme.js"></script>
-    <script>
-        // Scroll Animation Logic (Simple version)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
+   <script src="js/theme.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = {
+            threshold: 0.1 // Trigger when 10% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
                 }
             });
-        });
-        
-        // Add class 'hidden' to elements you want to animate in CSS
-    </script>
+        }, observerOptions);
+
+        const hiddenElements = document.querySelectorAll('.reveal-blur, .reveal-pop');
+        hiddenElements.forEach((el) => observer.observe(el));
+    });
+</script>
 </body>
 </html>
