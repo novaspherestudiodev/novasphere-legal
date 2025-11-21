@@ -183,6 +183,37 @@
         </div>
     </div>
 
+    <!-- THE GLASS MODAL (Hidden by default) -->
+<div id="app-modal" class="modal-overlay">
+    <div class="glass modal-content">
+        <button class="close-modal">&times;</button>
+        
+        <div class="modal-header">
+            <div id="modal-icon" class="app-icon large-icon">
+                <i class='bx bx-layer'></i>
+            </div>
+            <div>
+                <h2 id="modal-title">App Name</h2>
+                <span id="modal-tag" class="app-tag">Category</span>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <p id="modal-desc">Description goes here...</p>
+            
+            <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Features</h4>
+            <ul id="modal-features" style="list-style-position: inside; color: var(--text-secondary);">
+                <!-- Features injected via JS -->
+            </ul>
+
+            <div class="modal-actions">
+                <a href="#" id="modal-download" class="btn btn-primary">Download App</a>
+                <a href="#" class="btn glass" style="margin-left: 10px; color: var(--text-primary);">GitHub Repo</a>
+            </div>
+        </div>
+    </div>
+</div>
+
     <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary);">
     <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
     <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
