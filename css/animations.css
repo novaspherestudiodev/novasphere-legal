@@ -166,3 +166,10 @@
     50% { transform: scale(1.1); text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
     100% { transform: scale(1); text-shadow: 0 0 0 rgba(99, 102, 241, 0); }
 }
+
+/* DEBUGGING MODE - Add this to the bottom of animations.css */
+.reveal-blur, .reveal-pop {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+}
