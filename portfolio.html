@@ -1,1 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | NovaSphere Studio</title>
+    
+    <!-- Reuse the same styles -->
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        /* Page Specific Styles */
+        .page-header {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
 
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        /* App Card Specifics */
+        .app-card {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        .app-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .app-footer {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Badge for "Coming Soon" apps */
+        .badge-soon {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Orbs (Background) -->
+    <div class="nova-orb" style="top: 20%; left: -10%;"></div>
+    <div class="nova-orb" style="bottom: 10%; right: -10%; background: radial-gradient(circle, #ff00cc, #333399);"></div>
+
+    <!-- Navigation (Same as Index) -->
+    <nav class="glass" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--text-primary); font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+        </a>
+        
+        <div class="nav-links" style="display: flex; gap: 2rem;">
+            <a href="index.html" style="text-decoration: none; color: var(--text-secondary);">Studio</a>
+            <a href="portfolio.html" style="text-decoration: none; color: var(--text-primary); font-weight: 600;">Work</a>
+            <a href="about.html" style="text-decoration: none; color: var(--text-secondary);">About</a>
+        </div>
+
+        <div class="controls" style="display: flex; align-items: center; gap: 15px;">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-toggle">
+                    <input type="checkbox" id="theme-toggle" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="page-header">
+            <h1 class="reveal-blur">Selected Works</h1>
+            <p class="reveal-blur delay-100" style="max-width: 500px; margin: 0 auto;">
+                A collection of powerful apps designed to solve real-world problems.
+            </p>
+        </header>
+
+        <!-- Grid of Apps -->
+        <div class="app-grid">
+
+            <!-- APP 1: Productivity -->
+            <div class="glass glass-card app-card reveal-pop delay-100">
+                <div class="app-icon">
+                    <i class='bx bx-check-shield'></i>
+                </div>
+                <div class="app-tag">Productivity</div>
+                <h3>FocusFlow</h3>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    A distraction-free task manager that uses the Pomodoro technique to keep you in the flow state.
+                </p>
+                <div class="app-footer">
+                    <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">View</a>
+                    <span class="badge-soon">v1.0 Live</span>
+                </div>
+            </div>
+
+            <!-- APP 2: Health -->
+            <div class="glass glass-card app-card reveal-pop delay-200">
+                <div class="app-icon" style="background: #10b981; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);">
+                    <i class='bx bx-water'></i>
+                </div>
+                <div class="app-tag" style="color: #10b981;">Health</div>
+                <h3>HydroSync</h3>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    Smart hydration tracking that adapts to your local weather and daily activity levels.
+                </p>
+                <div class="app-footer">
+                    <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">View</a>
+                </div>
+            </div>
+
+            <!-- APP 3: Utility (Concept) -->
+            <div class="glass glass-card app-card reveal-pop delay-300">
+                <div class="app-icon" style="background: #f59e0b; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);">
+                    <i class='bx bx-wallet'></i>
+                </div>
+                <div class="app-tag" style="color: #f59e0b;">Finance</div>
+                <h3>NovaWallet</h3>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    A minimalist expense tracker designed for single freelancers and creative studios.
+                </p>
+                <div class="app-footer">
+                    <span class="badge-soon" style="color: var(--text-primary);">In Development</span>
+                </div>
+            </div>
+
+            <!-- APP 4: Creative -->
+            <div class="glass glass-card app-card reveal-pop delay-400">
+                <div class="app-icon" style="background: #ec4899; box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);">
+                    <i class='bx bx-palette'></i>
+                </div>
+                <div class="app-tag" style="color: #ec4899;">Creative</div>
+                <h3>Chroma</h3>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    An AI-powered color palette generator that pulls inspiration from your photos.
+                </p>
+                <div class="app-footer">
+                    <span class="badge-soon" style="color: var(--text-primary);">Coming 2025</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem 0; color: var(--text-secondary); font-size: 0.9rem;">
+        <p>&copy; 2025 NovaSphere Studio.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/theme.js"></script>
+    <script>
+        // Copy the exact same observer logic from index.html here
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.reveal-blur, .reveal-pop').forEach((el) => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
