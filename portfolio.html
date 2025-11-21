@@ -119,7 +119,7 @@
         <!-- Grid of Apps -->
         <div class="app-grid">
 
-            <!-- APP 1: FocusFlow (Productivity) -->
+            <!-- APP 1: FocusFlow (RELEASED -> Goes to Product Page) -->
             <div class="glass glass-card app-card reveal-pop delay-100">
                 <div class="app-icon">
                     <i class='bx bx-check-shield'></i>
@@ -130,13 +130,12 @@
                     A distraction-free task manager that uses the Pomodoro technique.
                 </p>
                 <div class="app-footer">
-                    <!-- MODIFIED: Changed to Link -->
                     <a href="product.html?app=focusflow" class="btn btn-primary">View Details</a>
-                    <span class="badge-soon">v1.0 Live</span>
+                    <span class="badge-soon">v2.1 Live</span>
                 </div>
             </div>
 
-            <!-- APP 2: HydroSync (Health) -->
+            <!-- APP 2: HydroSync (RELEASED -> Goes to Product Page) -->
             <div class="glass glass-card app-card reveal-pop delay-200">
                 <div class="app-icon" style="background: #10b981; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);">
                     <i class='bx bx-water'></i>
@@ -147,12 +146,11 @@
                     Smart hydration tracking that adapts to your local weather.
                 </p>
                 <div class="app-footer">
-                    <!-- MODIFIED: Changed to Link -->
                     <a href="product.html?app=hydrosync" class="btn btn-primary">View Details</a>
                 </div>
             </div>
 
-            <!-- APP 3: NovaWallet (Finance) -->
+            <!-- APP 3: NovaWallet (IN DEV -> Opens Modal) -->
             <div class="glass glass-card app-card reveal-pop delay-300">
                 <div class="app-icon" style="background: #f59e0b; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);">
                     <i class='bx bx-wallet'></i>
@@ -163,20 +161,22 @@
                     A minimalist expense tracker designed for single freelancers.
                 </p>
                 <div class="app-footer">
+                     <!-- Added data-btn-text to customize the button inside the modal -->
                      <button class="btn btn-primary open-modal-btn" 
                         data-title="NovaWallet" 
-                        data-tag="Finance"
+                        data-tag="In Development"
                         data-icon="bx-wallet" 
                         data-color="#f59e0b"
-                        data-desc="Track your freelance income and expenses with zero clutter. Generates simple tax reports and monthly charts."
+                        data-desc="Track your freelance income and expenses with zero clutter. Currently in Alpha testing phase."
                         data-features="Income Tracking,Expense Categorization,PDF Export,Cloud Sync"
-                        data-link="#">
-                        View Details
+                        data-btn-text="View Roadmap" 
+                        data-link="https://github.com/novasphere/novawallet-roadmap">
+                        Preview
                     </button>
                 </div>
             </div>
 
-            <!-- APP 4: Chroma (Creative) -->
+            <!-- APP 4: Chroma (COMING SOON -> Opens Modal) -->
             <div class="glass glass-card app-card reveal-pop delay-400">
                 <div class="app-icon" style="background: #ec4899; box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);">
                     <i class='bx bx-palette'></i>
@@ -187,14 +187,24 @@
                     An AI-powered color palette generator from photos.
                 </p>
                 <div class="app-footer">
-                    <span class="badge-soon" style="color: var(--text-primary);">Coming 2025</span>
+                    <button class="btn glass open-modal-btn" 
+                        style="color: var(--text-primary)"
+                        data-title="Chroma" 
+                        data-tag="Concept"
+                        data-icon="bx-palette" 
+                        data-color="#ec4899"
+                        data-desc="We are training an AI model to extract the perfect complimentary colors from any photograph you upload."
+                        data-features="AI Analysis,Hex Code Export,Figma Plugin,History"
+                        data-btn-text="Join Waitlist" 
+                        data-link="contact.html">
+                        Coming Soon
+                    </button>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- THE GLASS MODAL (Hidden by default) -->
     <div id="app-modal" class="modal-overlay">
         <div class="glass modal-content">
             <button class="close-modal">&times;</button>
@@ -264,31 +274,36 @@
         // 1. Open Modal
         document.querySelectorAll('.open-modal-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.preventDefault(); // Stop jump to top
+                e.preventDefault(); 
                 
                 // Get data from clicked button
                 const title = btn.getAttribute('data-title');
                 const tag = btn.getAttribute('data-tag');
                 const iconClass = btn.getAttribute('data-icon');
-                const color = btn.getAttribute('data-color'); // e.g., #10b981
+                const color = btn.getAttribute('data-color');
                 const desc = btn.getAttribute('data-desc');
                 const features = btn.getAttribute('data-features').split(',');
                 const link = btn.getAttribute('data-link');
+                
+                const btnText = btn.getAttribute('data-btn-text') || "Download App";
 
                 // Populate Modal
                 modalTitle.textContent = title;
                 modalTag.textContent = tag;
                 modalTag.style.color = color;
                 
-                // Reset icon classes and add new ones
+                // Icon Styles
                 modalIcon.className = `bx ${iconClass}`;
                 modalIconContainer.style.background = color;
-                modalIconContainer.style.boxShadow = `0 10px 20px ${color}40`; // 40 is opacity
+                modalIconContainer.style.boxShadow = `0 10px 20px ${color}40`;
                 
                 modalDesc.textContent = desc;
+                
+                // Button Logic
                 modalDownload.href = link;
+                modalDownload.textContent = btnText;
 
-                // Populate Features List
+                // Features List
                 modalFeatures.innerHTML = '';
                 features.forEach(feat => {
                     const li = document.createElement('li');
