@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | NovaSphere Studio</title>
+    
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh; /* Centers vertically */
+        }
+
+        @media (max-width: 768px) {
+            .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* Floating Label Inputs */
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover { color: var(--accent-color); }
+        .contact-link i { font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+
+    <div class="nova-orb" style="bottom: -10%; left: -10%; background: radial-gradient(circle, #ff512f, #dd2476);"></div>
+
+    <!-- Navigation -->
+    <nav class="glass" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--text-primary); font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+        </a>
+        <div class="nav-links" style="display: flex; gap: 2rem;">
+            <a href="index.html" style="text-decoration: none; color: var(--text-secondary);">Studio</a>
+            <a href="portfolio.html" style="text-decoration: none; color: var(--text-secondary);">Work</a>
+            <a href="about.html" style="text-decoration: none; color: var(--text-secondary);">About</a>
+        </div>
+        <div class="controls" style="display: flex; align-items: center; gap: 15px;">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-toggle">
+                    <input type="checkbox" id="theme-toggle" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 120px; padding-bottom: 4rem;">
+        
+        <div class="contact-layout">
+            
+            <!-- Left Side: Info -->
+            <div class="reveal-blur">
+                <h1 style="margin-bottom: 1.5rem;">Let's Build<br>Something <span style="color: var(--accent-color)">Real.</span></h1>
+                <p style="margin-bottom: 2.5rem; max-width: 400px;">
+                    Have an idea for an app? Found a bug? Or just want to discuss the future of tech? NovaSphere is always open.
+                </p>
+
+                <a href="mailto:hello@novasphere.studio" class="contact-link">
+                    <i class='bx bx-envelope'></i> hello@novasphere.studio
+                </a>
+                <a href="#" class="contact-link">
+                    <i class='bx bxl-github'></i> github.com/novasphere
+                </a>
+                <a href="#" class="contact-link">
+                    <i class='bx bxl-twitter'></i> @NovaSphereApps
+                </a>
+            </div>
+
+            <!-- Right Side: Form -->
+            <div class="glass glass-card reveal-pop delay-200" style="padding: 2.5rem;">
+                <!-- FORM START: Replace action with your Formspree ID -->
+                <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+                    
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Name</label>
+                        <input type="text" name="name" class="form-input" required placeholder="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Email</label>
+                        <input type="email" name="email" class="form-input" required placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Message</label>
+                        <textarea name="message" class="form-input" rows="5" required placeholder="Tell me about your project..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/theme.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal-blur, .reveal-pop').forEach((el) => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
