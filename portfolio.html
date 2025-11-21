@@ -213,42 +213,42 @@
     </div>
 
     <!-- THE GLASS MODAL (Hidden by default) -->
-<div id="app-modal" class="modal-overlay">
-    <div class="glass modal-content">
-        <button class="close-modal">&times;</button>
-        
-        <div class="modal-header">
-            <div id="modal-icon" class="app-icon large-icon">
-                <i class='bx bx-layer'></i>
-            </div>
-            <div>
-                <h2 id="modal-title">App Name</h2>
-                <span id="modal-tag" class="app-tag">Category</span>
-            </div>
-        </div>
-
-        <div class="modal-body">
-            <p id="modal-desc">Description goes here...</p>
+    <div id="app-modal" class="modal-overlay">
+        <div class="glass modal-content">
+            <button class="close-modal">&times;</button>
             
-            <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Features</h4>
-            <ul id="modal-features" style="list-style-position: inside; color: var(--text-secondary);">
-                <!-- Features injected via JS -->
-            </ul>
+            <div class="modal-header">
+                <div id="modal-icon" class="app-icon large-icon">
+                    <i class='bx bx-layer'></i>
+                </div>
+                <div>
+                    <h2 id="modal-title">App Name</h2>
+                    <span id="modal-tag" class="app-tag">Category</span>
+                </div>
+            </div>
 
-            <div class="modal-actions">
-                <a href="#" id="modal-download" class="btn btn-primary">Download App</a>
-                <a href="#" class="btn glass" style="margin-left: 10px; color: var(--text-primary);">GitHub Repo</a>
+            <div class="modal-body">
+                <p id="modal-desc">Description goes here...</p>
+                
+                <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Features</h4>
+                <ul id="modal-features" style="list-style-position: inside; color: var(--text-secondary);">
+                    <!-- Features injected via JS -->
+                </ul>
+
+                <div class="modal-actions">
+                    <a href="#" id="modal-download" class="btn btn-primary">Download App</a>
+                    <a href="#" class="btn glass" style="margin-left: 10px; color: var(--text-primary);">GitHub Repo</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary);">
-    <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
-    <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
-        Unauthorized duplication or publication of any materials from this site is expressly prohibited.
-    </p>
-</footer>
+        <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
+            Unauthorized duplication or publication of any materials from this site is expressly prohibited.
+        </p>
+    </footer>
 
     <!-- Scripts -->
     <script src="js/theme.js"></script>
@@ -266,6 +266,69 @@
             }, observerOptions);
             
             document.querySelectorAll('.reveal-blur, .reveal-pop').forEach((el) => observer.observe(el));
+        });
+
+        // MODAL LOGIC
+        const modal = document.getElementById('app-modal');
+        const closeBtn = document.querySelector('.close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalTag = document.getElementById('modal-tag');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalIcon = document.querySelector('#modal-icon i');
+        const modalIconContainer = document.getElementById('modal-icon');
+        const modalFeatures = document.getElementById('modal-features');
+        const modalDownload = document.getElementById('modal-download');
+
+        // 1. Open Modal
+        document.querySelectorAll('.open-modal-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop jump to top
+                
+                // Get data from clicked button
+                const title = btn.getAttribute('data-title');
+                const tag = btn.getAttribute('data-tag');
+                const iconClass = btn.getAttribute('data-icon');
+                const color = btn.getAttribute('data-color'); // e.g., #10b981
+                const desc = btn.getAttribute('data-desc');
+                const features = btn.getAttribute('data-features').split(',');
+                const link = btn.getAttribute('data-link');
+
+                // Populate Modal
+                modalTitle.textContent = title;
+                modalTag.textContent = tag;
+                modalTag.style.color = color;
+                
+                // Reset icon classes and add new ones
+                modalIcon.className = `bx ${iconClass}`;
+                modalIconContainer.style.background = color;
+                modalIconContainer.style.boxShadow = `0 10px 20px ${color}40`; // 40 is opacity
+                
+                modalDesc.textContent = desc;
+                modalDownload.href = link;
+
+                // Populate Features List
+                modalFeatures.innerHTML = '';
+                features.forEach(feat => {
+                    const li = document.createElement('li');
+                    li.textContent = feat;
+                    modalFeatures.appendChild(li);
+                });
+
+                // Show Modal
+                modal.classList.add('active');
+            });
+        });
+
+        // 2. Close Modal (X button)
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // 3. Close Modal (Click outside)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
         });
     </script>
 </body>
