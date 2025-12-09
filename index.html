@@ -3,88 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA | NEURAL LINK V.77</title>
-    <link rel="stylesheet" href="style.css">
+    <title>NOVA | SYSTEM BOOT</title>
+    
+    <!-- FONTS: The Language of Machines -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           CORE PHYSICS
+           ========================================= */
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --neon-red: #ff0055;
+            --void-black: #050505;
+            --grid-color: rgba(0, 243, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--void-black);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+            cursor: crosshair;
+        }
+
+        /* =========================================
+           ATMOSPHERE: SCANLINES & NOISE
+           ========================================= */
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 900; opacity: 0.4;
+        }
+
+        .scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
+            background-size: 100% 3px;
+            pointer-events: none; z-index: 901;
+        }
+
+        /* =========================================
+           BOOT SEQUENCE (THE LOADING SCREEN)
+           ========================================= */
+        #boot-screen {
+            position: fixed; inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+
+        .terminal-window {
+            width: 300px;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--neon-blue);
+        }
+
+        .progress-box {
+            width: 100%; height: 6px;
+            background: #111;
+            border: 1px solid #333;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%; width: 0%;
+            background: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+            position: absolute;
+            top: 0; left: 0;
+            /* FALLBACK ANIMATION if JS Fails */
+            animation: force-load 4s forwards; 
+        }
+
+        @keyframes force-load {
+            0% { width: 0%; }
+            20% { width: 10%; }
+            50% { width: 40%; }
+            100% { width: 100%; }
+        }
+
+        .boot-text {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex; justify-content: space-between;
+        }
+
+        .blink { animation: blinker 0.5s step-end infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        /* =========================================
+           MAIN INTERFACE (HIDDEN INITIALLY)
+           ========================================= */
+        #main-interface {
+            opacity: 0;
+            transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100vh;
+            display: flex; flex-direction: column;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* 3D Grid Floor */
+        .grid-floor {
+            position: absolute; width: 200%; height: 100%;
+            bottom: -50%; left: -50%;
+            background: 
+                linear-gradient(transparent, var(--void-black) 90%),
+                linear-gradient(0deg, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            animation: grid-scroll 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes grid-scroll {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        /* Hero Content */
+        .hero {
+            flex: 1;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: hero-reveal 1s forwards 0.5s;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            letter-spacing: 4px;
+            border-top: 1px solid var(--neon-purple);
+            border-bottom: 1px solid var(--neon-purple);
+            padding: 10px 40px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: hero-reveal 1s forwards 1s;
+        }
+
+        /* The Cyber Button */
+        .btn-launch {
+            background: transparent;
+            color: var(--neon-blue);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            padding: 20px 50px;
+            border: 1px solid var(--neon-blue);
+            cursor: pointer;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+            opacity: 0;
+            animation: hero-reveal 1s forwards 1.5s;
+        }
+
+        .btn-launch:hover {
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 30px var(--neon-blue);
+            letter-spacing: 2px;
+        }
+
+        .btn-launch::before {
+            content: '';
+            position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-launch:hover::before { left: 100%; }
+
+        @keyframes hero-reveal {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Corner HUD Elements */
+        .hud-corner {
+            position: fixed; width: 40px; height: 40px;
+            border: 2px solid var(--neon-blue);
+            opacity: 0.5;
+        }
+        .tl { top: 30px; left: 30px; border-right: none; border-bottom: none; }
+        .tr { top: 30px; right: 30px; border-left: none; border-bottom: none; }
+        .bl { bottom: 30px; left: 30px; border-right: none; border-top: none; }
+        .br { bottom: 30px; right: 30px; border-left: none; border-top: none; }
+
+    </style>
 </head>
 <body>
 
-    <div class="noise-overlay"></div>
-    <div class="scanline"></div>
-    
-    <div class="environment-grid"></div>
+    <!-- VISUAL NOISE -->
+    <div class="noise"></div>
+    <div class="scanlines"></div>
 
-    <div id="boot-sequence" class="boot-screen">
-        <div class="boot-terminal">
-            <div class="boot-log" id="boot-log"></div>
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
+    <!-- BOOT SEQUENCE -->
+    <div id="boot-screen" onclick="forceBoot()">
+        <div class="terminal-window">
+            <div class="boot-text">
+                <span>SYSTEM_BOOT</span>
+                <span>V.20.77</span>
             </div>
-            <div class="system-id">SYSTEM_ID: NOVA_PRIME_2077</div>
+            <div class="progress-box">
+                <div id="progress" class="progress-fill"></div>
+            </div>
+            <div class="boot-text">
+                <span id="boot-msg" class="blink">CONNECTING...</span>
+                <span id="percent">0%</span>
+            </div>
+            <p style="margin-top: 20px; font-size: 10px; color: #555; text-align: center;">
+                [CLICK SCREEN TO FORCE OVERRIDE]
+            </p>
         </div>
     </div>
 
-    <main id="interface" class="interface-layer hidden">
-        <header class="hud-header">
-            <div class="hud-logo">
-                <span class="glitch" data-text="NOVA">NOVA</span>
-                <span class="sub-logo">STUDIO</span>
-            </div>
-            <div class="hud-status">
-                <span class="status-dot"></span>
-                <span>NET_ONLINE</span>
-                <span class="time-display" id="clock">00:00:00</span>
-            </div>
-        </header>
+    <!-- MAIN INTERFACE -->
+    <main id="main-interface">
+        <div class="grid-floor"></div>
+        
+        <!-- CORNERS -->
+        <div class="hud-corner tl"></div>
+        <div class="hud-corner tr"></div>
+        <div class="hud-corner bl"></div>
+        <div class="hud-corner br"></div>
 
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="decoration-line top"></div>
-                <h1 class="mega-title">
-                    <span class="layer">DIGITAL</span>
-                    <span class="layer">REALITY</span>
-                    <span class="layer highlight">ARCHITECTS</span>
-                </h1>
-                <p class="mission-text">
-                    WE DO NOT WRITE CODE. WE FORGE DIGITAL MATTER.
-                    <br>ACCESS THE ARTIFACTS BELOW.
-                </p>
-                <div class="hero-controls">
-                    <button class="cyber-btn primary">
-                        <span class="btn-content">INITIALIZE PROTOCOL</span>
-                        <span class="btn-glitch"></span>
-                    </button>
-                    <button class="cyber-btn secondary">
-                        <span class="btn-content">SECURE CHANNEL</span>
-                    </button>
-                </div>
-                <div class="decoration-line bottom"></div>
-            </div>
-            
-            <div class="holo-display">
-                <div class="holo-circle inner"></div>
-                <div class="holo-circle outer"></div>
-                <div class="holo-model">
-                    <div class="cube">
-                        <div class="face front"></div>
-                        <div class="face back"></div>
-                        <div class="face right"></div>
-                        <div class="face left"></div>
-                        <div class="face top"></div>
-                        <div class="face bottom"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="hud-corner top-left"></div>
-        <div class="hud-corner top-right"></div>
-        <div class="hud-corner bottom-left"></div>
-        <div class="hud-corner bottom-right"></div>
+        <div class="hero">
+            <h1>NOVA<span style="color:white">SPHERE</span></h1>
+            <div class="subtitle">ARCHITECTS OF DIGITAL REALITY</div>
+            <button class="btn-launch" onclick="alert('ACCESS GRANTED. PHASE 2 PENDING.')">
+                ENTER THE MATRIX
+            </button>
+        </div>
     </main>
 
-    <script src="main.js"></script>
+    <!-- LOGIC CORE -->
+    <script>
+        // Ensure script runs only when page is parsed
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const fill = document.getElementById('progress');
+            const percent = document.getElementById('percent');
+            const msg = document.getElementById('boot-msg');
+            const screen = document.getElementById('boot-screen');
+            const main = document.getElementById('main-interface');
+            
+            let width = 0;
+            let bootSpeed = 30; // Speed of loading (lower is faster)
+
+            const messages = [
+                "INITIALIZING...", 
+                "LOADING CORE...", 
+                "CHECKING NEURAL LINK...", 
+                "ACCESS GRANTED."
+            ];
+
+            function runBoot() {
+                if (width >= 100) {
+                    finishBoot();
+                } else {
+                    width++;
+                    fill.style.width = width + '%';
+                    percent.innerText = width + '%';
+
+                    // Update text based on progress
+                    if(width < 30) msg.innerText = messages[0];
+                    else if(width < 60) msg.innerText = messages[1];
+                    else if(width < 90) msg.innerText = messages[2];
+                    else msg.innerText = messages[3];
+
+                    // Randomize speed for "glitch" effect
+                    let rand = Math.floor(Math.random() * bootSpeed);
+                    setTimeout(runBoot, rand);
+                }
+            }
+
+            function finishBoot() {
+                msg.innerText = "SYSTEM READY";
+                msg.classList.remove('blink');
+                
+                setTimeout(() => {
+                    screen.style.opacity = '0';
+                    screen.style.pointerEvents = 'none'; // Prevent clicks after fade
+                    main.style.opacity = '1';
+                }, 500);
+            }
+
+            // Start the sequence
+            runBoot();
+        });
+
+        // FAILSAFE: Manual Override
+        function forceBoot() {
+            const screen = document.getElementById('boot-screen');
+            const main = document.getElementById('main-interface');
+            screen.style.display = 'none';
+            main.style.opacity = '1';
+        }
+    </script>
 </body>
 </html>
