@@ -3,118 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="copyright" content="NovaSphere Studio">
-    <meta name="author" content="NovaSphere Studio">
-    <title>NovaSphere Studio | Innovating Reality</title>
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/themes.css">
-    <link rel="stylesheet" href="css/glass.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animations.css">
-    
-    <!-- Icons -->
+    <title>NovaSphere | Future Tech</title>
+    <link rel="stylesheet" href="css/alien-core.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Background Atmosphere -->
-    <div class="nova-orb" style="top: -100px; left: -100px;"></div>
-    <div class="nova-orb" style="bottom: -100px; right: -100px; animation-delay: 2s;"></div>
+    <div class="nova-orb" style="top: -20%; left: -20%;"></div>
+    <div class="nova-orb" style="bottom: -20%; right: -20%; background: radial-gradient(circle, var(--neon-secondary), transparent 70%); animation-delay: 2s;"></div>
 
-    <!-- Navigation -->
-    <nav class="glass" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
-        <div class="logo" style="font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
-            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+    <nav>
+        <div class="logo">
+            <i class='bx bx-planet' style="color: var(--neon-primary);"></i> NOVA<span style="color:white">SPHERE</span>
         </div>
-        
-        <div class="nav-links" style="display: flex; gap: 2rem;">
-            <a href="index.html" style="text-decoration: none; color: var(--text-primary); font-weight: 600;">Studio</a>
-            <a href="portfolio.html" style="text-decoration: none; color: var(--text-secondary);">Work</a>
-            <a href="about.html" style="text-decoration: none; color: var(--text-secondary);">About</a>
-        </div>
-
-        <div class="controls" style="display: flex; align-items: center; gap: 15px;">
-            <!-- Theme Toggle Switch -->
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="theme-toggle">
-                    <input type="checkbox" id="theme-toggle" />
-                    <div class="slider round"></div>
-                </label>
-            </div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Talk</a>
+        <div class="nav-links">
+            <a href="portfolio.html">Artifacts</a>
+            <a href="contact.html">Comm-Link</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section style="height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px;">
-        <div class="container">
-            <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block;">Est. 2025</span>
-            <h1 class="reveal-blur" style="margin-bottom: 1.5rem;">We Build Digital <br> <span style="background: linear-gradient(45deg, var(--accent-color), #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Serenity.</span></h1>
-            <p class="reveal-blur delay-200" style="max-width: 600px; margin: 0 auto 2.5rem;">NovaSphere Studio combines technical expertise with creative vision to build productivity tools and health-focused apps that solve real-world problems.</p>
+    <div class="container" style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        
+        <div class="reveal-blur">
+            <span style="font-family: var(--font-code); color: var(--neon-secondary); letter-spacing: 3px; font-size: 0.8rem;">ESTABLISHED 2025</span>
+            <h1 style="margin: 1rem 0;">Constructing<br>Digital <span style="color: var(--neon-primary)">Reality</span></h1>
+            <p style="max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted); font-size: 1.1rem;">
+                We are Alien Tech Developers. We do not build websites. We build portals. 
+                Optimized for the future. Engineered for the void.
+            </p>
             
-            <div class="cta-group reveal-blur delay-400">
-                <a href="portfolio.html" class="btn btn-primary">View Our Apps</a>
-                <a href="#mission" class="btn glass" style="margin-left: 15px; color: var(--text-primary);">Our Mission</a>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="portfolio.html" class="btn btn-primary">
+                    <i class='bx bx-grid-alt' style="margin-right: 8px;"></i> Access Artifacts
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- Features / Mission -->
-    <section id="mission" class="container" style="padding: 5rem 2rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-            
-            <!-- Card 1 -->
-            <div class="glass glass-card reveal-pop delay-100" style="padding: 2.5rem;">
-                <i class='bx bx-layer' style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;"></i>
-                <h3>Simplicity</h3>
-                <p style="margin-top: 1rem;">We strip away the clutter. Our interfaces are designed to be intuitive, letting users focus on what actually matters.</p>
-            </div>
+    </div>
 
-            <!-- Card 2 -->
-            <div class="glass glass-card reveal-pop delay-200" style="padding: 2.5rem;">
-                <i class='bx bx-code-alt' style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;"></i>
-                <h3>Performance</h3>
-                <p style="margin-top: 1rem;">Clean code leads to smooth experiences. We optimize every line to ensure reliability across all devices.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="glass glass-card reveal-pop delay-300" style="padding: 2.5rem;">
-                <i class='bx bx-heart' style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;"></i>
-                <h3>Well-being</h3>
-                <p style="margin-top: 1rem;">Technology should improve life, not consume it. Our apps are tools for organization and health.</p>
-            </div>
-
+    <div class="container" style="padding-bottom: 5rem; text-align: center;">
+        <span style="font-family: var(--font-code); color: var(--glass-border); text-transform: uppercase;">Powered By</span>
+        <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; font-size: 2rem; color: var(--text-muted);">
+            <i class='bx bxl-html5 glass-card' style="padding: 10px; border-radius: 8px;"></i>
+            <i class='bx bxl-css3 glass-card' style="padding: 10px; border-radius: 8px;"></i>
+            <i class='bx bxl-javascript glass-card' style="padding: 10px; border-radius: 8px;"></i>
+            <i class='bx bxl-react glass-card' style="padding: 10px; border-radius: 8px;"></i>
         </div>
-    </section>
-    
-    <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary);">
-    <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
-    <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
-        Unauthorized duplication or publication of any materials from this site is expressly prohibited.
-    </p>
-</footer>
+    </div>
 
-    <!-- Load Scripts -->
-   <script src="js/theme.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const observerOptions = {
-            threshold: 0.1 // Trigger when 10% of the item is visible
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, observerOptions);
-
-        const hiddenElements = document.querySelectorAll('.reveal-blur, .reveal-pop');
-        hiddenElements.forEach((el) => observer.observe(el));
-    });
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal-blur').forEach((el) => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
