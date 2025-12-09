@@ -3,213 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Details | NovaSphere Studio</title>
+    <title>Artifact Details | NovaSphere</title>
     
-    <link rel="stylesheet" href="css/themes.css">
-    <link rel="stylesheet" href="css/glass.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/alien-core.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
-    <style>
-        /* PRODUCT SPECIFIC STYLES */
-        
-        /* 1. The Banner Hero */
-        .app-hero {
-            position: relative;
-            height: 400px;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 4rem;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            filter: blur(4px) brightness(0.4); /* Darken and blur banner */
-            transition: all 0.5s ease;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: flex-end;
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .hero-icon {
-            width: 140px;
-            height: 140px;
-            border-radius: 28px;
-            background: var(--bg-color);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: var(--accent-color);
-            flex-shrink: 0; /* Don't shrink */
-        }
-
-        @media (max-width: 768px) {
-            .app-hero { height: auto; padding: 120px 0 2rem; }
-            .hero-content { flex-direction: column; align-items: center; text-align: center; }
-        }
-
-        /* 2. Download Badges */
-        .store-badge-grid {
-            display: flex;
-            gap: 15px;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .store-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #000; /* Store buttons are usually black */
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.2s;
-        }
-        
-        .store-btn:hover { transform: translateY(-3px); }
-        .store-btn i { font-size: 1.5rem; }
-        .store-text { display: flex; flex-direction: column; font-size: 0.7rem; line-height: 1.2; text-align: left; }
-        .store-text span { font-size: 1rem; font-weight: 700; }
-
-        /* 3. Info Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 900px) { .info-grid { grid-template-columns: 1fr; } }
-
-        .meta-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .legal-links {
-            margin-top: 3rem;
-            font-size: 0.9rem;
-        }
-        .legal-links a { color: var(--text-secondary); margin-right: 20px; }
-        .legal-links a:hover { color: var(--accent-color); }
-
-    </style>
 </head>
 <body>
 
-    <!-- Nav (Same as other pages) -->
-    <nav class="glass" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
-        <a href="index.html" class="logo" style="text-decoration: none; color: var(--text-primary); font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
-            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+    <nav>
+        <a href="index.html" class="logo">
+            <i class='bx bx-planet' style="color: var(--neon-primary);"></i> NOVA<span style="color:white">SPHERE</span>
         </a>
         <div class="nav-links">
-            <a href="portfolio.html" style="text-decoration: none; color: var(--text-primary); font-weight: 600;"><i class='bx bx-arrow-back'></i> Back to Work</a>
+            <a href="portfolio.html"><i class='bx bx-arrow-back'></i> Return to Grid</a>
         </div>
     </nav>
 
-    <!-- 1. HERO SECTION (Banner + Icon) -->
-    <div class="app-hero">
-        <!-- Background Image (Set via JS) -->
-        <div id="hero-bg" class="hero-bg" style="background-image: linear-gradient(to bottom right, #2a2a2a, #1a1a1a);"></div>
+    <div style="position: relative; height: 50vh; min-height: 400px; display: flex; align-items: flex-end; padding-bottom: 4rem; overflow: hidden;">
+        <div id="hero-bg" style="position: absolute; inset: 0; background: #000; z-index: -2;"></div>
+        <div style="position: absolute; inset: 0; background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImgridIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDQMEwIDB2NDAiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBmaWxsPSJub25lIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIiAvPjwvc3ZnPg=='); z-index: -1; opacity: 0.3;"></div>
         
-        <div class="hero-content">
-            <div id="app-icon" class="hero-icon">
-                <i class='bx bx-layer'></i> <!-- Default Icon -->
+        <div class="container" style="display: flex; align-items: flex-end; gap: 2rem;">
+            <div id="app-icon" class="glass" style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; font-size: 60px; border-radius: 20px; box-shadow: 0 0 40px rgba(0,0,0,0.5);">
+                <i class='bx bx-chip'></i>
             </div>
-            <div class="hero-text">
-                <span id="app-category" style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Productivity</span>
-                <h1 id="app-title" style="font-size: clamp(2rem, 4vw, 3.5rem); color: white; margin: 5px 0;">App Name</h1>
-                <p id="app-tagline" style="color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px;">A short powerful tagline describing the app.</p>
-                
-                <!-- Download Buttons -->
-                <div class="store-badge-grid" id="download-container">
-                    <!-- Buttons injected via JS -->
-                </div>
+            <div style="padding-bottom: 10px;">
+                <span id="app-category" style="color: var(--neon-secondary); font-family: var(--font-code); font-size: 0.8rem; letter-spacing: 2px;">CLASSIFIED</span>
+                <h1 id="app-title" style="margin: 5px 0 10px;">LOADING...</h1>
+                <div id="download-container" style="display: flex; gap: 10px;"></div>
             </div>
         </div>
     </div>
 
-    <!-- 2. MAIN CONTENT -->
-    <div class="container">
-        <div class="info-grid">
+    <div class="container" style="margin-top: 4rem; margin-bottom: 4rem;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
             
-            <!-- LEFT: Description & Features -->
-            <div class="main-details reveal-pop delay-100">
-                <div class="glass glass-card" style="padding: 2.5rem;">
-                    <h3>About this App</h3>
-                    <p id="app-description" style="margin-top: 1rem; white-space: pre-line;">
-                        Loading description...
+            <div class="reveal-blur">
+                <div class="glass" style="padding: 2.5rem;">
+                    <h3 style="color: var(--neon-primary); margin-bottom: 1rem;">// SYSTEM DESCRIPTION</h3>
+                    <p id="app-description" style="white-space: pre-line; color: var(--text-muted); font-size: 1.05rem;">
+                        Retrieving data...
                     </p>
 
-                    <h3 style="margin-top: 2.5rem;">Key Features</h3>
-                    <ul id="app-features" style="margin-top: 1rem; padding-left: 20px; color: var(--text-secondary); line-height: 2;">
-                        <!-- Features List -->
+                    <h3 style="color: var(--neon-primary); margin-top: 2.5rem; margin-bottom: 1rem;">// CORE CAPABILITIES</h3>
+                    <ul id="app-features" style="list-style: none; padding: 0;">
                     </ul>
                 </div>
             </div>
 
-            <!-- RIGHT: Technical Specs (Sidebar) -->
-            <div class="tech-specs reveal-pop delay-200">
-                <div class="glass glass-card" style="padding: 2rem;">
-                    <h4 style="margin-bottom: 1.5rem;">App Information</h4>
+            <div class="reveal-pop delay-100">
+                <div class="glass" style="padding: 2rem;">
+                    <h3 style="font-size: 1rem; color: var(--text-main); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 1.5rem;">Artifact Specs</h3>
                     
-                    <div class="meta-item">
-                        <span>Version</span>
-                        <span id="meta-version" style="color: var(--text-primary); font-weight: 600;">1.0.0</span>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-family: var(--font-code); font-size: 0.9rem;">
+                        <span style="color: var(--text-muted);">Version</span>
+                        <span id="meta-version" style="color: var(--neon-secondary);">--</span>
                     </div>
-                    <div class="meta-item">
-                        <span>Updated</span>
-                        <span id="meta-date">Nov 2025</span>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-family: var(--font-code); font-size: 0.9rem;">
+                        <span style="color: var(--text-muted);">Compiled</span>
+                        <span id="meta-date">--</span>
                     </div>
-                    <div class="meta-item">
-                        <span>Size</span>
-                        <span id="meta-size">15 MB</span>
-                    </div>
-                    <div class="meta-item">
-                        <span>Developer</span>
-                        <span>NovaSphere</span>
-                    </div>
-                    <div class="meta-item" style="border: none;">
-                        <span>License</span>
-                        <span>Proprietary</span>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-family: var(--font-code); font-size: 0.9rem;">
+                        <span style="color: var(--text-muted);">Size</span>
+                        <span id="meta-size">--</span>
                     </div>
 
-                    <!-- LEGAL SECTION -->
-                    <div class="legal-links" style="border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                    </div>
-                </div>
-
-                <!-- Security Badge -->
-                <div class="glass glass-card" style="padding: 1.5rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 15px;">
-                    <i class='bx bx-shield-quarter' style="font-size: 2rem; color: #10b981;"></i>
-                    <div>
-                        <h5 style="margin: 0;">Virus Checked</h5>
-                        <p style="font-size: 0.8rem; margin: 0;">Verified Safe by Play Protect</p>
+                    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; gap: 10px;">
+                        <button onclick="openDossier('privacy')" class="btn" style="background: rgba(255,255,255,0.05); color: var(--text-muted); justify-content: space-between; font-size: 0.7rem;">
+                            Privacy Policy <i class='bx bx-lock-alt'></i>
+                        </button>
+                        <button onclick="openDossier('terms')" class="btn" style="background: rgba(255,255,255,0.05); color: var(--text-muted); justify-content: space-between; font-size: 0.7rem;">
+                            Terms of Service <i class='bx bx-file'></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -217,15 +82,102 @@
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary);">
-        <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
-        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
-            Unauthorized duplication is prohibited.
-        </p>
+    <footer style="text-align: center; padding: 3rem; color: var(--text-muted); font-family: var(--font-code); font-size: 0.8rem;">
+        NOVA_SYSTEM_V.2.0 // END_OF_LINE
     </footer>
 
-    <!-- SCRIPT TO LOAD DATA -->
-    <script src="js/theme.js"></script>
-    <script src="js/app-data.js"></script> <!-- NEW FILE -->
+    <div id="dossier-modal" class="modal-overlay">
+        <div class="glass modal-content">
+            <div class="dossier-header">
+                <span id="dossier-title" style="font-family: var(--font-heading); color: var(--neon-primary);">CLASSIFIED</span>
+                <button onclick="closeDossier()" style="background: none; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <div id="dossier-body" class="dossier-body" style="white-space: pre-line;">
+                <!-- Text Injected Here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app-data.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const appId = urlParams.get('app');
+        const data = appDatabase[appId];
+
+        if (data) {
+            document.title = `${data.title} | Protocol Verified`;
+            
+            document.getElementById('app-title').textContent = data.title;
+            document.getElementById('app-category').textContent = `// ${data.category}`;
+            document.getElementById('app-description').textContent = data.description;
+            
+            const iconBox = document.getElementById('app-icon');
+            iconBox.innerHTML = `<i class='bx ${data.iconClass}'></i>`;
+            iconBox.style.color = data.accentColor;
+            iconBox.style.boxShadow = `0 0 50px ${data.accentColor}40`;
+            iconBox.style.borderColor = data.accentColor;
+            
+            document.getElementById('hero-bg').style.background = data.banner;
+
+            // Features
+            const featList = document.getElementById('app-features');
+            data.features.forEach(f => {
+                const li = document.createElement('li');
+                li.style.cssText = "padding: 8px 0; border-bottom: 1px dashed var(--glass-border); color: var(--text-muted); display: flex; align-items: center; gap: 10px;";
+                li.innerHTML = `<i class='bx bx-check' style='color: var(--neon-secondary)'></i> ${f}`;
+                featList.appendChild(li);
+            });
+
+            document.getElementById('meta-version').textContent = data.version;
+            document.getElementById('meta-date').textContent = data.updated;
+            document.getElementById('meta-size').textContent = data.size;
+
+            // Downloads
+            const dlContainer = document.getElementById('download-container');
+            data.downloads.forEach(dl => {
+                const btn = document.createElement('a');
+                btn.href = dl.link;
+                btn.className = 'btn btn-primary';
+                btn.innerHTML = `<i class='bx ${dl.icon}' style='font-size: 1.2rem; margin-right: 8px;'></i> ${dl.name}`;
+                dlContainer.appendChild(btn);
+            });
+        } else {
+            document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%'>CRITICAL ERROR: ARTIFACT NOT FOUND</h1>";
+        }
+
+        const modal = document.getElementById('dossier-modal');
+        const dTitle = document.getElementById('dossier-title');
+        const dBody = document.getElementById('dossier-body');
+
+        function openDossier(type) {
+            if (!data || !data.legal) return;
+            
+            modal.classList.add('active');
+            if (type === 'privacy') {
+                dTitle.textContent = "PRIVACY_PROTOCOL.txt";
+                dBody.textContent = data.legal.privacy;
+            } else {
+                dTitle.textContent = "TERMS_OF_USE.txt";
+                dBody.textContent = data.legal.terms;
+            }
+        }
+
+        function closeDossier() {
+            modal.classList.remove('active');
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeDossier();
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal-blur, .reveal-pop').forEach((el) => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
