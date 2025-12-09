@@ -3,63 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaSphere | Future Tech</title>
-    <link rel="stylesheet" href="css/alien-core.css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <title>NOVA | NEURAL LINK V.77</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="nova-orb" style="top: -20%; left: -20%;"></div>
-    <div class="nova-orb" style="bottom: -20%; right: -20%; background: radial-gradient(circle, var(--neon-secondary), transparent 70%); animation-delay: 2s;"></div>
+    <div class="noise-overlay"></div>
+    <div class="scanline"></div>
+    
+    <div class="environment-grid"></div>
 
-    <nav>
-        <div class="logo">
-            <i class='bx bx-planet' style="color: var(--neon-primary);"></i> NOVA<span style="color:white">SPHERE</span>
-        </div>
-        <div class="nav-links">
-            <a href="portfolio.html">Artifacts</a>
-            <a href="contact.html">Comm-Link</a>
-        </div>
-    </nav>
-
-    <div class="container" style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-        
-        <div class="reveal-blur">
-            <span style="font-family: var(--font-code); color: var(--neon-secondary); letter-spacing: 3px; font-size: 0.8rem;">ESTABLISHED 2025</span>
-            <h1 style="margin: 1rem 0;">Constructing<br>Digital <span style="color: var(--neon-primary)">Reality</span></h1>
-            <p style="max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted); font-size: 1.1rem;">
-                We are Alien Tech Developers. We do not build websites. We build portals. 
-                Optimized for the future. Engineered for the void.
-            </p>
-            
-            <div style="display: flex; gap: 20px; justify-content: center;">
-                <a href="portfolio.html" class="btn btn-primary">
-                    <i class='bx bx-grid-alt' style="margin-right: 8px;"></i> Access Artifacts
-                </a>
+    <div id="boot-sequence" class="boot-screen">
+        <div class="boot-terminal">
+            <div class="boot-log" id="boot-log"></div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
             </div>
-        </div>
-
-    </div>
-
-    <div class="container" style="padding-bottom: 5rem; text-align: center;">
-        <span style="font-family: var(--font-code); color: var(--glass-border); text-transform: uppercase;">Powered By</span>
-        <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; font-size: 2rem; color: var(--text-muted);">
-            <i class='bx bxl-html5 glass-card' style="padding: 10px; border-radius: 8px;"></i>
-            <i class='bx bxl-css3 glass-card' style="padding: 10px; border-radius: 8px;"></i>
-            <i class='bx bxl-javascript glass-card' style="padding: 10px; border-radius: 8px;"></i>
-            <i class='bx bxl-react glass-card' style="padding: 10px; border-radius: 8px;"></i>
+            <div class="system-id">SYSTEM_ID: NOVA_PRIME_2077</div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('active');
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal-blur').forEach((el) => observer.observe(el));
-        });
-    </script>
+    <main id="interface" class="interface-layer hidden">
+        <header class="hud-header">
+            <div class="hud-logo">
+                <span class="glitch" data-text="NOVA">NOVA</span>
+                <span class="sub-logo">STUDIO</span>
+            </div>
+            <div class="hud-status">
+                <span class="status-dot"></span>
+                <span>NET_ONLINE</span>
+                <span class="time-display" id="clock">00:00:00</span>
+            </div>
+        </header>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="decoration-line top"></div>
+                <h1 class="mega-title">
+                    <span class="layer">DIGITAL</span>
+                    <span class="layer">REALITY</span>
+                    <span class="layer highlight">ARCHITECTS</span>
+                </h1>
+                <p class="mission-text">
+                    WE DO NOT WRITE CODE. WE FORGE DIGITAL MATTER.
+                    <br>ACCESS THE ARTIFACTS BELOW.
+                </p>
+                <div class="hero-controls">
+                    <button class="cyber-btn primary">
+                        <span class="btn-content">INITIALIZE PROTOCOL</span>
+                        <span class="btn-glitch"></span>
+                    </button>
+                    <button class="cyber-btn secondary">
+                        <span class="btn-content">SECURE CHANNEL</span>
+                    </button>
+                </div>
+                <div class="decoration-line bottom"></div>
+            </div>
+            
+            <div class="holo-display">
+                <div class="holo-circle inner"></div>
+                <div class="holo-circle outer"></div>
+                <div class="holo-model">
+                    <div class="cube">
+                        <div class="face front"></div>
+                        <div class="face back"></div>
+                        <div class="face right"></div>
+                        <div class="face left"></div>
+                        <div class="face top"></div>
+                        <div class="face bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="hud-corner top-left"></div>
+        <div class="hud-corner top-right"></div>
+        <div class="hud-corner bottom-left"></div>
+        <div class="hud-corner bottom-right"></div>
+    </main>
+
+    <script src="main.js"></script>
 </body>
 </html>
