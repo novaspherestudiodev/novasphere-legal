@@ -2,327 +2,442 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA | SYSTEM BOOT</title>
-    
-    <!-- FONTS: The Language of Machines -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NOVA | NEURAL MATRIX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <style>
-        /* =========================================
-           CORE PHYSICS
-           ========================================= */
         :root {
-            --neon-blue: #00f3ff;
+            --neon-cyan: #00f3ff;
             --neon-purple: #bc13fe;
             --neon-red: #ff0055;
-            --void-black: #050505;
-            --grid-color: rgba(0, 243, 255, 0.1);
+            --deep-void: #030305;
+            --glass-panel: rgba(10, 15, 20, 0.65);
+            --glass-border: rgba(0, 243, 255, 0.15);
+            --font-main: 'Orbitron', sans-serif;
+            --font-data: 'Share Tech Mono', monospace;
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Hide default cursor */
 
         body {
-            background-color: var(--void-black);
-            color: white;
+            background-color: var(--deep-void);
+            color: #fff;
             font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            width: 100vw;
             height: 100vh;
-            overflow: hidden;
-            user-select: none;
-            cursor: crosshair;
         }
 
-        /* =========================================
-           ATMOSPHERE: SCANLINES & NOISE
-           ========================================= */
-        .noise {
+        /* === THE MATRIX CANVAS (Background) === */
+        #neural-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 900; opacity: 0.4;
-        }
-
-        .scanlines {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
-            background-size: 100% 3px;
-            pointer-events: none; z-index: 901;
-        }
-
-        /* =========================================
-           BOOT SEQUENCE (THE LOADING SCREEN)
-           ========================================= */
-        #boot-screen {
-            position: fixed; inset: 0;
-            background: #000;
-            z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column;
-        }
-
-        .terminal-window {
-            width: 300px;
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--neon-blue);
-        }
-
-        .progress-box {
-            width: 100%; height: 6px;
-            background: #111;
-            border: 1px solid #333;
-            margin: 15px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%; width: 0%;
-            background: var(--neon-blue);
-            box-shadow: 0 0 15px var(--neon-blue);
-            position: absolute;
-            top: 0; left: 0;
-            /* FALLBACK ANIMATION if JS Fails */
-            animation: force-load 4s forwards; 
-        }
-
-        @keyframes force-load {
-            0% { width: 0%; }
-            20% { width: 10%; }
-            50% { width: 40%; }
-            100% { width: 100%; }
-        }
-
-        .boot-text {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex; justify-content: space-between;
-        }
-
-        .blink { animation: blinker 0.5s step-end infinite; }
-        @keyframes blinker { 50% { opacity: 0; } }
-
-        /* =========================================
-           MAIN INTERFACE (HIDDEN INITIALLY)
-           ========================================= */
-        #main-interface {
-            opacity: 0;
-            transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
-            height: 100vh;
-            display: flex; flex-direction: column;
-            position: relative;
-            z-index: 100;
-        }
-
-        /* 3D Grid Floor */
-        .grid-floor {
-            position: absolute; width: 200%; height: 100%;
-            bottom: -50%; left: -50%;
-            background: 
-                linear-gradient(transparent, var(--void-black) 90%),
-                linear-gradient(0deg, var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg);
-            animation: grid-scroll 20s linear infinite;
             z-index: -1;
         }
 
-        @keyframes grid-scroll {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        /* === CUSTOM CURSOR (The Targeter) === */
+        .cursor-dot, .cursor-circle {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none; z-index: 9999;
         }
-
-        /* Hero Content */
-        .hero {
-            flex: 1;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center;
-            flex-direction: column;
+        .cursor-dot { width: 4px; height: 4px; background: var(--neon-cyan); border-radius: 50%; }
+        .cursor-circle {
+            width: 40px; height: 40px;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 50%;
+            transition: width 0.3s, height 0.3s, border-color 0.3s;
         }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1;
-            margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
-            transform: scale(0.9);
-            opacity: 0;
-            animation: hero-reveal 1s forwards 0.5s;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #aaa;
-            letter-spacing: 4px;
-            border-top: 1px solid var(--neon-purple);
-            border-bottom: 1px solid var(--neon-purple);
-            padding: 10px 40px;
-            margin-bottom: 40px;
-            opacity: 0;
-            animation: hero-reveal 1s forwards 1s;
-        }
-
-        /* The Cyber Button */
-        .btn-launch {
-            background: transparent;
-            color: var(--neon-blue);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.2rem;
-            padding: 20px 50px;
-            border: 1px solid var(--neon-blue);
-            cursor: pointer;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
-            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-            opacity: 0;
-            animation: hero-reveal 1s forwards 1.5s;
-        }
-
-        .btn-launch:hover {
+        /* Hover State for Cursor */
+        body.hovering .cursor-circle {
+            width: 60px; height: 60px;
             background: rgba(0, 243, 255, 0.1);
-            box-shadow: 0 0 30px var(--neon-blue);
-            letter-spacing: 2px;
+            border-color: var(--neon-purple);
+            border-style: dashed;
+            animation: spin 4s linear infinite;
         }
 
-        .btn-launch::before {
-            content: '';
-            position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+        /* === BOOT SCREEN === */
+        #boot-layer {
+            position: fixed; inset: 0; background: #000; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
         }
-        .btn-launch:hover::before { left: 100%; }
-
-        @keyframes hero-reveal {
-            to { opacity: 1; transform: scale(1); }
+        .loader-ring {
+            width: 80px; height: 80px; border: 4px solid rgba(0,243,255,0.2);
+            border-top: 4px solid var(--neon-cyan); border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        /* Corner HUD Elements */
-        .hud-corner {
-            position: fixed; width: 40px; height: 40px;
-            border: 2px solid var(--neon-blue);
-            opacity: 0.5;
+        /* === MAIN UI LAYOUT === */
+        #interface {
+            opacity: 0; transition: opacity 1s ease;
+            padding: 2rem;
+            max-width: 1600px; margin: 0 auto;
         }
-        .tl { top: 30px; left: 30px; border-right: none; border-bottom: none; }
-        .tr { top: 30px; right: 30px; border-left: none; border-bottom: none; }
-        .bl { bottom: 30px; left: 30px; border-right: none; border-top: none; }
-        .br { bottom: 30px; right: 30px; border-left: none; border-top: none; }
 
+        /* 1. HEADER (Floating HUD) */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--glass-panel);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            position: sticky; top: 20px; z-index: 100;
+            margin-bottom: 4rem;
+        }
+
+        .brand { font-family: var(--font-main); font-size: 1.5rem; letter-spacing: 2px; }
+        .brand span { color: var(--neon-cyan); }
+
+        .nav-items { display: flex; gap: 30px; }
+        .nav-link {
+            color: #aaa; text-decoration: none; font-family: var(--font-data);
+            font-size: 0.9rem; position: relative; transition: 0.3s;
+        }
+        .nav-link:hover { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); }
+        .nav-link::before {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--neon-cyan); transition: 0.3s;
+        }
+        .nav-link:hover::before { width: 100%; }
+
+        /* 2. HERO SECTION */
+        .hero {
+            display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: center;
+            min-height: 60vh; margin-bottom: 8rem;
+        }
+
+        .hero-txt h1 {
+            font-family: var(--font-main);
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        
+        .glitch-text { position: relative; }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8;
+        }
+        .glitch-text::before { color: var(--neon-red); z-index: -1; animation: glitch-1 3s infinite reverse; }
+        .glitch-text::after { color: var(--neon-cyan); z-index: -2; animation: glitch-2 2s infinite; }
+
+        .hero-desc {
+            font-size: 1.1rem; color: #aaa; max-width: 500px;
+            border-left: 3px solid var(--neon-purple); padding-left: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            padding: 15px 40px; background: transparent;
+            border: 1px solid var(--neon-cyan); color: var(--neon-cyan);
+            font-family: var(--font-main); font-weight: 700; letter-spacing: 2px;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: 0.4s; text-transform: uppercase;
+        }
+        .cta-btn:hover { background: rgba(0,243,255,0.1); box-shadow: 0 0 30px rgba(0,243,255,0.4); transform: translateY(-3px); }
+
+        /* 3. THE ARTIFACT GRID (3D Cards) */
+        .section-title {
+            font-family: var(--font-data); color: var(--neon-purple);
+            letter-spacing: 4px; margin-bottom: 2rem; display: block;
+        }
+
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem; perspective: 1000px;
+        }
+
+        .data-cube {
+            position: relative; height: 400px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            transform-style: preserve-3d;
+            transition: transform 0.1s var(--ease-out); /* JS controls this */
+            display: flex; flex-direction: column; padding: 2rem;
+            overflow: hidden;
+        }
+        
+        /* The glow effect behind cards */
+        .data-cube::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.15), transparent 60%);
+            opacity: 0; transition: 0.5s; z-index: -1;
+        }
+        .data-cube:hover { border-color: var(--neon-cyan); }
+        .data-cube:hover::after { opacity: 1; }
+
+        .cube-icon { font-size: 3rem; color: var(--neon-purple); margin-bottom: 1rem; }
+        .cube-title { font-family: var(--font-main); font-size: 1.5rem; margin-bottom: 10px; }
+        .cube-desc { color: #888; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; }
+        
+        .cube-stats {
+            display: flex; gap: 15px; border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px; margin-top: 20px; font-family: var(--font-data); font-size: 0.8rem;
+        }
+
+        /* 4. FOOTER STATUS BAR */
+        .status-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(0,0,0,0.8); border-top: 1px solid #333;
+            padding: 10px 30px; display: flex; justify-content: space-between;
+            font-family: var(--font-data); font-size: 0.75rem; color: #555;
+            z-index: 90; backdrop-filter: blur(5px);
+        }
+
+        /* ANIMATIONS */
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes glitch-1 { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); } 20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); } 100% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, 2px); } }
+        @keyframes glitch-2 { 0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); } 20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); } 100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-desc { margin: 0 auto 2rem; border-left: none; border-bottom: 3px solid var(--neon-purple); padding-bottom: 10px; padding-left: 0; }
+            .nav-items { display: none; } /* Simplified for mobile */
+            .grid-container { perspective: none; }
+            .data-cube { transform: none !important; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- VISUAL NOISE -->
-    <div class="noise"></div>
-    <div class="scanlines"></div>
+    <!-- LAYER 1: NEURAL BACKGROUND -->
+    <canvas id="neural-canvas"></canvas>
 
-    <!-- BOOT SEQUENCE -->
-    <div id="boot-screen" onclick="forceBoot()">
-        <div class="terminal-window">
-            <div class="boot-text">
-                <span>SYSTEM_BOOT</span>
-                <span>V.20.77</span>
-            </div>
-            <div class="progress-box">
-                <div id="progress" class="progress-fill"></div>
-            </div>
-            <div class="boot-text">
-                <span id="boot-msg" class="blink">CONNECTING...</span>
-                <span id="percent">0%</span>
-            </div>
-            <p style="margin-top: 20px; font-size: 10px; color: #555; text-align: center;">
-                [CLICK SCREEN TO FORCE OVERRIDE]
-            </p>
-        </div>
+    <!-- LAYER 2: CURSOR -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- LAYER 3: BOOT SCREEN -->
+    <div id="boot-layer">
+        <div class="loader-ring"></div>
     </div>
 
-    <!-- MAIN INTERFACE -->
-    <main id="main-interface">
-        <div class="grid-floor"></div>
+    <!-- LAYER 4: INTERFACE -->
+    <main id="interface">
         
-        <!-- CORNERS -->
-        <div class="hud-corner tl"></div>
-        <div class="hud-corner tr"></div>
-        <div class="hud-corner bl"></div>
-        <div class="hud-corner br"></div>
+        <!-- HUD NAV -->
+        <nav class="hover-target">
+            <div class="brand">NOVA<span>SPHERE</span></div>
+            <div class="nav-items">
+                <a href="#" class="nav-link hover-target">ARTIFACTS</a>
+                <a href="#" class="nav-link hover-target">ABOUT</a>
+                <a href="#" class="nav-link hover-target">TRANSMIT</a>
+            </div>
+        </nav>
 
-        <div class="hero">
-            <h1>NOVA<span style="color:white">SPHERE</span></h1>
-            <div class="subtitle">ARCHITECTS OF DIGITAL REALITY</div>
-            <button class="btn-launch" onclick="alert('ACCESS GRANTED. PHASE 2 PENDING.')">
-                ENTER THE MATRIX
-            </button>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-txt">
+                <span style="color: var(--neon-purple); font-family: var(--font-data);">// SYSTEM_READY</span>
+                <h1 class="glitch-text" data-text="BEYOND CODE">BEYOND CODE</h1>
+                <p class="hero-desc">
+                    We construct digital implants for the modern web. 
+                    Optimized for speed. Engineered for the future.
+                </p>
+                <button class="cta-btn hover-target">INITIALIZE PROJECT</button>
+            </div>
+            <div class="hero-vis" style="display: flex; justify-content: center;">
+                <!-- CSS 3D Sphere Representation -->
+                <div style="width: 200px; height: 200px; border-radius: 50%; border: 1px solid var(--neon-cyan); position: relative; box-shadow: 0 0 50px rgba(0,243,255,0.2); animation: pulse-vis 3s infinite;">
+                    <div style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); width: 140px; height: 140px; border: 1px dashed var(--neon-purple); border-radius: 50%;"></div>
+                    <div style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); width: 10px; height: 10px; background: white; border-radius: 50%; box-shadow: 0 0 20px white;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRID -->
+        <span class="section-title">// DEPLOYED_ARTIFACTS</span>
+        <div class="grid-container">
+            
+            <!-- CARD 1 -->
+            <div class="data-cube hover-target">
+                <i class='bx bx-check-shield cube-icon'></i>
+                <div class="cube-title">FocusFlow</div>
+                <div class="cube-desc">
+                    Deep-work productivity architecture using neural-blocking technology.
+                </div>
+                <div class="cube-stats">
+                    <span style="color:var(--neon-cyan)">V 2.1</span>
+                    <span>|</span>
+                    <span>45 MB</span>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="data-cube hover-target">
+                <i class='bx bx-water cube-icon'></i>
+                <div class="cube-title">HydroSync</div>
+                <div class="cube-desc">
+                    Atmospheric hydration tracking adjusted for real-time biological needs.
+                </div>
+                <div class="cube-stats">
+                    <span style="color:var(--neon-cyan)">V 1.4</span>
+                    <span>|</span>
+                    <span>28 MB</span>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="data-cube hover-target">
+                <i class='bx bx-wallet cube-icon'></i>
+                <div class="cube-title">NovaWallet</div>
+                <div class="cube-desc">
+                    Decentralized ledger for freelance operatives. Zero-knowledge encryption.
+                </div>
+                <div class="cube-stats">
+                    <span style="color:var(--neon-red)">ALPHA</span>
+                    <span>|</span>
+                    <span>ENCRYPTED</span>
+                </div>
+            </div>
+
         </div>
+
     </main>
 
-    <!-- LOGIC CORE -->
+    <!-- FOOTER STATUS -->
+    <div class="status-bar">
+        <span>LOC: NET_REGION_01</span>
+        <span>MEM: OPTIMAL</span>
+        <span id="clock">00:00:00</span>
+    </div>
+
     <script>
-        // Ensure script runs only when page is parsed
-        document.addEventListener("DOMContentLoaded", () => {
-            
-            const fill = document.getElementById('progress');
-            const percent = document.getElementById('percent');
-            const msg = document.getElementById('boot-msg');
-            const screen = document.getElementById('boot-screen');
-            const main = document.getElementById('main-interface');
-            
-            let width = 0;
-            let bootSpeed = 30; // Speed of loading (lower is faster)
-
-            const messages = [
-                "INITIALIZING...", 
-                "LOADING CORE...", 
-                "CHECKING NEURAL LINK...", 
-                "ACCESS GRANTED."
-            ];
-
-            function runBoot() {
-                if (width >= 100) {
-                    finishBoot();
-                } else {
-                    width++;
-                    fill.style.width = width + '%';
-                    percent.innerText = width + '%';
-
-                    // Update text based on progress
-                    if(width < 30) msg.innerText = messages[0];
-                    else if(width < 60) msg.innerText = messages[1];
-                    else if(width < 90) msg.innerText = messages[2];
-                    else msg.innerText = messages[3];
-
-                    // Randomize speed for "glitch" effect
-                    let rand = Math.floor(Math.random() * bootSpeed);
-                    setTimeout(runBoot, rand);
-                }
-            }
-
-            function finishBoot() {
-                msg.innerText = "SYSTEM READY";
-                msg.classList.remove('blink');
-                
+        // 1. BOOT LOADER
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('boot-layer').style.opacity = '0';
                 setTimeout(() => {
-                    screen.style.opacity = '0';
-                    screen.style.pointerEvents = 'none'; // Prevent clicks after fade
-                    main.style.opacity = '1';
+                    document.getElementById('boot-layer').style.display = 'none';
+                    document.getElementById('interface').style.opacity = '1';
                 }, 500);
-            }
-
-            // Start the sequence
-            runBoot();
+            }, 1500); // 1.5s Boot time
         });
 
-        // FAILSAFE: Manual Override
-        function forceBoot() {
-            const screen = document.getElementById('boot-screen');
-            const main = document.getElementById('main-interface');
-            screen.style.display = 'none';
-            main.style.opacity = '1';
+        // 2. CLOCK
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+        }, 1000);
+
+        // 3. CUSTOM CURSOR & HOVER LOGIC
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorCircle = document.querySelector('.cursor-circle');
+        const hoverTargets = document.querySelectorAll('.hover-target');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+            
+            // Lag effect for circle
+            setTimeout(() => {
+                cursorCircle.style.left = e.clientX + 'px';
+                cursorCircle.style.top = e.clientY + 'px';
+            }, 100);
+        });
+
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // 4. 3D TILT EFFECT FOR CARDS
+        const cards = document.querySelectorAll('.data-cube');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate center
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Rotation values (Dividing determines intensity)
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
+            });
+        });
+
+        // 5. CANVAS NEURAL NETWORK (Background)
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if(this.x < 0 || this.x > width) this.vx *= -1;
+                if(this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 243, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Create Particles
+        for(let i=0; i<50; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw Lines
+            for(let i=0; i<particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                for(let j=i; j<particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if(dist < 150) {
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${1 - dist/150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
     </script>
 </body>
 </html>
