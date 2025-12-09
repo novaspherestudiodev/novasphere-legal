@@ -3,440 +3,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NOVA | NEURAL MATRIX</title>
+    <title>NOVA | SENTIENT V.3.0</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <style>
         :root {
-            --neon-cyan: #00f3ff;
-            --neon-purple: #bc13fe;
-            --neon-red: #ff0055;
-            --deep-void: #030305;
-            --glass-panel: rgba(10, 15, 20, 0.65);
-            --glass-border: rgba(0, 243, 255, 0.15);
-            --font-main: 'Orbitron', sans-serif;
-            --font-data: 'Share Tech Mono', monospace;
-            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --neon-core: #00f3ff;
+            --neon-sec: #7000ff;
+            --neon-alert: #ff003c;
+            --bg-void: #050508;
+            --glass: rgba(20, 25, 35, 0.7);
+            --border: rgba(0, 243, 255, 0.2);
+            --ease: cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Hide default cursor */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
-            background-color: var(--deep-void);
+            background: var(--bg-void);
             color: #fff;
             font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-            width: 100vw;
+            overflow: hidden; 
             height: 100vh;
+            width: 100vw;
         }
 
-        /* === THE MATRIX CANVAS (Background) === */
-        #neural-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
+        /* === VFX LAYERS === */
+        #warp-canvas {
+            position: fixed; inset: 0; z-index: 0;
+            opacity: 0.6;
         }
 
-        /* === CUSTOM CURSOR (The Targeter) === */
-        .cursor-dot, .cursor-circle {
-            position: fixed; top: 0; left: 0;
-            transform: translate(-50%, -50%);
-            pointer-events: none; z-index: 9999;
+        .scanlines {
+            position: fixed; inset: 0; pointer-events: none; z-index: 998;
+            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+            background-size: 100% 4px, 6px 100%;
         }
-        .cursor-dot { width: 4px; height: 4px; background: var(--neon-cyan); border-radius: 50%; }
-        .cursor-circle {
-            width: 40px; height: 40px;
-            border: 1px solid var(--neon-cyan);
+
+        .vignette {
+            position: fixed; inset: 0; pointer-events: none; z-index: 998;
+            background: radial-gradient(circle, transparent 50%, black 120%);
+        }
+
+        /* === CURSOR === */
+        #cursor {
+            position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+            mix-blend-mode: difference;
+        }
+        .cursor-center {
+            width: 6px; height: 6px; background: var(--neon-core);
+            position: absolute; transform: translate(-50%, -50%);
             border-radius: 50%;
-            transition: width 0.3s, height 0.3s, border-color 0.3s;
         }
-        /* Hover State for Cursor */
-        body.hovering .cursor-circle {
-            width: 60px; height: 60px;
-            background: rgba(0, 243, 255, 0.1);
-            border-color: var(--neon-purple);
-            border-style: dashed;
-            animation: spin 4s linear infinite;
+        .cursor-ring {
+            width: 40px; height: 40px; border: 1px solid var(--neon-core);
+            position: absolute; transform: translate(-50%, -50%);
+            border-radius: 50%; transition: width 0.2s, height 0.2s, background 0.2s;
         }
+        body.hover .cursor-ring { width: 60px; height: 60px; background: rgba(0,243,255,0.1); border-color: var(--neon-alert); }
 
-        /* === BOOT SCREEN === */
-        #boot-layer {
-            position: fixed; inset: 0; background: #000; z-index: 1000;
-            display: flex; align-items: center; justify-content: center;
+        /* === BOOT LOADER === */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .loader-ring {
-            width: 80px; height: 80px; border: 4px solid rgba(0,243,255,0.2);
-            border-top: 4px solid var(--neon-cyan); border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+        .load-bar { width: 200px; height: 2px; background: #222; margin-top: 20px; overflow: hidden; }
+        .load-progress { width: 0%; height: 100%; background: var(--neon-core); animation: load 2s var(--ease) forwards; }
+        @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* === MAIN UI LAYOUT === */
-        #interface {
-            opacity: 0; transition: opacity 1s ease;
-            padding: 2rem;
-            max-width: 1600px; margin: 0 auto;
+        /* === MAIN UI === */
+        #app {
+            position: relative; z-index: 10; height: 100%;
+            overflow-y: auto; overflow-x: hidden;
+            opacity: 0; transition: opacity 1s;
         }
-
-        /* 1. HEADER (Floating HUD) */
+        
+        /* Floating Nav */
         nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1.5rem 2rem;
-            background: var(--glass-panel);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-            position: sticky; top: 20px; z-index: 100;
-            margin-bottom: 4rem;
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; pointer-events: none; /* Let clicks pass through empty space */
         }
-
-        .brand { font-family: var(--font-main); font-size: 1.5rem; letter-spacing: 2px; }
-        .brand span { color: var(--neon-cyan); }
-
-        .nav-items { display: flex; gap: 30px; }
-        .nav-link {
-            color: #aaa; text-decoration: none; font-family: var(--font-data);
-            font-size: 0.9rem; position: relative; transition: 0.3s;
+        .logo { font-family: 'Orbitron'; font-weight: 900; letter-spacing: 2px; pointer-events: auto; }
+        .menu-btn { 
+            pointer-events: auto; font-family: 'Share Tech Mono'; 
+            border: 1px solid var(--border); padding: 10px 20px; 
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+            transition: 0.3s;
         }
-        .nav-link:hover { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); }
-        .nav-link::before {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--neon-cyan); transition: 0.3s;
-        }
-        .nav-link:hover::before { width: 100%; }
+        .menu-btn:hover { background: var(--neon-core); color: #000; }
 
-        /* 2. HERO SECTION */
-        .hero {
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: center;
-            min-height: 60vh; margin-bottom: 8rem;
+        /* Hero */
+        .hero-section {
+            height: 100vh; display: flex; align-items: center; padding: 0 10%;
         }
+        .hero-content { max-width: 800px; position: relative; }
+        .hero-tag { color: var(--neon-core); font-family: 'Share Tech Mono'; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        h1 {
+            font-family: 'Orbitron'; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.9;
+            text-transform: uppercase; margin-bottom: 30px;
+        }
+        .scramble-text { display: inline-block; min-width: 100px; }
 
-        .hero-txt h1 {
-            font-family: var(--font-main);
-            font-size: clamp(3rem, 6vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
+        /* Project Grid */
+        .grid-section { padding: 5rem 10%; padding-bottom: 10rem; }
+        .grid-header { 
+            display: flex; justify-content: space-between; align-items: flex-end; 
+            border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 4rem;
         }
         
-        .glitch-text { position: relative; }
-        .glitch-text::before, .glitch-text::after {
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8;
-        }
-        .glitch-text::before { color: var(--neon-red); z-index: -1; animation: glitch-1 3s infinite reverse; }
-        .glitch-text::after { color: var(--neon-cyan); z-index: -2; animation: glitch-2 2s infinite; }
-
-        .hero-desc {
-            font-size: 1.1rem; color: #aaa; max-width: 500px;
-            border-left: 3px solid var(--neon-purple); padding-left: 20px;
-            margin-bottom: 2rem;
+        .projects-container {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 3rem;
         }
 
-        .cta-btn {
-            padding: 15px 40px; background: transparent;
-            border: 1px solid var(--neon-cyan); color: var(--neon-cyan);
-            font-family: var(--font-main); font-weight: 700; letter-spacing: 2px;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            transition: 0.4s; text-transform: uppercase;
-        }
-        .cta-btn:hover { background: rgba(0,243,255,0.1); box-shadow: 0 0 30px rgba(0,243,255,0.4); transform: translateY(-3px); }
-
-        /* 3. THE ARTIFACT GRID (3D Cards) */
-        .section-title {
-            font-family: var(--font-data); color: var(--neon-purple);
-            letter-spacing: 4px; margin-bottom: 2rem; display: block;
-        }
-
-        .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem; perspective: 1000px;
-        }
-
-        .data-cube {
-            position: relative; height: 400px;
+        .card {
             background: rgba(255,255,255,0.02);
-            border: 1px solid var(--glass-border);
-            transform-style: preserve-3d;
-            transition: transform 0.1s var(--ease-out); /* JS controls this */
-            display: flex; flex-direction: column; padding: 2rem;
-            overflow: hidden;
+            border: 1px solid var(--border);
+            height: 400px; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+            transition: 0.4s var(--ease);
         }
+        .card::before {
+            content:''; position: absolute; inset: 0; 
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 243, 255, 0.1) 100%);
+            opacity: 0; transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--neon-core); }
+        .card:hover::before { opacity: 1; }
         
-        /* The glow effect behind cards */
-        .data-cube::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.15), transparent 60%);
-            opacity: 0; transition: 0.5s; z-index: -1;
+        .card-num { 
+            position: absolute; top: 20px; right: 20px; 
+            font-family: 'Share Tech Mono'; color: var(--border); font-size: 2rem; 
         }
-        .data-cube:hover { border-color: var(--neon-cyan); }
-        .data-cube:hover::after { opacity: 1; }
+        .card-title { font-family: 'Orbitron'; font-size: 1.8rem; margin-bottom: 10px; position: relative; z-index: 2; }
+        .card-sub { font-family: 'Share Tech Mono'; color: var(--neon-core); position: relative; z-index: 2; }
 
-        .cube-icon { font-size: 3rem; color: var(--neon-purple); margin-bottom: 1rem; }
-        .cube-title { font-family: var(--font-main); font-size: 1.5rem; margin-bottom: 10px; }
-        .cube-desc { color: #888; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; }
+        /* === NEURAL DOSSIER (MODAL) === */
+        #dossier {
+            position: fixed; inset: 0; z-index: 200;
+            background: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(15px);
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path 0.8s var(--ease);
+            display: grid; grid-template-columns: 1fr 2fr;
+        }
+        #dossier.active { clip-path: circle(150% at 50% 50%); }
         
-        .cube-stats {
-            display: flex; gap: 15px; border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px; margin-top: 20px; font-family: var(--font-data); font-size: 0.8rem;
+        .dossier-sidebar {
+            border-right: 1px solid var(--border); padding: 4rem;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .dossier-main { padding: 4rem; position: relative; overflow-y: auto; }
+        
+        .scan-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--neon-core);
+            box-shadow: 0 0 20px var(--neon-core);
+            animation: scan 2s linear infinite;
+            z-index: 10; pointer-events: none; display: none;
+        }
+        #dossier.active .scan-line { display: block; }
+        @keyframes scan { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+        .close-btn {
+            background: transparent; border: 1px solid var(--neon-alert); color: var(--neon-alert);
+            padding: 15px 30px; font-family: 'Share Tech Mono'; text-transform: uppercase;
+            margin-top: 20px; transition: 0.3s; width: fit-content;
+        }
+        .close-btn:hover { background: var(--neon-alert); color: #000; box-shadow: 0 0 20px var(--neon-alert); }
+
+        .stat-row { 
+            display: flex; justify-content: space-between; margin-bottom: 15px; 
+            font-family: 'Share Tech Mono'; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;
         }
 
-        /* 4. FOOTER STATUS BAR */
-        .status-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(0,0,0,0.8); border-top: 1px solid #333;
-            padding: 10px 30px; display: flex; justify-content: space-between;
-            font-family: var(--font-data); font-size: 0.75rem; color: #555;
-            z-index: 90; backdrop-filter: blur(5px);
+        /* Mobile Adjust */
+        @media(max-width: 900px) {
+            #dossier { grid-template-columns: 1fr; }
+            .dossier-sidebar { display: none; }
+            .dossier-main { padding: 2rem; }
+            h1 { font-size: 3rem; }
+            .grid-section { padding: 2rem; }
         }
 
-        /* ANIMATIONS */
-        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-        @keyframes glitch-1 { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); } 20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); } 100% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, 2px); } }
-        @keyframes glitch-2 { 0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); } 20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); } 100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); } }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero-desc { margin: 0 auto 2rem; border-left: none; border-bottom: 3px solid var(--neon-purple); padding-bottom: 10px; padding-left: 0; }
-            .nav-items { display: none; } /* Simplified for mobile */
-            .grid-container { perspective: none; }
-            .data-cube { transform: none !important; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- LAYER 1: NEURAL BACKGROUND -->
-    <canvas id="neural-canvas"></canvas>
+    <!-- VISUAL CORE -->
+    <canvas id="warp-canvas"></canvas>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
 
-    <!-- LAYER 2: CURSOR -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
-
-    <!-- LAYER 3: BOOT SCREEN -->
-    <div id="boot-layer">
-        <div class="loader-ring"></div>
+    <!-- POINTER -->
+    <div id="cursor">
+        <div class="cursor-center"></div>
+        <div class="cursor-ring"></div>
     </div>
 
-    <!-- LAYER 4: INTERFACE -->
-    <main id="interface">
+    <!-- SYSTEM BOOT -->
+    <div id="loader">
+        <div style="font-family: 'Orbitron'; letter-spacing: 5px;">INITIALIZING</div>
+        <div class="load-bar"><div class="load-progress"></div></div>
+    </div>
+
+    <!-- APP INTERFACE -->
+    <main id="app">
         
-        <!-- HUD NAV -->
-        <nav class="hover-target">
-            <div class="brand">NOVA<span>SPHERE</span></div>
-            <div class="nav-items">
-                <a href="#" class="nav-link hover-target">ARTIFACTS</a>
-                <a href="#" class="nav-link hover-target">ABOUT</a>
-                <a href="#" class="nav-link hover-target">TRANSMIT</a>
-            </div>
+        <nav>
+            <div class="logo mag-target">NOVA<span style="color:var(--neon-core)">SPHERE</span></div>
+            <button class="menu-btn mag-target">SECURE_LOGIN</button>
         </nav>
 
-        <!-- HERO -->
-        <section class="hero">
-            <div class="hero-txt">
-                <span style="color: var(--neon-purple); font-family: var(--font-data);">// SYSTEM_READY</span>
-                <h1 class="glitch-text" data-text="BEYOND CODE">BEYOND CODE</h1>
-                <p class="hero-desc">
-                    We construct digital implants for the modern web. 
-                    Optimized for speed. Engineered for the future.
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="hero-tag">// WELCOME_OPERATIVE</span>
+                <h1>
+                    <div class="scramble" data-text="FORGING">FORGING</div><br>
+                    <div class="scramble" data-text="DIGITAL">DIGITAL</div><br>
+                    <div class="scramble" style="color:var(--neon-core)" data-text="MATTER">MATTER</div>
+                </h1>
+                <p style="max-width: 500px; line-height: 1.6; color: #aaa; margin-bottom: 30px;">
+                    We do not build websites. We construct neural-linked digital experiences embedded in the fabric of the web.
                 </p>
-                <button class="cta-btn hover-target">INITIALIZE PROJECT</button>
-            </div>
-            <div class="hero-vis" style="display: flex; justify-content: center;">
-                <!-- CSS 3D Sphere Representation -->
-                <div style="width: 200px; height: 200px; border-radius: 50%; border: 1px solid var(--neon-cyan); position: relative; box-shadow: 0 0 50px rgba(0,243,255,0.2); animation: pulse-vis 3s infinite;">
-                    <div style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); width: 140px; height: 140px; border: 1px dashed var(--neon-purple); border-radius: 50%;"></div>
-                    <div style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); width: 10px; height: 10px; background: white; border-radius: 50%; box-shadow: 0 0 20px white;"></div>
+                <div style="display: flex; gap: 20px;">
+                    <button class="menu-btn mag-target" onclick="scrollToGrid()">ACCESS ARTIFACTS</button>
                 </div>
             </div>
         </section>
 
-        <!-- GRID -->
-        <span class="section-title">// DEPLOYED_ARTIFACTS</span>
-        <div class="grid-container">
-            
-            <!-- CARD 1 -->
-            <div class="data-cube hover-target">
-                <i class='bx bx-check-shield cube-icon'></i>
-                <div class="cube-title">FocusFlow</div>
-                <div class="cube-desc">
-                    Deep-work productivity architecture using neural-blocking technology.
-                </div>
-                <div class="cube-stats">
-                    <span style="color:var(--neon-cyan)">V 2.1</span>
-                    <span>|</span>
-                    <span>45 MB</span>
-                </div>
+        <section class="grid-section" id="grid">
+            <div class="grid-header">
+                <h2 style="font-family:'Orbitron'">DEPLOYED_SYSTEMS</h2>
+                <div style="font-family:'Share Tech Mono'; color:var(--neon-core)">STATUS: ONLINE</div>
             </div>
 
-            <!-- CARD 2 -->
-            <div class="data-cube hover-target">
-                <i class='bx bx-water cube-icon'></i>
-                <div class="cube-title">HydroSync</div>
-                <div class="cube-desc">
-                    Atmospheric hydration tracking adjusted for real-time biological needs.
+            <div class="projects-container">
+                <!-- PROJECT 1 -->
+                <div class="card mag-target" onclick="openDossier('FocusFlow', 'NEURAL_OPTIMIZATION', 'FF-2077', '98%')">
+                    <div class="card-num">01</div>
+                    <div class="card-title">FocusFlow</div>
+                    <div class="card-sub">Productivity Arch</div>
                 </div>
-                <div class="cube-stats">
-                    <span style="color:var(--neon-cyan)">V 1.4</span>
-                    <span>|</span>
-                    <span>28 MB</span>
+
+                <!-- PROJECT 2 -->
+                <div class="card mag-target" onclick="openDossier('HydroSync', 'BIO_REGULATION', 'HS-X1', '100%')">
+                    <div class="card-num">02</div>
+                    <div class="card-title">HydroSync</div>
+                    <div class="card-sub">Biological Interface</div>
+                </div>
+
+                <!-- PROJECT 3 -->
+                <div class="card mag-target" onclick="openDossier('NovaWallet', 'ENCRYPTED_LEDGER', 'NW-ZERO', '45%')">
+                    <div class="card-num">03</div>
+                    <div class="card-title">NovaWallet</div>
+                    <div class="card-sub">Finance Protocol</div>
                 </div>
             </div>
-
-            <!-- CARD 3 -->
-            <div class="data-cube hover-target">
-                <i class='bx bx-wallet cube-icon'></i>
-                <div class="cube-title">NovaWallet</div>
-                <div class="cube-desc">
-                    Decentralized ledger for freelance operatives. Zero-knowledge encryption.
-                </div>
-                <div class="cube-stats">
-                    <span style="color:var(--neon-red)">ALPHA</span>
-                    <span>|</span>
-                    <span>ENCRYPTED</span>
-                </div>
-            </div>
-
-        </div>
+        </section>
 
     </main>
 
-    <!-- FOOTER STATUS -->
-    <div class="status-bar">
-        <span>LOC: NET_REGION_01</span>
-        <span>MEM: OPTIMAL</span>
-        <span id="clock">00:00:00</span>
+    <!-- EXPANDED DOSSIER (MODAL) -->
+    <div id="dossier">
+        <div class="scan-line"></div>
+        
+        <div class="dossier-sidebar">
+            <div>
+                <div style="color:var(--neon-core); font-family:'Orbitron'; font-size:2rem;">DATA_LOG</div>
+                <div style="margin-top:20px; font-family:'Share Tech Mono'; color:#888;">
+                    ACCESSING SECURE SERVER...<br>
+                    DECRYPTING PACKETS...<br>
+                    RENDERING VISUALS...
+                </div>
+            </div>
+            <div style="border: 1px solid var(--border); padding: 20px;">
+                <div style="font-size: 0.8rem; color: #888;">SECURITY LEVEL</div>
+                <div style="font-size: 1.5rem; color: var(--neon-alert);">CLASSIFIED</div>
+            </div>
+        </div>
+
+        <div class="dossier-main">
+            <div style="margin-bottom: 40px;">
+                <span id="modal-code" style="background:var(--neon-core); color:black; padding: 2px 8px; font-family:'Share Tech Mono';">CODE</span>
+                <h1 id="modal-title" style="margin-top: 10px;">TITLE</h1>
+                <p id="modal-sub" style="font-family:'Share Tech Mono'; color:var(--neon-core); letter-spacing:2px;">SUBTITLE</p>
+            </div>
+
+            <p style="line-height: 1.8; color: #ccc; max-width: 600px; margin-bottom: 40px;">
+                This artifact utilizes advanced algorithms to interface directly with the user's workflow. 
+                Constructed using a proprietary reactive framework, it ensures zero latency and maximum immersion. 
+                Data telemetry indicates a 400% increase in efficiency.
+            </p>
+
+            <div style="max-width: 400px; margin-bottom: 40px;">
+                <div class="stat-row"><span>STABILITY</span><span id="modal-stat">100%</span></div>
+                <div class="stat-row"><span>ENCRYPTION</span><span>AES-256</span></div>
+                <div class="stat-row"><span>USERS</span><span>8,402</span></div>
+            </div>
+
+            <button class="close-btn mag-target" onclick="closeDossier()">TERMINATE CONNECTION</button>
+        </div>
     </div>
 
     <script>
-        // 1. BOOT LOADER
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('boot-layer').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('boot-layer').style.display = 'none';
-                    document.getElementById('interface').style.opacity = '1';
-                }, 500);
-            }, 1500); // 1.5s Boot time
-        });
-
-        // 2. CLOCK
-        setInterval(() => {
-            const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleTimeString();
-        }, 1000);
-
-        // 3. CUSTOM CURSOR & HOVER LOGIC
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorCircle = document.querySelector('.cursor-circle');
-        const hoverTargets = document.querySelectorAll('.hover-target');
-
-        document.addEventListener('mousemove', (e) => {
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-            
-            // Lag effect for circle
-            setTimeout(() => {
-                cursorCircle.style.left = e.clientX + 'px';
-                cursorCircle.style.top = e.clientY + 'px';
-            }, 100);
-        });
-
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-        });
-
-        // 4. 3D TILT EFFECT FOR CARDS
-        const cards = document.querySelectorAll('.data-cube');
-
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Calculate center
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                // Rotation values (Dividing determines intensity)
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
-            });
-        });
-
-        // 5. CANVAS NEURAL NETWORK (Background)
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2;
+        // === 1. TEXT SCRAMBLE DECODER ===
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
             }
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if(this.x < 0 || this.x > width) this.vx *= -1;
-                if(this.y < 0 || this.y > height) this.vy *= -1;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 243, 255, 0.5)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        // Create Particles
-        for(let i=0; i<50; i++) particles.push(new Particle());
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            // Draw Lines
-            for(let i=0; i<particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                
-                for(let j=i; j<particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    
-                    if(dist < 150) {
-                        ctx.strokeStyle = `rgba(0, 243, 255, ${1 - dist/150})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span style="opacity:0.3">${char}</span>`;
+                    } else {
+                        output += from;
                     }
                 }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
             }
-            requestAnimationFrame(animate);
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
         }
-        animate();
+
+        // === 2. WARP SPEED CANVAS ===
+        const canvas = document.getElementById('warp-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let stars = [];
+        let speed = 2;
+        let mouseX = 0;
+
+        function initCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            stars = [];
+            for(let i=0; i<800; i++) {
+                stars.push({
+                    x: Math.random() * width - width/2,
+                    y: Math.random() * height - height/2,
+                    z: Math.random() * width
+                });
+            }
+        }
+
+        function drawWarp() {
+            // Speed depends on mouse X position (center = slow, edges = fast)
+            let targetSpeed = 2 + (Math.abs(mouseX - width/2) / width) * 20;
+            speed += (targetSpeed - speed) * 0.1; // Smooth accel
+
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, width, height);
+            
+            ctx.translate(width/2, height/2);
+            
+            for(let star of stars) {
+                star.z -= speed;
+                if(star.z <= 0) {
+                    star.z = width;
+                    star.x = Math.random() * width - width/2;
+                    star.y = Math.random() * height - height/2;
+                }
+                
+                let sx = (star.x / star.z) * width;
+                let sy = (star.y / star.z) * height;
+                let r = (1 - star.z / width) * 3; // Size based on distance
+                
+                ctx.beginPath();
+                ctx.fillStyle = "rgba(255, 255, 255, "+(1 - star.z/width)+")";
+                ctx.arc(sx, sy, r, 0, Math.PI*2);
+                ctx.fill();
+            }
+            
+            ctx.translate(-width/2, -height/2);
+            requestAnimationFrame(drawWarp);
+        }
+
+        window.addEventListener('mousemove', e => mouseX = e.clientX);
+        window.addEventListener('resize', initCanvas);
+
+        // === 3. CORE LOGIC ===
+        window.onload = () => {
+            initCanvas();
+            drawWarp();
+            
+            // Text Scramble Init
+            document.querySelectorAll('.scramble').forEach(el => {
+                const fx = new TextScramble(el);
+                setTimeout(() => {
+                    fx.setText(el.getAttribute('data-text'));
+                }, 2200);
+            });
+
+            // Reveal UI
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('app').style.opacity = '1';
+                }, 500);
+            }, 2000);
+        };
+
+        // Custom Cursor Magnetic
+        const cursor = document.getElementById('cursor');
+        const ring = document.querySelector('.cursor-ring');
+        
+        window.addEventListener('mousemove', e => {
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        });
+
+        document.querySelectorAll('.mag-target').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                document.body.classList.add('hover');
+            });
+            btn.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hover');
+            });
+        });
+
+        // Navigation
+        function scrollToGrid() {
+            document.getElementById('grid').scrollIntoView({behavior:'smooth'});
+        }
+
+        // Modal Logic
+        const dossier = document.getElementById('dossier');
+        const mTitle = document.getElementById('modal-title');
+        const mSub = document.getElementById('modal-sub');
+        const mCode = document.getElementById('modal-code');
+        const mStat = document.getElementById('modal-stat');
+
+        function openDossier(title, sub, code, stat) {
+            mTitle.innerText = title;
+            mSub.innerText = sub;
+            mCode.innerText = code;
+            mStat.innerText = stat;
+            dossier.classList.add('active');
+        }
+
+        function closeDossier() {
+            dossier.classList.remove('active');
+        }
 
     </script>
 </body>
