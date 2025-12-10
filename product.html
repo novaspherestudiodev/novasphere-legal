@@ -9,62 +9,46 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <style>
-        /* Hero */
+        /* Re-including specific styles for the Product Page here for completeness */
         .app-hero {
-            position: relative;
-            height: 400px;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 4rem;
+            position: relative; height: 400px; width: 100%;
+            overflow: hidden; display: flex; align-items: flex-end; padding-bottom: 4rem;
         }
-
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover; background-position: center;
             z-index: 1; filter: blur(4px) brightness(0.4);
         }
-
         .hero-content {
-            position: relative; z-index: 2;
-            display: flex; align-items: flex-end; gap: 30px;
+            position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 30px;
             width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
         }
-
         .hero-icon {
-            width: 140px; height: 140px;
-            border-radius: 28px; background: var(--bg-color);
+            width: 140px; height: 140px; border-radius: 28px; background: var(--bg-color);
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             display: flex; align-items: center; justify-content: center;
-            font-size: 60px; color: var(--accent-color);
-            flex-shrink: 0;
+            font-size: 60px; color: var(--accent-color); flex-shrink: 0;
+            overflow: hidden; /* Ensures image stays in border radius */
         }
-
-        /* Store Buttons */
         .store-badge-grid { display: flex; gap: 15px; margin-top: 1.5rem; flex-wrap: wrap; }
         .store-btn {
-            display: flex; align-items: center; gap: 10px;
-            background: #000; color: #fff;
-            padding: 10px 20px; border-radius: 12px;
-            text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; gap: 10px; background: #000; color: #fff;
+            padding: 10px 20px; border-radius: 12px; text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
             transition: transform 0.2s;
         }
         .store-btn:hover { transform: translateY(-3px); }
         .store-text { display: flex; flex-direction: column; font-size: 0.7rem; line-height: 1.2; text-align: left; }
         .store-text span { font-size: 1rem; font-weight: 700; }
-
-        /* Content Grid */
         .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; margin-top: 4rem; padding-bottom: 4rem; }
         .meta-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--glass-border); }
-        
-        /* Mobile */
+        .legal-links { margin-top: 3rem; font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px; }
+        .legal-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        .legal-links a:hover { color: var(--accent-color); text-decoration: underline; }
+
         @media (max-width: 900px) {
             .app-hero { height: auto; padding: 120px 0 2rem; }
             .hero-content { flex-direction: column; align-items: center; text-align: center; }
             .info-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-icon { width: 100px; height: 100px; font-size: 40px; }
-            .store-badge-grid { justify-content: center; }
         }
     </style>
 </head>
@@ -84,7 +68,6 @@
                     <div class="slider round"></div>
                 </label>
             </div>
-            <!-- Mobile Toggle (Keep it simple for product page, acts as Back usually, but good to have) -->
         </div>
     </nav>
 
@@ -92,11 +75,13 @@
     <div class="app-hero">
         <div id="hero-bg" class="hero-bg" style="background-image: linear-gradient(to bottom right, #2a2a2a, #1a1a1a);"></div>
         <div class="hero-content">
+            <!-- Icon / Image loads here -->
             <div id="app-icon" class="hero-icon"><i class='bx bx-layer'></i></div>
+            
             <div class="hero-text">
                 <span id="app-category" style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Productivity</span>
                 <h1 id="app-title" style="font-size: clamp(2rem, 4vw, 3.5rem); color: white; margin: 5px 0;">App Name</h1>
-                <p id="app-tagline" style="color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px;">Loading data...</p>
+                <p id="app-tagline" style="color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px;">Loading...</p>
                 <div class="store-badge-grid" id="download-container"></div>
             </div>
         </div>
@@ -121,12 +106,18 @@
                     <h4 style="margin-bottom: 1.5rem;">App Information</h4>
                     <div class="meta-item"><span>Version</span><span id="meta-version">1.0.0</span></div>
                     <div class="meta-item"><span>Updated</span><span id="meta-date">Nov 2025</span></div>
-                    <div class="meta-item"><span>Size</span><span id="meta-size">15 MB</span></div>
-                    <div class="meta-item" style="border: none;"><span>License</span><span>Proprietary</span></div>
+                    <div class="meta-item"><span>Size</span><span id="meta-size">--</span></div>
+                    
+                    <!-- LEGAL SECTION -->
+                    <div class="legal-links" style="border-top: 1px solid var(--glass-border); padding-top: 1.5rem; margin-top: 1rem;">
+                        <a href="#" id="link-privacy">Privacy Policy</a>
+                        <a href="#" id="link-terms">Terms & Conditions</a>
+                    </div>
                 </div>
+
                 <div class="glass glass-card" style="padding: 1.5rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 15px;">
                     <i class='bx bx-shield-quarter' style="font-size: 2rem; color: #10b981;"></i>
-                    <div><h5 style="margin: 0;">Virus Checked</h5><p style="font-size: 0.8rem; margin: 0;">Verified Safe</p></div>
+                    <div><h5 style="margin: 0;">Verified</h5><p style="font-size: 0.8rem; margin: 0;">Safe Download</p></div>
                 </div>
             </div>
         </div>
@@ -136,8 +127,7 @@
         <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/theme.js"></script>
-    <script src="js/app-data.js"></script> <!-- Ensure you have the app-data.js file created from the previous steps -->
+    <script src="js/app-data.js"></script>
 </body>
 </html>
