@@ -2,490 +2,245 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NOVA | SENTIENT V.3.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NOVA | PHASE 4: HOLODECK</title>
+    
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <style>
         :root {
-            --neon-core: #00f3ff;
-            --neon-sec: #7000ff;
-            --neon-alert: #ff003c;
-            --bg-void: #050508;
-            --glass: rgba(20, 25, 35, 0.7);
-            --border: rgba(0, 243, 255, 0.2);
-            --ease: cubic-bezier(0.19, 1, 0.22, 1);
+            --neon: #00f3ff;
+            --alert: #ff0055;
+            --void: #000;
         }
-
+        
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-
-        body {
-            background: var(--bg-void);
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
+        
+        body { 
+            background: var(--void); 
             overflow: hidden; 
-            height: 100vh;
-            width: 100vw;
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
         }
 
-        /* === VFX LAYERS === */
-        #warp-canvas {
-            position: fixed; inset: 0; z-index: 0;
-            opacity: 0.6;
+        /* === 3D CANVAS === */
+        #world {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; outline: none;
         }
 
+        /* === UI OVERLAY (HUD) === */
+        #hud {
+            position: fixed; inset: 0; z-index: 10;
+            pointer-events: none; /* Let clicks pass to 3D world if needed */
+        }
+
+        /* SCANLINES */
         .scanlines {
-            position: fixed; inset: 0; pointer-events: none; z-index: 998;
-            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
-            background-size: 100% 4px, 6px 100%;
+            position: fixed; inset: 0; z-index: 20;
+            background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.25) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
         }
 
-        .vignette {
-            position: fixed; inset: 0; pointer-events: none; z-index: 998;
-            background: radial-gradient(circle, transparent 50%, black 120%);
-        }
-
-        /* === CURSOR === */
+        /* CUSTOM CURSOR */
         #cursor {
-            position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+            position: fixed; top: 0; left: 0; z-index: 9999;
+            width: 20px; height: 20px;
+            border: 1px solid var(--neon);
+            transform: translate(-50%, -50%) rotate(45deg);
+            pointer-events: none;
+            transition: width 0.2s, height 0.2s;
             mix-blend-mode: difference;
         }
-        .cursor-center {
-            width: 6px; height: 6px; background: var(--neon-core);
-            position: absolute; transform: translate(-50%, -50%);
-            border-radius: 50%;
+        #cursor::after {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 4px; height: 4px; background: var(--neon);
+            transform: translate(-50%, -50%);
         }
-        .cursor-ring {
-            width: 40px; height: 40px; border: 1px solid var(--neon-core);
-            position: absolute; transform: translate(-50%, -50%);
-            border-radius: 50%; transition: width 0.2s, height 0.2s, background 0.2s;
-        }
-        body.hover .cursor-ring { width: 60px; height: 60px; background: rgba(0,243,255,0.1); border-color: var(--neon-alert); }
 
-        /* === BOOT LOADER === */
-        #loader {
-            position: fixed; inset: 0; background: #000; z-index: 10000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        /* CONTENT */
+        .content-layer {
+            position: absolute; top: 50%; left: 10%; 
+            transform: translateY(-50%);
+            pointer-events: auto;
         }
-        .load-bar { width: 200px; height: 2px; background: #222; margin-top: 20px; overflow: hidden; }
-        .load-progress { width: 0%; height: 100%; background: var(--neon-core); animation: load 2s var(--ease) forwards; }
-        @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* === MAIN UI === */
-        #app {
-            position: relative; z-index: 10; height: 100%;
-            overflow-y: auto; overflow-x: hidden;
-            opacity: 0; transition: opacity 1s;
-        }
-        
-        /* Floating Nav */
-        nav {
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center;
-            z-index: 100; pointer-events: none; /* Let clicks pass through empty space */
-        }
-        .logo { font-family: 'Orbitron'; font-weight: 900; letter-spacing: 2px; pointer-events: auto; }
-        .menu-btn { 
-            pointer-events: auto; font-family: 'Share Tech Mono'; 
-            border: 1px solid var(--border); padding: 10px 20px; 
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
-            transition: 0.3s;
-        }
-        .menu-btn:hover { background: var(--neon-core); color: #000; }
-
-        /* Hero */
-        .hero-section {
-            height: 100vh; display: flex; align-items: center; padding: 0 10%;
-        }
-        .hero-content { max-width: 800px; position: relative; }
-        .hero-tag { color: var(--neon-core); font-family: 'Share Tech Mono'; letter-spacing: 2px; margin-bottom: 20px; display: block; }
         h1 {
-            font-family: 'Orbitron'; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.9;
-            text-transform: uppercase; margin-bottom: 30px;
-        }
-        .scramble-text { display: inline-block; min-width: 100px; }
-
-        /* Project Grid */
-        .grid-section { padding: 5rem 10%; padding-bottom: 10rem; }
-        .grid-header { 
-            display: flex; justify-content: space-between; align-items: flex-end; 
-            border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 4rem;
-        }
-        
-        .projects-container {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 3rem;
+            font-family: 'Orbitron'; font-size: clamp(3rem, 6vw, 6rem);
+            line-height: 0.9; text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            margin-bottom: 2rem;
         }
 
-        .card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            height: 400px; position: relative; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
-            transition: 0.4s var(--ease);
+        .btn-holo {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            padding: 15px 40px;
+            font-family: 'Share Tech Mono';
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
         }
-        .card::before {
-            content:''; position: absolute; inset: 0; 
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 243, 255, 0.1) 100%);
-            opacity: 0; transition: 0.4s;
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--neon-core); }
-        .card:hover::before { opacity: 1; }
-        
-        .card-num { 
-            position: absolute; top: 20px; right: 20px; 
-            font-family: 'Share Tech Mono'; color: var(--border); font-size: 2rem; 
-        }
-        .card-title { font-family: 'Orbitron'; font-size: 1.8rem; margin-bottom: 10px; position: relative; z-index: 2; }
-        .card-sub { font-family: 'Share Tech Mono'; color: var(--neon-core); position: relative; z-index: 2; }
-
-        /* === NEURAL DOSSIER (MODAL) === */
-        #dossier {
-            position: fixed; inset: 0; z-index: 200;
-            background: rgba(5, 5, 8, 0.95);
-            backdrop-filter: blur(15px);
-            clip-path: circle(0% at 50% 50%);
-            transition: clip-path 0.8s var(--ease);
-            display: grid; grid-template-columns: 1fr 2fr;
-        }
-        #dossier.active { clip-path: circle(150% at 50% 50%); }
-        
-        .dossier-sidebar {
-            border-right: 1px solid var(--border); padding: 4rem;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .dossier-main { padding: 4rem; position: relative; overflow-y: auto; }
-        
-        .scan-line {
-            position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--neon-core);
-            box-shadow: 0 0 20px var(--neon-core);
-            animation: scan 2s linear infinite;
-            z-index: 10; pointer-events: none; display: none;
-        }
-        #dossier.active .scan-line { display: block; }
-        @keyframes scan { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
-
-        .close-btn {
-            background: transparent; border: 1px solid var(--neon-alert); color: var(--neon-alert);
-            padding: 15px 30px; font-family: 'Share Tech Mono'; text-transform: uppercase;
-            margin-top: 20px; transition: 0.3s; width: fit-content;
-        }
-        .close-btn:hover { background: var(--neon-alert); color: #000; box-shadow: 0 0 20px var(--neon-alert); }
-
-        .stat-row { 
-            display: flex; justify-content: space-between; margin-bottom: 15px; 
-            font-family: 'Share Tech Mono'; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;
+        .btn-holo:hover {
+            background: var(--neon); color: black;
+            box-shadow: 0 0 30px var(--neon);
+            cursor: none;
         }
 
-        /* Mobile Adjust */
-        @media(max-width: 900px) {
-            #dossier { grid-template-columns: 1fr; }
-            .dossier-sidebar { display: none; }
-            .dossier-main { padding: 2rem; }
-            h1 { font-size: 3rem; }
-            .grid-section { padding: 2rem; }
+        /* LOADING */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Share Tech Mono'; color: var(--neon);
         }
-
     </style>
 </head>
 <body>
 
-    <!-- VISUAL CORE -->
-    <canvas id="warp-canvas"></canvas>
+    <!-- LOADER -->
+    <div id="loader">INITIALIZING 3D ENGINE...</div>
+
+    <!-- 3D WORLD -->
+    <canvas id="world"></canvas>
+
+    <!-- OVERLAYS -->
     <div class="scanlines"></div>
-    <div class="vignette"></div>
+    <div id="cursor"></div>
 
-    <!-- POINTER -->
-    <div id="cursor">
-        <div class="cursor-center"></div>
-        <div class="cursor-ring"></div>
-    </div>
-
-    <!-- SYSTEM BOOT -->
-    <div id="loader">
-        <div style="font-family: 'Orbitron'; letter-spacing: 5px;">INITIALIZING</div>
-        <div class="load-bar"><div class="load-progress"></div></div>
-    </div>
-
-    <!-- APP INTERFACE -->
-    <main id="app">
-        
-        <nav>
-            <div class="logo mag-target">NOVA<span style="color:var(--neon-core)">SPHERE</span></div>
-            <button class="menu-btn mag-target">SECURE_LOGIN</button>
-        </nav>
-
-        <section class="hero-section">
-            <div class="hero-content">
-                <span class="hero-tag">// WELCOME_OPERATIVE</span>
-                <h1>
-                    <div class="scramble" data-text="FORGING">FORGING</div><br>
-                    <div class="scramble" data-text="DIGITAL">DIGITAL</div><br>
-                    <div class="scramble" style="color:var(--neon-core)" data-text="MATTER">MATTER</div>
-                </h1>
-                <p style="max-width: 500px; line-height: 1.6; color: #aaa; margin-bottom: 30px;">
-                    We do not build websites. We construct neural-linked digital experiences embedded in the fabric of the web.
-                </p>
-                <div style="display: flex; gap: 20px;">
-                    <button class="menu-btn mag-target" onclick="scrollToGrid()">ACCESS ARTIFACTS</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="grid-section" id="grid">
-            <div class="grid-header">
-                <h2 style="font-family:'Orbitron'">DEPLOYED_SYSTEMS</h2>
-                <div style="font-family:'Share Tech Mono'; color:var(--neon-core)">STATUS: ONLINE</div>
-            </div>
-
-            <div class="projects-container">
-                <!-- PROJECT 1 -->
-                <div class="card mag-target" onclick="openDossier('FocusFlow', 'NEURAL_OPTIMIZATION', 'FF-2077', '98%')">
-                    <div class="card-num">01</div>
-                    <div class="card-title">FocusFlow</div>
-                    <div class="card-sub">Productivity Arch</div>
-                </div>
-
-                <!-- PROJECT 2 -->
-                <div class="card mag-target" onclick="openDossier('HydroSync', 'BIO_REGULATION', 'HS-X1', '100%')">
-                    <div class="card-num">02</div>
-                    <div class="card-title">HydroSync</div>
-                    <div class="card-sub">Biological Interface</div>
-                </div>
-
-                <!-- PROJECT 3 -->
-                <div class="card mag-target" onclick="openDossier('NovaWallet', 'ENCRYPTED_LEDGER', 'NW-ZERO', '45%')">
-                    <div class="card-num">03</div>
-                    <div class="card-title">NovaWallet</div>
-                    <div class="card-sub">Finance Protocol</div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- EXPANDED DOSSIER (MODAL) -->
-    <div id="dossier">
-        <div class="scan-line"></div>
-        
-        <div class="dossier-sidebar">
-            <div>
-                <div style="color:var(--neon-core); font-family:'Orbitron'; font-size:2rem;">DATA_LOG</div>
-                <div style="margin-top:20px; font-family:'Share Tech Mono'; color:#888;">
-                    ACCESSING SECURE SERVER...<br>
-                    DECRYPTING PACKETS...<br>
-                    RENDERING VISUALS...
-                </div>
-            </div>
-            <div style="border: 1px solid var(--border); padding: 20px;">
-                <div style="font-size: 0.8rem; color: #888;">SECURITY LEVEL</div>
-                <div style="font-size: 1.5rem; color: var(--neon-alert);">CLASSIFIED</div>
-            </div>
-        </div>
-
-        <div class="dossier-main">
-            <div style="margin-bottom: 40px;">
-                <span id="modal-code" style="background:var(--neon-core); color:black; padding: 2px 8px; font-family:'Share Tech Mono';">CODE</span>
-                <h1 id="modal-title" style="margin-top: 10px;">TITLE</h1>
-                <p id="modal-sub" style="font-family:'Share Tech Mono'; color:var(--neon-core); letter-spacing:2px;">SUBTITLE</p>
-            </div>
-
-            <p style="line-height: 1.8; color: #ccc; max-width: 600px; margin-bottom: 40px;">
-                This artifact utilizes advanced algorithms to interface directly with the user's workflow. 
-                Constructed using a proprietary reactive framework, it ensures zero latency and maximum immersion. 
-                Data telemetry indicates a 400% increase in efficiency.
+    <!-- INTERFACE -->
+    <div id="hud">
+        <div class="content-layer">
+            <div style="font-family: 'Share Tech Mono'; color: var(--alert); margin-bottom: 10px;">// REALTIME_RENDER</div>
+            <h1>
+                INFINITE<br>
+                <span style="color: transparent; -webkit-text-stroke: 2px var(--neon);">HORIZON</span>
+            </h1>
+            <p style="max-width: 500px; color: #aaa; margin-bottom: 30px; line-height: 1.6;">
+                This environment is rendered in real-time using WebGL. 
+                It runs directly on your GPU. No video files. pure code.
             </p>
-
-            <div style="max-width: 400px; margin-bottom: 40px;">
-                <div class="stat-row"><span>STABILITY</span><span id="modal-stat">100%</span></div>
-                <div class="stat-row"><span>ENCRYPTION</span><span>AES-256</span></div>
-                <div class="stat-row"><span>USERS</span><span>8,402</span></div>
-            </div>
-
-            <button class="close-btn mag-target" onclick="closeDossier()">TERMINATE CONNECTION</button>
+            <button class="btn-holo" onclick="alert('SYSTEM LINK ESTABLISHED')">ENTER SIMULATION</button>
         </div>
     </div>
 
-    <script>
-        // === 1. TEXT SCRAMBLE DECODER ===
-        class TextScramble {
-            constructor(el) {
-                this.el = el;
-                this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                this.update = this.update.bind(this);
-            }
-            setText(newText) {
-                const oldText = this.el.innerText;
-                const length = Math.max(oldText.length, newText.length);
-                const promise = new Promise((resolve) => this.resolve = resolve);
-                this.queue = [];
-                for (let i = 0; i < length; i++) {
-                    const from = oldText[i] || '';
-                    const to = newText[i] || '';
-                    const start = Math.floor(Math.random() * 40);
-                    const end = start + Math.floor(Math.random() * 40);
-                    this.queue.push({ from, to, start, end });
-                }
-                cancelAnimationFrame(this.frameRequest);
-                this.frame = 0;
-                this.update();
-                return promise;
-            }
-            update() {
-                let output = '';
-                let complete = 0;
-                for (let i = 0, n = this.queue.length; i < n; i++) {
-                    let { from, to, start, end, char } = this.queue[i];
-                    if (this.frame >= end) {
-                        complete++;
-                        output += to;
-                    } else if (this.frame >= start) {
-                        if (!char || Math.random() < 0.28) {
-                            char = this.randomChar();
-                            this.queue[i].char = char;
-                        }
-                        output += `<span style="opacity:0.3">${char}</span>`;
-                    } else {
-                        output += from;
-                    }
-                }
-                this.el.innerHTML = output;
-                if (complete === this.queue.length) {
-                    this.resolve();
-                } else {
-                    this.frameRequest = requestAnimationFrame(this.update);
-                    this.frame++;
-                }
-            }
-            randomChar() {
-                return this.chars[Math.floor(Math.random() * this.chars.length)];
-            }
-        }
+    <!-- THE ENGINE (THREE.JS) -->
+    <!-- We import Three.js as a Module from a CDN -->
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-        // === 2. WARP SPEED CANVAS ===
-        const canvas = document.getElementById('warp-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let stars = [];
-        let speed = 2;
-        let mouseX = 0;
+        // 1. SCENE SETUP
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.002); // The Void Fog
 
-        function initCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            stars = [];
-            for(let i=0; i<800; i++) {
-                stars.push({
-                    x: Math.random() * width - width/2,
-                    y: Math.random() * height - height/2,
-                    z: Math.random() * width
-                });
-            }
-        }
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5;
+        camera.position.y = 2; // Camera height
 
-        function drawWarp() {
-            // Speed depends on mouse X position (center = slow, edges = fast)
-            let targetSpeed = 2 + (Math.abs(mouseX - width/2) / width) * 20;
-            speed += (targetSpeed - speed) * 0.1; // Smooth accel
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#world'), antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-            ctx.fillStyle = 'black';
-            ctx.fillRect(0, 0, width, height);
-            
-            ctx.translate(width/2, height/2);
-            
-            for(let star of stars) {
-                star.z -= speed;
-                if(star.z <= 0) {
-                    star.z = width;
-                    star.x = Math.random() * width - width/2;
-                    star.y = Math.random() * height - height/2;
-                }
-                
-                let sx = (star.x / star.z) * width;
-                let sy = (star.y / star.z) * height;
-                let r = (1 - star.z / width) * 3; // Size based on distance
-                
-                ctx.beginPath();
-                ctx.fillStyle = "rgba(255, 255, 255, "+(1 - star.z/width)+")";
-                ctx.arc(sx, sy, r, 0, Math.PI*2);
-                ctx.fill();
-            }
-            
-            ctx.translate(-width/2, -height/2);
-            requestAnimationFrame(drawWarp);
-        }
+        // 2. LIGHTING
+        const ambientLight = new THREE.AmbientLight(0x00f3ff, 0.1); // Cyan tint
+        scene.add(ambientLight);
 
-        window.addEventListener('mousemove', e => mouseX = e.clientX);
-        window.addEventListener('resize', initCanvas);
+        const pointLight = new THREE.PointLight(0xff0055, 2, 50); // Red glow
+        pointLight.position.set(0, 5, 5);
+        scene.add(pointLight);
 
-        // === 3. CORE LOGIC ===
-        window.onload = () => {
-            initCanvas();
-            drawWarp();
-            
-            // Text Scramble Init
-            document.querySelectorAll('.scramble').forEach(el => {
-                const fx = new TextScramble(el);
-                setTimeout(() => {
-                    fx.setText(el.getAttribute('data-text'));
-                }, 2200);
-            });
-
-            // Reveal UI
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                    document.getElementById('app').style.opacity = '1';
-                }, 500);
-            }, 2000);
-        };
-
-        // Custom Cursor Magnetic
-        const cursor = document.getElementById('cursor');
-        const ring = document.querySelector('.cursor-ring');
+        // 3. THE TERRAIN (WIREFRAME GRID)
+        // Creating a plane geometry with many segments for the "wave" effect
+        const geometry = new THREE.PlaneGeometry(100, 100, 60, 60); 
         
-        window.addEventListener('mousemove', e => {
-            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        // Custom Material: Tron-style grid
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x00f3ff, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
         });
 
-        document.querySelectorAll('.mag-target').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                document.body.classList.add('hover');
-            });
-            btn.addEventListener('mouseleave', () => {
-                document.body.classList.remove('hover');
-            });
+        const terrain = new THREE.Mesh(geometry, material);
+        terrain.rotation.x = -Math.PI / 2; // Lay flat
+        scene.add(terrain);
+
+        // Duplicate terrain to create "infinite" look
+        const terrain2 = terrain.clone();
+        terrain2.position.z = -100;
+        scene.add(terrain2);
+
+        // 4. ANIMATION LOOP
+        let speed = 0.1;
+        let time = 0;
+
+        // Access the vertices to animate waves
+        const positionAttribute = geometry.attributes.position;
+        const vertex = new THREE.Vector3();
+
+        // Hide Loader once engine starts
+        document.getElementById('loader').style.display = 'none';
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.05;
+
+            // Move Terrains forward to simulate flying
+            terrain.position.z += speed;
+            terrain2.position.z += speed;
+
+            // Loop terrain positions for infinity
+            if (terrain.position.z >= 50) terrain.position.z = -150;
+            if (terrain2.position.z >= 50) terrain2.position.z = -150;
+
+            // Waving effect (vertex manipulation)
+            for (let i = 0; i < positionAttribute.count; i++) {
+                vertex.fromBufferAttribute(positionAttribute, i);
+                // Create a wave based on X and Y position
+                const waveX = Math.sin(vertex.x * 0.5 + time) * 0.5;
+                const waveY = Math.cos(vertex.y * 0.5 + time) * 0.5;
+                
+                // Update Z (which is Up/Down because we rotated the plane)
+                // Note: Since we rotated X by -90deg, the Z axis of geometry is effectively world Y
+                // But we modify the local Z of the geometry (perpendicular to plane)
+                positionAttribute.setZ(i, waveX + waveY);
+            }
+            positionAttribute.needsUpdate = true; // Tell GPU to update
+
+            // Dynamic Light Movement
+            pointLight.position.x = Math.sin(time * 0.5) * 10;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // 5. RESIZE HANDLER
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Navigation
-        function scrollToGrid() {
-            document.getElementById('grid').scrollIntoView({behavior:'smooth'});
-        }
-
-        // Modal Logic
-        const dossier = document.getElementById('dossier');
-        const mTitle = document.getElementById('modal-title');
-        const mSub = document.getElementById('modal-sub');
-        const mCode = document.getElementById('modal-code');
-        const mStat = document.getElementById('modal-stat');
-
-        function openDossier(title, sub, code, stat) {
-            mTitle.innerText = title;
-            mSub.innerText = sub;
-            mCode.innerText = code;
-            mStat.innerText = stat;
-            dossier.classList.add('active');
-        }
-
-        function closeDossier() {
-            dossier.classList.remove('active');
-        }
+        // 6. CURSOR LOGIC
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // Move camera slightly with mouse for parallax
+            const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            const mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+            
+            camera.rotation.y = mouseX * 0.1;
+            camera.rotation.x = mouseY * 0.1;
+        });
 
     </script>
 </body>
