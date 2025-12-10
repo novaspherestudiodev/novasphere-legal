@@ -2,282 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>NOVA | HYPER-GRID</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --neon-primary: #00f3ff;
-            --neon-sec: #bf00ff;
-            --bg-void: #050505;
-        }
-
-        body { 
-            margin: 0; 
-            background-color: var(--bg-void); 
-            overflow: hidden; 
-            font-family: 'Share Tech Mono', monospace;
-            cursor: none; /* Custom cursor only */
-        }
-
-        canvas { display: block; }
-
-        /* === UI OVERLAY === */
-        #interface {
-            position: fixed; inset: 0; pointer-events: none; z-index: 10;
-            display: flex; flex-direction: column; justify-content: center; padding-left: 10%;
-            background: radial-gradient(circle at center, transparent 0%, black 140%);
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
-            color: white; line-height: 0.9; margin: 0;
-            text-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
-            mix-blend-mode: overlay;
-            opacity: 0;
-            animation: text-in 1s forwards 1s;
-        }
-
-        .subtitle {
-            color: var(--neon-primary); font-size: 1.2rem; letter-spacing: 4px;
-            margin-bottom: 20px; opacity: 0;
-            animation: text-in 1s forwards 0.5s;
-        }
-
-        .hud-stats {
-            position: fixed; bottom: 30px; left: 30px;
-            color: #555; font-size: 0.8rem;
-        }
-
-        /* === BUTTON === */
-        .cyber-btn {
-            margin-top: 40px; pointer-events: auto;
-            background: transparent; border: 1px solid var(--neon-primary);
-            color: var(--neon-primary); padding: 15px 40px;
-            font-family: 'Share Tech Mono'; font-size: 1rem; letter-spacing: 2px;
-            text-transform: uppercase; cursor: none; width: fit-content;
-            transition: 0.3s; opacity: 0;
-            animation: text-in 1s forwards 1.5s;
-        }
-        .cyber-btn:hover {
-            background: var(--neon-primary); color: black;
-            box-shadow: 0 0 40px var(--neon-primary);
-        }
-
-        /* === CURSOR === */
-        #cursor {
-            position: fixed; top: 0; left: 0; width: 30px; height: 30px;
-            border: 1px dashed var(--neon-primary); border-radius: 50%;
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
-            transition: width 0.2s, height 0.2s; mix-blend-mode: difference;
-        }
-        #cursor.active { width: 50px; height: 50px; background: rgba(0,243,255,0.2); border-style: solid; }
-
-        /* === SCANLINES === */
-        .vfx-overlay {
-            position: fixed; inset: 0; pointer-events: none; z-index: 5;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-            background-size: 100% 3px;
-        }
-
-        @keyframes text-in { to { opacity: 1; } }
-    </style>
-    
-    <!-- IMPORT MAP: This tells the browser where to find Three.js libraries -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-            }
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSphere Studio | Future Reality</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-
-    <div class="vfx-overlay"></div>
-    <div id="cursor"></div>
-
-    <div id="interface">
-        <div class="subtitle">// NEURAL_LINK_ESTABLISHED</div>
-        <h1>
-            PROJECT<br>
-            <span style="color:transparent; -webkit-text-stroke: 2px var(--neon-primary);">HORIZON</span>
-        </h1>
-        <button class="cyber-btn" id="enter-btn">INITIATE SEQUENCE</button>
-        
-        <div class="hud-stats">
-            RENDER: WEBGL2<br>
-            POST-PROCESS: BLOOM_ACTIVE<br>
-            FPS: <span id="fps">60</span>
+    <!-- Atmosphere -->
+    <div class="orb" style="top: -100px; left: -100px;"></div>
+    
+    <nav class="glass">
+        <a href="index.html" class="logo"><i class='bx bx-planet'></i> NOVASPHERE</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">STUDIO</a>
+            <a href="portfolio.html">WORK</a>
+            <a href="about.html">INTEL</a>
         </div>
-    </div>
+        <a href="contact.html" class="btn btn-primary">CONTACT</a>
+    </nav>
 
-    <script type="module">
-        import * as THREE from 'three';
-        // Importing Post-Processing Tools
-        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    <header style="height: 100vh; display: flex; align-items: center; text-align: center;">
+        <div class="container">
+            <p class="mono reveal" style="color: var(--accent-cyan);">// SYSTEM_ONLINE</p>
+            <h1 class="reveal delay-100" style="font-size: 4rem; font-weight: 800; line-height: 1.1; margin: 20px 0;">
+                WE ARCHITECT<br><span class="gradient-text">DIGITAL SERENITY</span>
+            </h1>
+            <p class="reveal delay-200" style="max-width: 600px; margin: 0 auto 40px; color: var(--text-muted);">
+                We do not build apps. We forge high-efficiency tools for the chaotic modern world.
+            </p>
+            <div class="reveal delay-300">
+                <a href="portfolio.html" class="btn btn-primary">ENTER ARCHIVES</a>
+            </div>
+        </div>
+    </header>
 
-        // 1. SCENE INIT
-        const scene = new THREE.Scene();
-        // Deep fog for the "Void" look
-        scene.fog = new THREE.FogExp2(0x000000, 0.0015);
+    <footer>
+        <div class="container">
+            <p class="mono" style="color: var(--text-muted);">© 2077 NOVASPHERE STUDIO</p>
+            <div class="legal-nav">
+                <a href="legal/terms.html">Terms of Service</a>
+                <a href="legal/privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
 
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
-        camera.position.set(0, 3, 10); // Start position
-
-        const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
-        renderer.toneMapping = THREE.ReinhardToneMapping;
-        document.body.appendChild(renderer.domElement);
-
-        // 2. POST-PROCESSING (THE GLOW)
-        const renderScene = new RenderPass(scene, camera);
-        
-        // Bloom Parameters: Resolution, Strength, Radius, Threshold
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-        bloomPass.threshold = 0;
-        bloomPass.strength = 1.2; // Intensity of the glow
-        bloomPass.radius = 0;
-
-        const composer = new EffectComposer(renderer);
-        composer.addPass(renderScene);
-        composer.addPass(bloomPass);
-
-        // 3. OBJECTS
-
-        // A. THE GRID (TERRAIN)
-        // We use a plane with many segments for smooth mountains
-        const planeGeo = new THREE.PlaneGeometry(80, 80, 64, 64);
-        
-        // Displace the vertices to make "mountains"
-        const count = planeGeo.attributes.position.count;
-        const positions = planeGeo.attributes.position;
-        
-        for (let i = 0; i < count; i++) {
-            const x = positions.getX(i);
-            const y = positions.getY(i);
-            // Math to create valleys and peaks
-            const z = Math.sin(x/2) * Math.cos(y/2) * 2 + Math.random() * 0.5;
-            positions.setZ(i, z);
-        }
-        planeGeo.computeVertexNormals();
-
-        // Tron-style material
-        const planeMat = new THREE.MeshBasicMaterial({ 
-            color: 0x00f3ff, 
-            wireframe: true,
-        });
-
-        const terrain = new THREE.Mesh(planeGeo, planeMat);
-        terrain.rotation.x = -Math.PI / 2;
-        scene.add(terrain);
-
-        // Second terrain for infinite loop
-        const terrain2 = terrain.clone();
-        terrain2.position.z = -80;
-        scene.add(terrain2);
-
-        // B. THE SUN (Event Horizon)
-        const sunGeo = new THREE.SphereGeometry(20, 32, 32);
-        const sunMat = new THREE.MeshBasicMaterial({ color: 0xbf00ff }); // Magenta Sun
-        const sun = new THREE.Mesh(sunGeo, sunMat);
-        sun.position.z = -100;
-        scene.add(sun);
-
-        // Add a glow ring around sun
-        const ringGeo = new THREE.RingGeometry(25, 26, 64);
-        const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
-        const ring = new THREE.Mesh(ringGeo, ringMat);
-        ring.position.z = -99;
-        scene.add(ring);
-
-        // C. PARTICLES (Stars)
-        const starGeo = new THREE.BufferGeometry();
-        const starCount = 2000;
-        const starPos = new Float32Array(starCount * 3);
-
-        for(let i=0; i<starCount*3; i++) {
-            starPos[i] = (Math.random() - 0.5) * 150;
-        }
-        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
-        const stars = new THREE.Points(starGeo, starMat);
-        scene.add(stars);
-
-        // 4. ANIMATION STATE
-        let speed = 0.2;
-        let time = 0;
-        const clock = new THREE.Clock();
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const delta = clock.getDelta();
-            time += delta;
-
-            // Move Terrains
-            terrain.position.z += speed;
-            terrain2.position.z += speed;
-
-            // Loop Terrains
-            if (terrain.position.z >= 80) terrain.position.z = -80;
-            if (terrain2.position.z >= 80) terrain2.position.z = -80;
-
-            // Pulse Sun
-            const scale = 1 + Math.sin(time * 2) * 0.05;
-            sun.scale.set(scale, scale, scale);
-            
-            // Move Stars
-            stars.rotation.z += 0.001; // subtle rotation
-            stars.position.z += speed * 1.5; // stars move faster
-            if(stars.position.z > 50) stars.position.z = 0;
-
-            // Render with Bloom
-            composer.render();
-            
-            // FPS Counter (Fake)
-            if (Math.random() > 0.95) document.getElementById('fps').innerText = Math.floor(58 + Math.random() * 5);
-        }
-
-        animate();
-
-        // 5. INTERACTION
-        const cursor = document.getElementById('cursor');
-        const btn = document.getElementById('enter-btn');
-
-        // Mouse Parallax
-        window.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 2 - 1;
-            const y = (e.clientY / window.innerHeight) * 2 - 1;
-            
-            // Rotate camera slightly
-            camera.rotation.y = -x * 0.1;
-            camera.rotation.x = -y * 0.1;
-            
-            // Move Cursor
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Hover Effect
-        btn.addEventListener('mouseenter', () => cursor.classList.add('active'));
-        btn.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-
-        // Window Resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            composer.setSize(window.innerWidth, window.innerHeight);
-        });
-        
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
