@@ -2,67 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="copyright" content="NovaSphere Studio">
-    <meta name="author" content="NovaSphere Studio">
     <title>NovaSphere Studio | Innovating Reality</title>
-    
+
     <!-- Styles -->
-    <link rel="stylesheet" href="css/themes.css">
-    <link rel="stylesheet" href="css/glass.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animations.css">
-    
-    <!-- Icons -->
+    <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Background Atmosphere -->
+    <!-- Ambient Background -->
     <div class="nova-orb" style="top: -100px; left: -100px;"></div>
     <div class="nova-orb" style="bottom: -100px; right: -100px; animation-delay: 2s;"></div>
 
-    <!-- Navigation -->
-    <nav class="glass" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
-        <div class="logo" style="font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+    <!-- Responsive Navigation -->
+    <nav class="navbar glass">
+        <!-- 1. Logo -->
+        <a href="index.html" class="logo">
             <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
-        </div>
+        </a>
         
-        <div class="nav-links" style="display: flex; gap: 2rem;">
-            <a href="index.html" style="text-decoration: none; color: var(--text-primary); font-weight: 600;">Studio</a>
-            <a href="portfolio.html" style="text-decoration: none; color: var(--text-secondary);">Work</a>
-            <a href="about.html" style="text-decoration: none; color: var(--text-secondary);">About</a>
+        <!-- 2. Links (Collapses on Mobile) -->
+        <div class="nav-links">
+            <a href="index.html" class="active">Studio</a>
+            <a href="portfolio.html">Work</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
         </div>
 
-        <div class="controls" style="display: flex; align-items: center; gap: 15px;">
-            <!-- Theme Toggle Switch -->
+        <!-- 3. Controls & Mobile Toggle -->
+        <div class="controls">
+            <!-- Theme Switch -->
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="theme-toggle">
                     <input type="checkbox" id="theme-toggle" />
                     <div class="slider round"></div>
                 </label>
             </div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Talk</a>
+            
+            <!-- Mobile Menu Button -->
+            <div class="mobile-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            
+            <!-- Desktop Only CTA (Hidden on tiny screens via CSS if needed) -->
+            <a href="contact.html" class="btn btn-primary" style="display: none;">Talk</a> 
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section style="height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px;">
+    <section class="hero-section">
         <div class="container">
-            <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block;">Est. 2025</span>
-            <h1 class="reveal-blur" style="margin-bottom: 1.5rem;">We Build Digital <br> <span style="background: linear-gradient(45deg, var(--accent-color), #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Serenity.</span></h1>
-            <p class="reveal-blur delay-200" style="max-width: 600px; margin: 0 auto 2.5rem;">NovaSphere Studio combines technical expertise with creative vision to build productivity tools and health-focused apps that solve real-world problems.</p>
+            <span class="reveal-blur" style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block;">Est. 2025</span>
             
-            <div class="cta-group reveal-blur delay-400">
+            <h1 class="reveal-blur delay-100">We Build Digital <br> 
+                <span style="background: linear-gradient(45deg, var(--accent-color), #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Serenity.</span>
+            </h1>
+            
+            <p class="reveal-blur delay-200" style="max-width: 600px; margin: 1.5rem auto 2.5rem;">
+                NovaSphere Studio combines technical expertise with creative vision to build productivity tools and health-focused apps that solve real-world problems.
+            </p>
+            
+            <div class="cta-group reveal-blur delay-300">
                 <a href="portfolio.html" class="btn btn-primary">View Our Apps</a>
-                <a href="#mission" class="btn glass" style="margin-left: 15px; color: var(--text-primary);">Our Mission</a>
+                <a href="about.html" class="btn glass" style="margin-left: 10px; color: var(--text-primary);">The Mission</a>
             </div>
         </div>
     </section>
 
-    <!-- Features / Mission -->
-    <section id="mission" class="container" style="padding: 5rem 2rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+    <!-- Features Grid -->
+    <section class="container" style="padding-bottom: 5rem;">
+        <div class="app-grid">
             
             <!-- Card 1 -->
             <div class="glass glass-card reveal-pop delay-100" style="padding: 2.5rem;">
@@ -87,34 +99,12 @@
 
         </div>
     </section>
-    
+
     <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary);">
-    <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
-    <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
-        Unauthorized duplication or publication of any materials from this site is expressly prohibited.
-    </p>
-</footer>
+        <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
+    </footer>
 
-    <!-- Load Scripts -->
-   <script src="js/theme.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const observerOptions = {
-            threshold: 0.1 // Trigger when 10% of the item is visible
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, observerOptions);
-
-        const hiddenElements = document.querySelectorAll('.reveal-blur, .reveal-pop');
-        hiddenElements.forEach((el) => observer.observe(el));
-    });
-</script>
+    <!-- Scripts -->
+    <script src="js/theme.js"></script>
 </body>
 </html>
