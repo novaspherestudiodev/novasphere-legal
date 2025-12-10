@@ -2,57 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="copyright" content="NovaSphere Studio">
-    <meta name="author" content="NovaSphere Studio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>About The Studio | NovaSphere</title>
-    
-    <link rel="stylesheet" href="css/themes.css">
-    <link rel="stylesheet" href="css/glass.css">
+
+    <!-- Core Styles -->
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animations.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
+    <!-- Page Specific Styles -->
     <style>
-        /* Tech Stack Grid */
-        .tech-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100px;
-            transition: transform 0.3s ease;
-        }
-
-        .tech-item:hover { transform: translateY(-5px); }
-
-        .tech-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            transition: color 0.3s ease;
-        }
-
-        .tech-item:hover .tech-icon { color: var(--accent-color); }
-
-        /* Story Section */
-        .story-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .story-container { grid-template-columns: 1fr; }
+        .about-header {
+            text-align: center; 
+            padding-top: 120px; 
+            padding-bottom: 3rem;
         }
 
         .stat-number {
@@ -60,6 +22,23 @@
             font-weight: 800;
             color: var(--accent-color);
             line-height: 1;
+        }
+
+        /* Tech Grid Animation */
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+            transition: transform 0.3s ease;
+        }
+        .tech-item:hover { transform: translateY(-5px); color: var(--accent-color); }
+        .tech-icon { font-size: 2.5rem; margin-bottom: 0.5rem; transition: color 0.3s ease; }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .stat-number { font-size: 2.5rem; }
+            .tech-grid { gap: 1.5rem; }
         }
     </style>
 </head>
@@ -69,30 +48,33 @@
     <div class="nova-orb" style="top: -50px; right: 20%; background: radial-gradient(circle, #00d2ff, #3a7bd5);"></div>
 
     <!-- Navigation -->
-    <nav class="glass" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
-        <a href="index.html" class="logo" style="text-decoration: none; color: var(--text-primary); font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+    <nav class="navbar glass">
+        <a href="index.html" class="logo">
             <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
         </a>
-        <div class="nav-links" style="display: flex; gap: 2rem;">
-            <a href="index.html" style="text-decoration: none; color: var(--text-secondary);">Studio</a>
-            <a href="portfolio.html" style="text-decoration: none; color: var(--text-secondary);">Work</a>
-            <a href="about.html" style="text-decoration: none; color: var(--text-primary); font-weight: 600;">About</a>
+        <div class="nav-links">
+            <a href="index.html">Studio</a>
+            <a href="portfolio.html">Work</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <div class="controls" style="display: flex; align-items: center; gap: 15px;">
+        <div class="controls">
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="theme-toggle">
                     <input type="checkbox" id="theme-toggle" />
                     <div class="slider round"></div>
                 </label>
             </div>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Talk</a>
+            <div class="mobile-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
         </div>
     </nav>
 
-    <div class="container" style="padding-top: 150px; padding-bottom: 5rem;">
+    <div class="container">
         
         <!-- Header -->
-        <div style="text-align: center; margin-bottom: 5rem;">
+        <div class="about-header">
             <h1 class="reveal-blur">One Developer.<br>Infinite Possibilities.</h1>
         </div>
 
@@ -123,41 +105,25 @@
                 </div>
             </div>
         </div>
-        <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary);">
-    <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
-    <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">
-        Unauthorized duplication or publication of any materials from this site is expressly prohibited.
-    </p>
-</footer>
+
         <!-- Tech Stack -->
-        <div style="margin-top: 6rem; text-align: center;">
+        <div style="margin-top: 6rem; padding-bottom: 5rem; text-align: center;">
             <h3 class="reveal-blur">Built With Modern Tech</h3>
             <div class="tech-grid reveal-pop delay-300">
                 <div class="tech-item"><i class='bx bxl-html5 tech-icon'></i><span>HTML5</span></div>
                 <div class="tech-item"><i class='bx bxl-css3 tech-icon'></i><span>CSS3</span></div>
-                <div class="tech-item"><i class='bx bxl-javascript tech-icon'></i><span>ES6+</span></div>
-                <div class="tech-item"><i class='bx bxl-github tech-icon'></i><span>GitHub</span></div>
+                <div class="tech-item"><i class='bx bxl-javascript tech-icon'></i><span>JS</span></div>
+                <div class="tech-item"><i class='bx bxl-github tech-icon'></i><span>Git</span></div>
                 <div class="tech-item"><i class='bx bxl-react tech-icon'></i><span>React</span></div>
             </div>
         </div>
-
     </div>
+
+    <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary);">
+        <p>&copy; 2025 NovaSphere Studio. All Rights Reserved.</p>
+    </footer>
 
     <!-- Scripts -->
     <script src="js/theme.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // If the element is visible...
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { threshold: 0.1 }); 
-            const hiddenElements = document.querySelectorAll('.reveal-blur, .reveal-pop');
-            hiddenElements.forEach((el) => observer.observe(el));
-        });
-    </script>
 </body>
 </html>
