@@ -1,0 +1,234 @@
+/* =========================================
+   NOVASPHERE CORE | SYSTEM: ALIEN_TECH_V1
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    /* CORE PALETTE - DARK (Default) */
+    --bg-deep: #030305;
+    --bg-surface: #0a0a0f;
+    --accent-primary: #6366f1; /* Indigo Neon */
+    --accent-secondary: #a855f7; /* Purple Neon */
+    --accent-cyan: #06b6d4;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    
+    /* GLASS PHYSICS */
+    --glass-bg: rgba(20, 20, 30, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shine: rgba(255, 255, 255, 0.03);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    
+    /* ANIMATION */
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Mode Override (Optional - can be disabled for pure Dark Mode) */
+[data-theme="light"] {
+    --bg-deep: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   RESET & UTILITIES
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Texture Overlay (The 2077 Grain) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-secondary); }
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* =========================================
+   COMPONENTS
+   ========================================= */
+
+/* The Orb */
+.orb {
+    position: fixed;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--accent-primary), transparent 70%);
+    filter: blur(120px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: float 20s infinite alternate;
+}
+
+/* Glass Card */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Internal Shine Effect */
+.glass::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, var(--glass-shine), transparent);
+    transform: skewX(-25deg);
+    transition: 0.7s;
+}
+.glass:hover::before { left: 150%; }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+}
+.btn-primary:hover {
+    box-shadow: 0 0 50px rgba(99, 102, 241, 0.6);
+    transform: scale(1.05);
+}
+
+.btn-ghost {
+    background: rgba(255,255,255,0.05);
+    border-color: var(--glass-border);
+    color: var(--text-main);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: var(--accent-cyan); }
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    width: 90%; max-width: 1200px;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { position: relative; font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+.nav-links a:hover, .nav-links a.active { color: var(--text-main); }
+.nav-links a::after {
+    content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+    background: var(--accent-primary); transition: 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--glass-border);
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 5rem;
+}
+.legal-nav { margin-top: 1rem; display: flex; justify-content: center; gap: 20px; font-size: 0.85rem; }
+.legal-nav a { color: var(--text-muted); }
+.legal-nav a:hover { color: var(--accent-cyan); text-decoration: underline; }
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 50px); }
+    100% { transform: translate(0, 0); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease-spring);
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* =========================================
+   SPECIFIC PAGE STYLES
+   ========================================= */
+/* Hero Text Gradient */
+.gradient-text {
+    background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* App Grid */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.app-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s var(--ease-spring);
+}
+.app-card:hover { transform: translateY(-10px); border-color: var(--accent-primary); }
+
+.app-icon-img {
+    width: 80px; height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; } /* Simplified for now, add hamburger if needed */
+    h1 { font-size: 2.5rem !important; }
+}
