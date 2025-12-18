@@ -3,38 +3,70 @@
 // ==========================================
 const appDatabase = {
 
-    // APP 1: FOCUSFLOW (PC ONLY EXAMPLE)
-    "focusflow": {
-        title: "FocusFlow",
-        tagline: "Master your time with the ultimate deep-work companion.",
-        category: "Productivity",
+   // APP 1: KYT 
+    "kyt": {
+        title: "Kyt: Know Your Things",
+        tagline: "The smart manual for your things and the playbook for your life.",
+        category: "Lifestyle",
         
-        // PLATFORMS: "pc" (Windows/Mac/Linux), "mobile" (Android/iOS), or both
-        platforms: ["pc"], 
+        // PLATFORMS: Android specified
+        platforms: ["mobile"], 
 
-        iconClass: "bx-check-shield", 
-        iconImg: "", 
-        accentColor: "#6366f1", 
-        banner: "linear-gradient(to right, #4338ca, #6366f1)", 
+        // VISUALS
+        iconClass: "bx-cube", // Fallback icon
+        iconImg: "apps/kyt/icon.png", 
+        accentColor: "#3b82f6", // Intelligence Blue
+        banner: "linear-gradient(to right, #1e3a8a, #3b82f6)", 
         
-        screenshots: ["assets/focus-1.jpg", "assets/focus-2.jpg", "assets/focus-3.jpg"],
-        videoPreview: "https://www.youtube.com/embed/dQw4w9WgXcQ", 
+        // SCREENSHOTS: Place 3-5 images in apps/kyt/
+        screenshots: [
+            "apps/kyt/screen1.jpg", 
+            "apps/kyt/screen2.jpg",
+            "apps/kyt/screen3.jpg",
+            "apps/kyt/screen4.jpg",
+            "apps/kyt/screen5.jpg"
+        ],
+        videoPreview: "", // Add YouTube link if available
 
-        rating: 4.8, reviewsCount: "12.4K", ageRating: "4+", chartPos: "#1 in Efficiency",
+        // STATS
+        rating: 4.9,
+        reviewsCount: "New Release",
+        ageRating: "4+",
+        chartPos: "#2 in Lifestyle",
         
-        version: "2.1.0", updated: "Nov 20, 2025", size: "145 MB",
-        whatsNew: "Protocol v2.1: Optimized for Windows 11 Snap Layouts.",
+        version: "1.0.0",
+        updated: "Dec 18, 2025",
+        size: "35 MB",
+        
+        whatsNew: "Welcome to the official launch of Kyt! Introducing Playbooks: Design, run, and perfect your own interactive step-by-step routines. Explore our online library or build from scratch.",
 
-        description: `FocusFlow combines the Pomodoro technique with advanced distraction blocking.`,
-        features: ["Pomodoro Timer", "Website Blocker", "Heatmaps"],
+        description: `Welcome to Kyt, the intelligent system for your life's most important assets and actions.
+
+        We live in a world filled with complex objects and responsibilities, but they don't come with a user manual. Critical information is scattered across junk drawers and email inboxes. Important routines and best practices live only in our heads.
         
-        // PC Downloads
+        **Kyt solves this.**
+        
+        Kyt is your single source of truth. It's a secure vault for everything you need to know about your things—from your dishwasher's model number to your car's maintenance history. Our "Big Brain" intelligence engine proactively scans this data to give you timely reminders for warranty expirations and scheduled maintenance.
+
+        **Go Beyond Knowing:**
+        With our groundbreaking **Playbooks** feature, you can now define how you get things done. Design, run, and perfect your personal and professional processes, from a "Mindful Morning Routine" to a "Pre-Meeting Briefing."`,
+        
+        features: [
+            "📦 Build Your Life 'Kyts' (Inventory)",
+            "▶️ Run Interactive Playbooks (Workflows)",
+            "🧠 The 'Big Brain' Intelligence Engine",
+            "📊 Advanced Task & History Log",
+            "☁️ Secure Cloud Sync & Sharing"
+        ],
+        
         downloads: [
-            { name: "Windows (x64)", icon: "bxl-windows", link: "#" },
-            { name: "MacOS", icon: "bxl-apple", link: "#" }
+            { name: "Google Play", icon: "bxl-play-store", link: "#" },
+            { name: "Direct APK", icon: "bx-download", link: "#" }
         ],
 
-        customPrivacy: "", customTerms: ""    
+        // Uses Auto-Generated Legal (Unless you create custom files later)
+        customPrivacy: "", 
+        customTerms: ""    
     },
 
     // APP 2: HYDROSYNC (MOBILE ONLY EXAMPLE)
