@@ -68,30 +68,71 @@ const appDatabase = {
         customPrivacy: "hydrosync-privacy.html", customTerms: "hydrosync-terms.html"      
     },
 
-    // APP 3: NOVAWALLET (HYBRID EXAMPLE)
+   // APP 3: NOVAWALLET (GENESIS BUILD)
     "novawallet": {
         title: "NovaWallet",
-        tagline: "Manage finances anywhere.",
+        tagline: "The Offline-First Financial Terminal for the Sovereign Professional.",
         category: "Finance",
         
-        platforms: ["pc", "mobile"], 
+        // It is designed for both, even if PC is in dev
+        platforms: ["mobile", "pc"], 
 
-        iconClass: "bx-wallet", iconImg: "", accentColor: "#f59e0b", 
-        banner: "linear-gradient(to right, #f59e0b, #d97706)",
+        // ASSETS: Ensure you place your icon.png in apps/novawallet/
+        iconClass: "bx-wallet", 
+        iconImg: "apps/novawallet/icon.png", 
+        accentColor: "#f59e0b", // Amber/Gold for Wealth
+        banner: "linear-gradient(to right, #000000, #f59e0b)", // Dark Finance Vibe
         
-        screenshots: [], videoPreview: "", 
-        rating: 4.2, reviewsCount: "1.2K", ageRating: "Teen", chartPos: "#10 in Finance",
-        version: "0.9.0", updated: "Dec 01, 2025", size: "40 MB",
-        whatsNew: "Cloud Sync enabled between Desktop and Mobile.",
-        description: `Sync your finances across all devices.`,
-        features: ["Cloud Sync", "Expense Tracking"],
+        // SCREENSHOTS: Place these in apps/novawallet/
+        screenshots: [
+            "apps/novawallet/screen1.jpg",
+            "apps/novawallet/screen2.jpg",
+            "apps/novawallet/screen3.jpg",
+            "apps/novawallet/screen4.jpg",
+            "apps/novawallet/screen5.jpg"
+        ],
+        
+        // Video Link (Optional - Leave empty if no trailer yet)
+        videoPreview: "", 
+
+        // STATS
+        rating: 5.0, // Genesis launch usually starts high or N/A
+        reviewsCount: "Genesis",
+        ageRating: "3+",
+        chartPos: "New Release",
+        
+        version: "1.0.0",
+        updated: "Dec 17, 2025",
+        size: "38 MB",
+        
+        whatsNew: "Genesis Launch. Deployed the 'War Room' simulation engine, Visual Intelligence sunburst charts, and the Entropy Engine. Your financial operating system is now online.",
+
+        description: `Stop renting your financial data. NovaWallet is the "Bloomberg Terminal" for the global gig economy—engineered for freelancers, remote workers, and business owners who demand absolute privacy and military-grade control over their wealth.
+
+        Unlike standard banking apps that rely on cloud servers, NovaWallet is Offline-First. Your ledger lives physically on your device, encrypted with AES-256 and locked behind biometric security. We cannot see your money. We cannot sell your data. You are the bank.
+        
+        **Why NovaWallet?**
+        • **For the Global Citizen:** Live in Accra, earn in USD, save in Euros. Our Offline FX Engine unifies your Net Worth in real-time.
+        • **For the Freelancer:** Track Client Trust Scores, generate professional PDF Invoices, and scan receipts into a secure local vault.
+        • **For the Strategist:** Don't just track expenses—simulate survival. The War Room module predicts your "Zero Date" based on active debts and austerity scenarios.`,
+        
+        features: [
+            "🛡️ Sovereign Vault (AES-256 + Biometrics)",
+            "🌍 Multi-Verse Architecture (Unlimted Currencies)",
+            "🧠 Nova Automata (IFTTT Rules)",
+            "☢️ The Debt Reactor (Visual Liability Mgmt)",
+            "☁️ Sovereign Cloud Sync (You hold the keys)"
+        ],
         
         downloads: [
-            { name: "Windows", icon: "bxl-windows", link: "#" },
-            { name: "Google Play", icon: "bxl-play-store", link: "#" }
+            { name: "Google Play", icon: "bxl-play-store", link: "#" }, // Add real link
+            { name: "Windows (Soon)", icon: "bxl-windows", link: "#" } // Placeholder
         ],
-        customPrivacy: "", customTerms: ""
-    }
+
+        // CUSTOM LEGAL PROTOCOL
+        customPrivacy: "apps/novawallet/privacy.html", 
+        customTerms: "apps/novawallet/terms.html"    
+    },
 
 };
 
