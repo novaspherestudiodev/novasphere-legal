@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Privacy Protocol | NovaWallet</title>
+    
+    <!-- Link to Main CSS (Up 2 Levels) -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        /* PAGE SPECIFIC STYLES */
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 120px 2rem 4rem; }
+        
+        .protocol-header { text-align: center; margin-bottom: 4rem; }
+        .protocol-header h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #f59e0b; }
+        .protocol-meta { display: inline-flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); background: var(--glass-bg); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--glass-border); }
+        
+        .section-block { margin-bottom: 4rem; }
+        .section-title { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; border-left: 4px solid #f59e0b; padding-left: 15px; }
+        
+        /* 1. Core Philosophy Box */
+        .philosophy-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(0,0,0,0));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 2rem; border-radius: 20px; position: relative; overflow: hidden;
+        }
+        .philosophy-box::before {
+            content: '\bx-shield-quarter'; font-family: boxicons;
+            position: absolute; right: -20px; top: -20px; font-size: 10rem;
+            opacity: 0.05; color: #f59e0b; pointer-events: none;
+        }
+
+        /* 2. Tables */
+        .data-table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--glass-border); }
+        .data-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
+        .data-table th { background: rgba(255,255,255,0.05); color: var(--accent-color); font-size: 0.85rem; text-transform: uppercase; }
+        .data-table td { font-size: 0.95rem; color: var(--text-secondary); }
+
+        /* 3. Permissions Grid */
+        .perm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .perm-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 1.5rem; border-radius: 16px; transition: transform 0.2s;
+        }
+        .perm-card:hover { border-color: #f59e0b; transform: translateY(-3px); }
+        .perm-icon { font-size: 1.8rem; color: #f59e0b; margin-bottom: 1rem; }
+        .perm-name { font-weight: 700; margin-bottom: 0.5rem; display: block; color: var(--text-primary); }
+        .perm-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* Typography */
+        p, li { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+        ul { padding-left: 20px; }
+        strong { color: var(--text-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="navbar glass">
+        <a href="../../index.html" class="logo">
+            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+        </a>
+        <div class="nav-links">
+            <a href="../../product.html?app=novawallet"><i class='bx bx-arrow-back'></i> Return to Terminal</a>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        
+        <!-- Header -->
+        <div class="protocol-header">
+            <i class='bx bx-check-shield' style="font-size: 4rem; color: #f59e0b; margin-bottom: 1rem;"></i>
+            <h1>Privacy Protocol</h1>
+            <div class="protocol-meta">
+                <span><i class='bx bx-calendar'></i> Effective: Dec 17, 2025</span>
+                <span><i class='bx bx-code-alt'></i> Dev: NovaSphere</span>
+            </div>
+        </div>
+
+        <!-- 1. Philosophy -->
+        <div class="section-block">
+            <div class="philosophy-box">
+                <h2 style="color: #f59e0b; margin-bottom: 1rem;">1. The Core Philosophy: "Zero-Knowledge"</h2>
+                <p>NovaWallet is architected on a <strong>"Zero-Knowledge"</strong> and <strong>"Offline-First"</strong> philosophy. Unlike standard financial applications, NovaWallet does not rely on a central cloud server to store your financial ledger.</p>
+                <p><strong>We cannot sell your data because we do not possess it.</strong></p>
+                <p style="margin-bottom: 0;">Your financial transactions, client lists, invoices, and debt tracking records exist physically on your device’s local storage. NovaSphere Studio has no technical means to access, view, or decrypt your personal financial database.</p>
+            </div>
+        </div>
+
+        <!-- 2. Storage & Encryption -->
+        <div class="section-block">
+            <h2 class="section-title">2. Data Storage & Encryption</h2>
+            
+            <h3>2.1 Local Storage</h3>
+            <p>All application data is stored locally on your device in an SQLite database.</p>
+            <ul>
+                <li><strong>Encryption:</strong> This database is encrypted at rest using <strong>SQLCipher (AES-256 bit encryption)</strong>.</li>
+                <li><strong>Key Management:</strong> The decryption key is generated via hardware entropy and stored securely in the Android Keystore or iOS Keychain. This key is only released when you successfully authenticate via Biometrics (Fingerprint/FaceID) or Device PIN.</li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">2.2 The "Sovereign Cloud" (Backup & Sync)</h3>
+            <p>NovaWallet offers an optional cloud synchronization feature. This feature is <strong>user-initiated</strong>.</p>
+            <ul>
+                <li><strong>Transport Security:</strong> Before your data leaves your device, it is serialized into a JSON blob and encrypted with a secondary, user-defined password using AES-GCM.</li>
+                <li><strong>Destination:</strong> You may choose to upload this encrypted file to your personal Google Drive or save it locally for manual export.</li>
+                <li><strong>No Intermediary:</strong> The encrypted file moves directly from your device to your Google Drive. It never passes through NovaSphere Studio servers.</li>
+            </ul>
+        </div>
+
+        <!-- 3. Data Collection -->
+        <div class="section-block">
+            <h2 class="section-title">3. Data Collection & Usage</h2>
+            <p>We collect minimal data strictly for the functionality of the application.</p>
+            <div class="data-table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Storage Location</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial Ledger</strong></td>
+                            <td>Local Device Only</td>
+                            <td>To track income, expenses, and net worth.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Receipt Images</strong></td>
+                            <td>Local Device (Sandboxed)</td>
+                            <td>To attach proof of purchase to transactions.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client Details</strong></td>
+                            <td>Local Device Only</td>
+                            <td>To generate invoices and track trust scores.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Crash Logs</strong></td>
+                            <td>Anonymized / Optional</td>
+                            <td>To identify application stability issues.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 4. Third Party -->
+        <div class="section-block">
+            <h2 class="section-title">4. Third-Party Services & APIs</h2>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <strong>4.1 Google Drive API</strong>
+                <p><strong>Scope:</strong> We request the <code>drive.file</code> scope. This limits NovaWallet’s access ONLY to files created by NovaWallet. We cannot see, read, or modify your other Google Drive files, photos, or emails.</p>
+                <p><strong>Usage:</strong> Used strictly for the "Sovereign Cloud" backup feature.</p>
+            </div>
+
+            <div>
+                <strong>4.2 Payment Gateways (Paystack)</strong>
+                <p><strong>Usage:</strong> To process payments for "Nova Ultra" (Pro) subscriptions.</p>
+                <p><strong>Data:</strong> Payment processing is handled entirely by Paystack. NovaWallet does not store your credit card details. We only receive a cryptographic token confirming that a payment was successful.</p>
+            </div>
+        </div>
+
+        <!-- 5. Permissions Grid -->
+        <div class="section-block">
+            <h2 class="section-title">5. Device Permissions</h2>
+            <p>To enable the advanced functionality of NovaWallet, we request specific device permissions. These are used strictly for local app features.</p>
+            
+            <div class="perm-grid">
+                <!-- Biometrics -->
+                <div class="perm-card">
+                    <i class='bx bx-fingerprint perm-icon'></i>
+                    <span class="perm-name">Biometrics</span>
+                    <span class="perm-desc">Ensures only you can decrypt and view your balances via Fingerprint/FaceID.</span>
+                </div>
+
+                <!-- Camera -->
+                <div class="perm-card">
+                    <i class='bx bx-camera perm-icon'></i>
+                    <span class="perm-name">Camera</span>
+                    <span class="perm-desc">For the "Vision Core" receipt scanner. Images are stored in the app's sandboxed storage.</span>
+                </div>
+
+                <!-- Storage -->
+                <div class="perm-card">
+                    <i class='bx bx-folder perm-icon'></i>
+                    <span class="perm-name">Storage</span>
+                    <span class="perm-desc">Required to save PDF Invoices, CSV Exports, and Encrypted Backup files (.aes).</span>
+                </div>
+
+                <!-- Internet -->
+                <div class="perm-card">
+                    <i class='bx bx-wifi perm-icon'></i>
+                    <span class="perm-name">Internet</span>
+                    <span class="perm-desc">To verify "Nova Ultra" subscriptions via Paystack and connect to Google Drive (if enabled).</span>
+                </div>
+
+                <!-- Notifications -->
+                <div class="perm-card">
+                    <i class='bx bx-bell perm-icon'></i>
+                    <span class="perm-name">Notifications</span>
+                    <span class="perm-desc">For the "Debt Reactor" and "Recurring Engine" to alert you when bills are due.</span>
+                </div>
+
+                <!-- Alarms -->
+                <div class="perm-card">
+                    <i class='bx bx-time-five perm-icon'></i>
+                    <span class="perm-name">Alarms & Startup</span>
+                    <span class="perm-desc">Allows the "Temporal Engine" to reschedule financial reminders after phone restart.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. System Interactions -->
+        <div class="section-block">
+            <h2 class="section-title">6. System Interactions</h2>
+            <p>NovaWallet interacts with other apps on your device to facilitate your workflow.</p>
+            <ul>
+                <li><strong>Phone & Email:</strong> The Client Management module allows you to tap a client's number to open your Dialer or their email to open your Mail App. We do not record your calls or read your emails.</li>
+                <li><strong>Web Browser:</strong> Used to open the Privacy Policy and to complete payment transactions via Paystack securely.</li>
+            </ul>
+        </div>
+
+        <!-- 7. Regulatory Compliance -->
+        <div class="section-block">
+            <h2 class="section-title">7. Regulatory Compliance (GDPR & CCPA)</h2>
+            <p>Since NovaWallet is offline-first, you have absolute control over your data:</p>
+            <ul>
+                <li><strong>Right to Access:</strong> You can view all your data within the app at any time.</li>
+                <li><strong>Right to Portability:</strong> You can export your entire ledger to CSV or JSON via the "Data Grid" export feature.</li>
+                <li><strong>Right to Erasure:</strong> To permanently delete your data, simply uninstall the application. Since we hold no copies on our servers, uninstalling the app destroys the encryption keys and renders the local database unrecoverable.</li>
+            </ul>
+        </div>
+
+        <!-- 8. Children -->
+        <div class="section-block">
+            <h2 class="section-title">8. Children’s Privacy</h2>
+            <p>NovaWallet is a financial tool intended for use by adults or minors under guardian supervision. We do not knowingly collect personal information from children under the age of 13.</p>
+        </div>
+
+        <!-- 9. Changes -->
+        <div class="section-block">
+            <h2 class="section-title">9. Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+        </div>
+
+        <!-- 10. Contact -->
+        <div class="section-block" style="text-align: center; margin-top: 4rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+            <h2 style="color: #f59e0b; font-size: 1.5rem;">10. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy or our "Sovereign Data" architecture, please contact us:</p>
+            <p style="font-size: 1.1rem; font-weight: 700;">
+                <i class='bx bx-envelope'></i> support@novaspherestudio.com
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+</body>
+</html>
