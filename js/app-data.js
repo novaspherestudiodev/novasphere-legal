@@ -73,17 +73,16 @@ const appDatabase = {
         title: "NovaWallet",
         tagline: "The Offline-First Financial Terminal for the Sovereign Professional.",
         category: "Finance",
-        
-        // It is designed for both, even if PC is in dev
+    
         platforms: ["mobile", "pc"], 
 
-        // ASSETS: Ensure you place your icon.png in apps/novawallet/
+        // ASSETS:
         iconClass: "bx-wallet", 
         iconImg: "apps/novawallet/icon.png", 
         accentColor: "#f59e0b", // Amber/Gold for Wealth
         banner: "linear-gradient(to right, #000000, #f59e0b)", // Dark Finance Vibe
         
-        // SCREENSHOTS: Place these in apps/novawallet/
+        // SCREENSHOTS:
         screenshots: [
             "apps/novawallet/screen1.jpg",
             "apps/novawallet/screen2.jpg",
@@ -92,7 +91,7 @@ const appDatabase = {
             "apps/novawallet/screen5.jpg"
         ],
         
-        // Video Link (Optional - Leave empty if no trailer yet)
+        // Video Link 
         videoPreview: "", 
 
         // STATS
@@ -125,7 +124,7 @@ const appDatabase = {
         ],
         
         downloads: [
-            { name: "Google Play", icon: "bxl-play-store", link: "#" }, // Add real link
+            { name: "Google Play", icon: "bxl-play-store", link: "#" }, // link
             { name: "Windows (Soon)", icon: "bxl-windows", link: "#" } // Placeholder
         ],
 
