@@ -3,68 +3,64 @@
 // ==========================================
 const appDatabase = {
 
-   // APP 1: KYT 
+   // APP 1: KYT (REPLACES FOCUSFLOW)
     "kyt": {
-        title: "Kyt: Know Your Things",
-        tagline: "The smart manual for your things and the playbook for your life.",
-        category: "Lifestyle",
+        title: "Kyt",
+        tagline: "The Operating System for Your Assets and Routines.",
+        category: "Productivity",
         
-        // PLATFORMS: Android specified
+        // Mobile Only (Android)
         platforms: ["mobile"], 
 
-        // VISUALS
-        iconClass: "bx-cube", // Fallback icon
+        // ASSETS: Create folder apps/kyt/ and add icon.png
+        iconClass: "bx-cube", // Fallback icon (Cube = "Thing")
         iconImg: "apps/kyt/icon.png", 
-        accentColor: "#3b82f6", // Intelligence Blue
-        banner: "linear-gradient(to right, #1e3a8a, #3b82f6)", 
+        accentColor: "#2563eb", // Tech Blue
+        banner: "linear-gradient(to right, #1e3a8a, #2563eb)", 
         
-        // SCREENSHOTS: Place 3-5 images in apps/kyt/
+        // SCREENSHOTS
         screenshots: [
-            "apps/kyt/screen1.jpg", 
+            "apps/kyt/screen1.jpg",
             "apps/kyt/screen2.jpg",
             "apps/kyt/screen3.jpg",
-            "apps/kyt/screen4.jpg",
-            "apps/kyt/screen5.jpg"
+            "apps/kyt/screen4.jpg"
         ],
-        videoPreview: "", // Add YouTube link if available
+        videoPreview: "", 
 
         // STATS
         rating: 4.9,
-        reviewsCount: "New Release",
+        reviewsCount: "Genesis",
         ageRating: "4+",
-        chartPos: "#2 in Lifestyle",
+        chartPos: "New Release",
         
         version: "1.0.0",
         updated: "Dec 18, 2025",
-        size: "35 MB",
+        size: "42 MB",
         
-        whatsNew: "Welcome to the official launch of Kyt! Introducing Playbooks: Design, run, and perfect your own interactive step-by-step routines. Explore our online library or build from scratch.",
+        whatsNew: "Welcome to Kyt 1.0! Your personal operations manual has arrived. This initial release combines powerful asset management with our advanced Playbook engine.",
 
-        description: `Welcome to Kyt, the intelligent system for your life's most important assets and actions.
+        description: `We live in a world filled with complex objects, appliances, and responsibilities, but life doesn't come with a unified user manual. Information is scattered across junk drawers, email inboxes, and mental notes.
 
-        We live in a world filled with complex objects and responsibilities, but they don't come with a user manual. Critical information is scattered across junk drawers and email inboxes. Important routines and best practices live only in our heads.
+        **Kyt (Know Your Things)** solves this by creating a secure, digital twin of your life. It is more than just an organizer; it is a proactive "Smart Assistant" that helps you manage the lifecycle of everything you own and the execution of everything you do.
         
-        **Kyt solves this.**
-        
-        Kyt is your single source of truth. It's a secure vault for everything you need to know about your things—from your dishwasher's model number to your car's maintenance history. Our "Big Brain" intelligence engine proactively scans this data to give you timely reminders for warranty expirations and scheduled maintenance.
-
-        **Go Beyond Knowing:**
-        With our groundbreaking **Playbooks** feature, you can now define how you get things done. Design, run, and perfect your personal and professional processes, from a "Mindful Morning Routine" to a "Pre-Meeting Briefing."`,
+        **Why Kyt?**
+        • **Turn "To-Do" into "How-To":** With the Playbooks engine, follow interactive, step-by-step guides for everything from "Morning Routines" to "Wi-Fi Troubleshooting."
+        • **Never Forget Maintenance:** Kyt predicts when tasks are due. From "change the furnace filter" to "rotate tires," it understands usage patterns.
+        • **A "Forever" Logbook:** Keep a searchable history of every repair and upgrade. Gain insights with heatmaps.
+        • **Privacy First:** Built on a "Local-First" architecture. Your data works perfectly offline.`,
         
         features: [
-            "📦 Build Your Life 'Kyts' (Inventory)",
-            "▶️ Run Interactive Playbooks (Workflows)",
-            "🧠 The 'Big Brain' Intelligence Engine",
-            "📊 Advanced Task & History Log",
-            "☁️ Secure Cloud Sync & Sharing"
+            "🚀 Smart Playbooks Engine (Workflows)",
+            "🧠 'Big Brain' Intelligence (Auto-Reminders)",
+            "📋 Smart Item Templates (50+ Pre-built)",
+            "📊 Performance Analytics (Heatmaps)",
+            "🔒 Local-First & Biometric Lock"
         ],
-        
         downloads: [
-            { name: "Google Play", icon: "bxl-play-store", link: "#" },
-            { name: "Direct APK", icon: "bx-download", link: "#" }
+            { name: "Google Play", icon: "bxl-play-store", link: "#" }
         ],
 
-        // Uses Auto-Generated Legal (Unless you create custom files later)
+        // Default Legal (Change if you create custom files later)
         customPrivacy: "", 
         customTerms: ""    
     },
