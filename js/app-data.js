@@ -136,9 +136,8 @@ const appDatabase = {
             { name: "Google Play", icon: "bxl-play-store", link: "#" }
         ],
 
-        // Default Legal (Change if you create custom files later)
-        customPrivacy: "", 
-        customTerms: ""    
+        customPrivacy: "apps/innerverse/privacy.html", 
+        customTerms: "apps/innerverse/terms.html"
     },
 
    // APP 3: NOVAWALLET (GENESIS BUILD)
