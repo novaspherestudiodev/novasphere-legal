@@ -12,10 +12,13 @@ const appDatabase = {
         // Mobile Only (Android)
         platforms: ["mobile"], 
 
-        // ASSETS: Create folder apps/kyt/ and add icon.png
-        iconClass: "bx-cube", // Fallback icon (Cube = "Thing")
+        // ASSETS
+        iconClass: "bx-cube", 
         iconImg: "apps/kyt/icon.png", 
         accentColor: "#2563eb", // Tech Blue
+        
+        // CINEMATIC BANNER
+        headerBanner: "", // Empty = Fallback to gradient below
         banner: "linear-gradient(to right, #1e3a8a, #2563eb)", 
         
         // SCREENSHOTS
@@ -60,7 +63,7 @@ const appDatabase = {
             { name: "Google Play", icon: "bxl-play-store", link: "#" }
         ],
 
-        // Default Legal (Change if you create custom files later)
+        // Default Legal
         customPrivacy: "", 
         customTerms: ""    
     },
@@ -74,10 +77,13 @@ const appDatabase = {
         // Mobile Only (Android)
         platforms: ["mobile"], 
 
-        // ASSETS: Create folder apps/innerverse/
-        iconClass: "bx-dna", // Fallback icon (DNA/Symbiote)
+        // ASSETS
+        iconClass: "bx-dna", 
         iconImg: "apps/innerverse/icon.png", 
         accentColor: "#a855f7", // Void Violet
+        
+        // CINEMATIC BANNER
+        headerBanner: "", // Empty = Fallback to gradient below
         banner: "linear-gradient(to right, #2e1065, #a855f7)", // Deep Space gradient
         
         // SCREENSHOTS
@@ -152,7 +158,10 @@ const appDatabase = {
         iconClass: "bx-wallet", 
         iconImg: "apps/novawallet/icon.png", 
         accentColor: "#f59e0b", // Amber/Gold for Wealth
-        banner: "linear-gradient(to right, #000000, #f59e0b)", // Dark Finance Vibe
+        
+        // CINEMATIC BANNER
+        headerBanner: "apps/novawallet/banner.jpg", // Path to wide image
+        banner: "linear-gradient(to right, #000000, #f59e0b)", // Fallback/Accent
         
         // SCREENSHOTS:
         screenshots: [
@@ -196,8 +205,8 @@ const appDatabase = {
         ],
         
         downloads: [
-            { name: "Google Play", icon: "bxl-play-store", link: "#" }, // link
-            { name: "Windows (Soon)", icon: "bxl-windows", link: "#" } // Placeholder
+            { name: "Google Play", icon: "bxl-play-store", link: "#" }, 
+            { name: "Windows (Soon)", icon: "bxl-windows", link: "#" } 
         ],
 
         // CUSTOM LEGAL PROTOCOL
@@ -248,12 +257,22 @@ document.addEventListener("DOMContentLoaded", () => {
         iconContainer.style.boxShadow = `0 20px 40px ${data.accentColor}40`;
     }
 
-    // INJECT BANNER
+    // INJECT BANNER (Cinematic Logic)
     const bannerDiv = document.getElementById('hero-bg');
-    if(data.banner.includes('http') || data.banner.includes('assets') || data.banner.includes('url')) {
-        bannerDiv.style.backgroundImage = `url(${data.banner})`;
-    } else {
-        bannerDiv.style.background = data.banner;
+    
+    // Priority 1: High-Res Image Banner
+    if (data.headerBanner && data.headerBanner !== "") {
+        bannerDiv.style.backgroundImage = `url(${data.headerBanner})`;
+    } 
+    // Priority 2: Fallback to Gradient/Color defined in 'banner'
+    else if (data.banner) {
+        // If it's a URL in the old field
+        if(data.banner.includes('http') || data.banner.includes('assets') || data.banner.includes('/')) {
+             bannerDiv.style.backgroundImage = `url(${data.banner})`;
+        } else {
+             // It's a CSS gradient string
+             bannerDiv.style.background = data.banner;
+        }
     }
 
     // =====================================
