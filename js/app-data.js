@@ -346,7 +346,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // TEXT & DOWNLOADS
-    document.getElementById('app-description').innerText = data.description;
+    
+    // ADVANCED PARSER: Converts **Bold** into real HTML and handles line breaks
+    const rawDescription = data.description;
+    const formattedDescription = rawDescription
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Converts **Text** to <b>Text</b>
+        .replace(/\n/g, '<br>'); // Converts new lines to breaks
+        
+    document.getElementById('app-description').innerHTML = formattedDescription;
+
     document.getElementById('app-features').innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
     
     document.getElementById('meta-version').textContent = data.version;
