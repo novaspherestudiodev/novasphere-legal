@@ -13,29 +13,57 @@
            STORE LAYOUT ENGINE
            ========================================= */
         
-        /* 1. HERO SECTION */
+        /* 1. HERO REFINED (CINEMATIC ENGINE) */
         .app-hero {
-            position: relative; padding: 140px 0 2rem;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--bg-color));
+            position: relative; 
+            padding: 160px 0 3rem; /* Taller padding for dramatic effect */
+            /* No background color here, handled by hero-bg */
             overflow: hidden;
+            display: flex;
+            align-items: flex-end; /* Aligns content to bottom */
         }
         
         .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; filter: blur(20px) brightness(0.5); background-size: cover; background-position: center;
+            position: absolute; 
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; 
+            background-size: cover; 
+            background-position: center top; /* Focus on top of image for mobile */
+            transition: transform 0.5s ease;
+        }
+
+        /* THE GRADIENT MASK (Visibility Protection) */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Fades from semi-transparent black at top to full background color at bottom */
+            background: linear-gradient(
+                to bottom, 
+                rgba(0,0,0,0.3) 0%, 
+                rgba(0,0,0,0.8) 60%, 
+                var(--bg-color) 100%
+            );
+            z-index: 1;
         }
 
         .hero-layout {
-            display: flex; gap: 30px; align-items: flex-start;
-            max-width: 1000px; margin: 0 auto;
+            position: relative; 
+            z-index: 2; /* Sits on top of the mask */
+            display: flex; gap: 30px; align-items: flex-end;
+            max-width: 1000px; margin: 0 auto; width: 100%;
+            padding: 0 20px; /* Add slight padding for mobile edges */
         }
 
+        /* Update Hero Icon to push it up slightly */
         .hero-icon {
-            width: 120px; height: 120px; border-radius: 26px;
+            width: 130px; height: 130px; border-radius: 28px;
             background: var(--glass-bg); border: 1px solid var(--glass-border);
             display: flex; align-items: center; justify-content: center;
-            font-size: 50px; color: var(--accent-color); flex-shrink: 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden;
+            font-size: 60px; color: var(--accent-color); flex-shrink: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+            overflow: hidden;
+            backdrop-filter: blur(20px);
         }
 
         /* Platform Badges (New) */
@@ -144,54 +172,55 @@
         </div>
     </nav>
 
-    <!-- HERO BACKGROUND -->
-    <div id="hero-bg" class="hero-bg"></div>
-
-    <div class="container">
+    <!-- NEW HERO SECTION (Full Width) -->
+    <div class="app-hero">
+        <!-- Hero Background moved inside to support the Mask Engine -->
+        <div id="hero-bg" class="hero-bg"></div>
         
-        <!-- HEADER -->
-        <div class="app-hero">
-            <div class="hero-layout">
-                <div id="app-icon" class="hero-icon"><i class='bx bx-layer'></i></div>
-                <div class="hero-text">
-                    <h1 id="app-title" style="margin: 0; line-height: 1.2;">App Name</h1>
-                    <span id="app-category" style="color: var(--text-secondary); font-size: 1rem;">Category</span>
-                    
-                    <!-- PLATFORM ICONS -->
-                    <div id="platform-badges" class="platform-badges">
-                        <!-- Injected via JS -->
-                    </div>
+        <div class="hero-layout">
+            <div id="app-icon" class="hero-icon"><i class='bx bx-layer'></i></div>
+            <div class="hero-text">
+                <h1 id="app-title" style="margin: 0; line-height: 1.2;">App Name</h1>
+                <span id="app-category" style="color: var(--text-secondary); font-size: 1rem;">Category</span>
+                
+                <!-- PLATFORM ICONS -->
+                <div id="platform-badges" class="platform-badges">
+                    <!-- Injected via JS -->
+                </div>
 
-                    <!-- WARNING ALERT -->
-                    <div id="device-warning" class="device-warning">
-                        <i class='bx bx-error'></i> 
-                        <span>Desktop Required for this application.</span>
-                    </div>
+                <!-- WARNING ALERT -->
+                <div id="device-warning" class="device-warning">
+                    <i class='bx bx-error'></i> 
+                    <span>Desktop Required for this application.</span>
+                </div>
 
-                    <p id="app-tagline" style="margin-top: 0.5rem; opacity: 0.8; max-width: 500px;">Tagline loading...</p>
-                    
-                    <div class="store-badge-grid" id="download-container">
-                        <!-- Buttons injected via JS -->
-                    </div>
+                <p id="app-tagline" style="margin-top: 0.5rem; opacity: 0.8; max-width: 500px;">Tagline loading...</p>
+                
+                <div class="store-badge-grid" id="download-container">
+                    <!-- Buttons injected via JS -->
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- STATS BAR -->
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <span class="stat-value">
-                        <span id="stat-rating">--</span> <i class='bx bxs-star' style="color: #fbbf24; font-size: 1rem;"></i>
-                    </span>
-                    <span id="stat-reviews" class="stat-label">Ratings</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="stat-chart">--</span>
-                    <span class="stat-label">In Category</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="stat-age">--</span>
-                    <span class="stat-label">Age Rating</span>
-                </div>
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        
+        <!-- STATS BAR (Moved here to sit below the Hero) -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value">
+                    <span id="stat-rating">--</span> <i class='bx bxs-star' style="color: #fbbf24; font-size: 1rem;"></i>
+                </span>
+                <span id="stat-reviews" class="stat-label">Ratings</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-chart">--</span>
+                <span class="stat-label">In Category</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-age">--</span>
+                <span class="stat-label">Age Rating</span>
             </div>
         </div>
 
