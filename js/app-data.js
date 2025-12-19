@@ -65,35 +65,80 @@ const appDatabase = {
         customTerms: ""    
     },
 
-    // APP 2: HYDROSYNC (MOBILE ONLY EXAMPLE)
-    "hydrosync": {
-        title: "HydroSync",
-        tagline: "Smart hydration tracking that adapts to your biology.",
-        category: "Health & Fitness",
+   // APP 2: INNERVERSE (REPLACES HYDROSYNC)
+    "innerverse": {
+        title: "InnerVerse",
+        tagline: "A living, breathing operating system for your mind.",
+        category: "Bio-Digital OS",
         
+        // Mobile Only (Android)
         platforms: ["mobile"], 
 
-        iconClass: "bx-water", iconImg: "assets/hydro-logo.png", accentColor: "#10b981", 
-        banner: "linear-gradient(to right, #059669, #10b981)",
+        // ASSETS: Create folder apps/innerverse/
+        iconClass: "bx-dna", // Fallback icon (DNA/Symbiote)
+        iconImg: "apps/innerverse/icon.png", 
+        accentColor: "#a855f7", // Void Violet
+        banner: "linear-gradient(to right, #2e1065, #a855f7)", // Deep Space gradient
         
-        screenshots: ["assets/hydro-1.jpg", "assets/hydro-2.jpg", "assets/hydro-3.jpg"],
+        // SCREENSHOTS
+        screenshots: [
+            "apps/innerverse/screen1.jpg",
+            "apps/innerverse/screen2.jpg",
+            "apps/innerverse/screen3.jpg",
+            "apps/innerverse/screen4.jpg",
+            "apps/innerverse/screen5.jpg"
+        ],
         videoPreview: "", 
 
-        rating: 4.6, reviewsCount: "8.2K", ageRating: "Everyone", chartPos: "#5 in Health",
-
-        version: "1.4.2", updated: "Oct 15, 2025", size: "28 MB",
-        whatsNew: "Winter Update: Algorithm adjusted for colder climates.",
-
-        description: `HydroSync calculates your exact water needs based on biology.`,
-        features: ["Bio-adaptive goals", "Apple Health Sync", "Widgets"],
+        // STATS
+        rating: 5.0,
+        reviewsCount: "Genesis",
+        ageRating: "12+", // Thematic elements
+        chartPos: "New Release",
         
-        // Mobile Downloads
+        version: "1.0.0",
+        updated: "Dec 18, 2025",
+        size: "45 MB",
+        
+        whatsNew: "Protocol: GENESIS Initiated. The simulation is live.\n• New: The Mycelial Network (Physics-based thought graph)\n• New: Bio-Sync (Heartbeat synchronization)\n• New: Spectral AR (Location-based memory ghosts)\n• New: Temporal Duets (Split-screen past self interaction)",
+
+        description: `Stop managing your data. Start cultivating your mind.
+        
+        **InnerVerse** is not a productivity app. It is a **Bio-Digital Symbiote**. Designed to be 100% offline and private, it uses advanced procedural engines to turn your thoughts, habits, and memories into a living ecosystem that breathes in sync with you.
+        
+        Forget lists and spreadsheets. Enter a universe where your mind is the terrain.
+
+        **🌌 The 5 Realms of the InnerVerse:**
+        
+        **🌿 The Bloom Realm (The Mycelial Network)**
+        Your thoughts are a living web. View ideas as a floating, physics-based constellation. Connect thoughts to spark "Hybrid Ideas." Ideas that are ignored will wilt; water them with attention to keep them alive.
+        
+        **🏔️ The Companion Realm (The Sympathetic Mirror)**
+        A dashboard that feels what you feel. Don't just log "Sad"—watch the InnerScape summon rain and fog in real-time. Place your thumb on the screen to sync the entire digital world's animation speed to your physical heartbeat.
+        
+        **⏳ The Echo Realm (The Temporal Reactor)**
+        Your memories are stars in a navigable 3D void. Unlocked memories burn bright; sealed ones pulse like nebulae. Use "Spectral AR" to leave digital ghosts at specific GPS coordinates, visible only when you return to that spot.
+        
+        **🧭 The Explore Realm (The Mental Playground)**
+        Navigate "MindMaze," a daily engine for self-discovery that maps your "Thought Trails" on a radar chart.
+        
+        **🔒 Zero-Knowledge Privacy**
+        Your mind belongs to you. InnerVerse works entirely offline. No accounts, no servers, no tracking.`,
+        
+        features: [
+            "🌿 Mycelial Network (Physics-based Graph)",
+            "❤️ Bio-Rhythmic Sync (Heartbeat UI)",
+            "👻 Spectral AR (GPS Memory Hunting)",
+            "⏳ Temporal Duets (Past-Self Interaction)",
+            "🗑️ Entropy System (Fading Memories)"
+        ],
         downloads: [
-            { name: "Google Play", icon: "bxl-play-store", link: "#" },
-            { name: "Direct APK", icon: "bx-download", link: "#" }
+            { name: "Google Play", icon: "bxl-play-store", link: "#" }
         ],
 
-        customPrivacy: "hydrosync-privacy.html", customTerms: "hydrosync-terms.html"      
+        // Default Legal (Change if you create custom files later)
+        customPrivacy: "", 
+        customTerms: ""    
     },
 
    // APP 3: NOVAWALLET (GENESIS BUILD)
