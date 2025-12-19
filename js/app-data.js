@@ -18,7 +18,7 @@ const appDatabase = {
         accentColor: "#2563eb", // Tech Blue
         
         // CINEMATIC BANNER
-        headerBanner: "apps/novawallet/nova_wallet_banner.png", 
+        headerBanner: "apps/kyt/kyt_banner.png", 
         banner: "linear-gradient(to right, #1e3a8a, #2563eb)", 
         
         // SCREENSHOTS
