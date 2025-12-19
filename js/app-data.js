@@ -18,7 +18,7 @@ const appDatabase = {
         accentColor: "#2563eb", // Tech Blue
         
         // CINEMATIC BANNER
-        headerBanner: "", // Empty = Fallback to gradient below
+        headerBanner: "apps/novawallet/nova_wallet_banner.png", 
         banner: "linear-gradient(to right, #1e3a8a, #2563eb)", 
         
         // SCREENSHOTS
@@ -83,7 +83,7 @@ const appDatabase = {
         accentColor: "#a855f7", // Void Violet
         
         // CINEMATIC BANNER
-        headerBanner: "", // Empty = Fallback to gradient below
+        headerBanner: "apps/innerverse/innerverse_banner.png", // Empty = Fallback to gradient below
         banner: "linear-gradient(to right, #2e1065, #a855f7)", // Deep Space gradient
         
         // SCREENSHOTS
@@ -160,8 +160,8 @@ const appDatabase = {
         accentColor: "#f59e0b", // Amber/Gold for Wealth
         
         // CINEMATIC BANNER
-        headerBanner: "apps/novawallet/banner.jpg", // Path to wide image
-        banner: "linear-gradient(to right, #000000, #f59e0b)", // Fallback/Accent
+        headerBanner: "apps/novawallet/nova_wallet_banner.png", 
+        banner: "linear-gradient(to right, #000000, #f59e0b)", 
         
         // SCREENSHOTS:
         screenshots: [
