@@ -213,6 +213,67 @@ const appDatabase = {
         customPrivacy: "apps/novawallet/privacy.html", 
         customTerms: "apps/novawallet/terms.html"    
     },
+   // APP 4: PROJECT ONYX (CLASSIFIED)
+    "project-onyx": {
+        title: "Project ONYX",
+        tagline: "Awaiting Declassification.",
+        category: "Infrastructure", // Short for "Cybernetic Economic Infrastructure"
+        
+        // Unknown platforms adds mystery
+        platforms: ["pc", "mobile"], 
+
+        // Icon: A microchip or lock
+        iconClass: "bx-microchip", 
+        iconImg: "apps/onyx/icon.png", 
+        accentColor: "#ffffff", // Stark White/Black contrast
+        banner: "linear-gradient(to right, #000000, #333333)", 
+        
+        // Empty Gallery = "No Intel"
+        screenshots: [], 
+        videoPreview: "", 
+
+        // STATS
+        rating: "N/A",
+        reviewsCount: "---",
+        ageRating: "Unrated",
+        chartPos: "Classified",
+        
+        version: "Alpha 0.1",
+        updated: "Q1 2026",
+        size: "Unknown",
+        
+        whatsNew: "System Initialization Pending... \nSecure Uplink Established. \nAwaiting Decryption Key.",
+
+        // REDACTED DESCRIPTION
+        description: `**IDENTITY PROTECTED**
+        
+        This project is currently operating under strict stealth protocols. 
+        
+        Target Domain: **Cybernetic Economic Infrastructure**.
+        
+        Operational details are redacted to prevent competitive interception.
+        
+        ██████████ ████ ██████. The infrastructure for █████████ ████ is being forged. ████ █████ ████████.
+        
+        **Status:** In Development
+        **Release Window:** Q1 2026`,
+        
+        // REDACTED FEATURES
+        features: [
+            "████████ Protocol",
+            "Secure ██████ Sync",
+            "Automated ████████ Engine",
+            "Zero-Knowledge ██████"
+        ],
+        
+        // NO DOWNLOADS - Just a Waitlist link (Contact Form)
+        downloads: [
+            { name: "Join Waitlist", icon: "bx-envelope", link: "contact.html" }
+        ],
+
+        customPrivacy: "", 
+        customTerms: ""    
+    },
 
 };
 
