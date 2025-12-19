@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Terms of Service | InnerVerse</title>
+    
+    <!-- Link to Main CSS (Up 2 Levels) -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        /* PAGE SPECIFIC STYLES (Void Violet Theme) */
+        :root {
+            --app-accent: #a855f7; /* Violet */
+        }
 
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 120px 2rem 4rem; }
+        
+        /* Headers */
+        .protocol-header { text-align: center; margin-bottom: 4rem; }
+        .protocol-header h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--app-accent); }
+        .protocol-meta { display: inline-flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); background: var(--glass-bg); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--glass-border); }
+
+        /* Sections */
+        .section-block { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 2rem; }
+        .section-block:last-child { border-bottom: none; }
+        .section-title { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .section-number { color: var(--app-accent); font-weight: 800; font-family: monospace; font-size: 1.2rem; }
+
+        /* HAZARD PANELS */
+        .alert-box {
+            padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;
+            border-left: 4px solid; position: relative;
+        }
+        
+        /* Medical/AR Warning (Amber) */
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1); border-color: #f59e0b;
+        }
+        .alert-warning .alert-icon { color: #f59e0b; }
+
+        /* Data Loss Danger (Red) */
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1); border-color: #ef4444;
+        }
+        .alert-danger .alert-icon { color: #ef4444; }
+
+        .alert-title { display: block; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
+
+        /* Typography */
+        p, li { color: var(--text-secondary); margin-bottom: 0.8rem; line-height: 1.7; }
+        ul { padding-left: 20px; margin-bottom: 1rem; }
+        strong { color: var(--text-primary); }
+        a { color: var(--app-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="navbar glass">
+        <a href="../../index.html" class="logo">
+            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+        </a>
+        <div class="nav-links">
+            <a href="../../product.html?app=innerverse"><i class='bx bx-arrow-back'></i> Return to OS</a>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        
+        <!-- Header -->
+        <div class="protocol-header">
+            <i class='bx bx-hive' style="font-size: 4rem; color: #a855f7; margin-bottom: 1rem;"></i>
+            <h1>Terms of Service</h1>
+            <div class="protocol-meta">
+                <span><i class='bx bx-calendar'></i> Last Updated: Dec 19, 2025</span>
+                <span><i class='bx bx-building'></i> NovaSphere Studio</span>
+            </div>
+        </div>
+
+        <div class="glass glass-card" style="padding: 3rem;">
+
+            <p>Please read these Terms of Service ("Terms", "Agreement") carefully before using the <strong>InnerVerse</strong> mobile application ("the App"). By downloading, accessing, or using the App, you agree to be bound by these Terms.</p>
+
+            <!-- 1. Nature of Service -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">01</span> Nature of Service (Offline & Ephemeral)</h2>
+                
+                <div class="alert-box alert-danger">
+                    <span class="alert-title alert-icon"><i class='bx bxs-trash'></i> DATA LOSS WARNING: "Entropy"</span>
+                    <p style="color: var(--text-primary);">
+                        InnerVerse includes features like "Ephemeral Mode" and "Composting" designed to <strong>permanently delete data</strong>. 
+                        By enabling these features, you explicitly agree that the deletion is intentional and irreversible. 
+                        <strong>We cannot recover your data if you lose your device or uninstall the App.</strong>
+                    </p>
+                </div>
+
+                <p><strong>1.1 Local Storage:</strong> InnerVerse operates on an "offline-first" architecture. All data you create is stored locally on your physical device. We do not maintain a cloud backup.</p>
+                <p><strong>1.2 User Responsibility:</strong> You are solely responsible for backing up your data using the "Export Data" feature.</p>
+            </div>
+
+            <!-- 2. Medical Disclaimer -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">02</span> Medical Disclaimer</h2>
+                
+                <div class="alert-box alert-warning">
+                    <span class="alert-title alert-icon"><i class='bx bx-pulse'></i> Not Medical Advice</span>
+                    <p>Features like "Bio-Sync" and "The Prophecy Engine" are for entertainment and self-reflection only.</p>
+                    <ul>
+                        <li>The App is <strong>not</strong> a medical device.</li>
+                        <li>The App does <strong>not</strong> provide medical diagnosis.</li>
+                        <li>"Bio-Sync" uses manual input; it does NOT measure physiological biometrics.</li>
+                    </ul>
+                </div>
+                <p>If you are experiencing a mental health crisis, anxiety, or depression, contact a qualified healthcare professional immediately.</p>
+            </div>
+
+            <!-- 3. AR Safety -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">03</span> AR Safety & Physical Risk</h2>
+                
+                <div class="alert-box alert-warning">
+                    <span class="alert-title alert-icon"><i class='bx bx-walk'></i> Spectral AR Safety</span>
+                    <p>The "Spectral AR" feature requires you to move in the real world. You agree to:</p>
+                    <ul>
+                        <li>Remain aware of your surroundings at all times.</li>
+                        <li><strong>Avoid using the App while driving</strong> or crossing streets.</li>
+                        <li>Avoid entering private property to retrieve an "Echo."</li>
+                    </ul>
+                </div>
+                <p>You hereby release NovaSphere Studio from any liability for accidents, injuries, or property damage that may occur while using AR features.</p>
+            </div>
+
+            <!-- 4. Payments -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">04</span> Payments & Supporters</h2>
+                <ul>
+                    <li><strong>Processing:</strong> Payments are processed via third-party gateways (Paystack, Huawei IAP). We do not store financial data.</li>
+                    <li><strong>Refunds:</strong> Because "Supporter" status provides immediate access to digital goods, payments are final and non-refundable, except where required by law.</li>
+                </ul>
+            </div>
+
+            <!-- 5. IP -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">05</span> Intellectual Property</h2>
+                <p><strong>5.1 Our IP:</strong> The "InnerScape" algorithms, "MindMaze" library, and visual design are the exclusive property of NovaSphere Studio.</p>
+                <p><strong>5.2 Your IP:</strong> You retain full ownership of the content you create. We claim no rights over your personal journal entries or reflections.</p>
+            </div>
+
+            <!-- 6. Conduct -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">06</span> User Conduct</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Reverse engineer or decompile the App.</li>
+                    <li>Use the App to generate hate speech.</li>
+                    <li>Use AR features to harass others or violate privacy laws.</li>
+                </ul>
+            </div>
+
+            <!-- 7. Analytics -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">07</span> Analytics</h2>
+                <p>We use services like PostHog to collect <strong>anonymous</strong> usage data (e.g., "Bio-Crisis Triggered"). This data never includes your personal content.</p>
+            </div>
+
+            <!-- 8. Warranties -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">08</span> Disclaimer of Warranties</h2>
+                <p>The App is provided "AS IS". NovaSphere Studio disclaims all warranties. We do not warrant that your data will never be lost. Algorithmic insights are procedural and should not be taken as factual predictions.</p>
+            </div>
+
+            <!-- 9. Liability -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">09</span> Limitation of Liability</h2>
+                <p>In no event shall NovaSphere Studio be liable for indirect damages, physical injury resulting from AR usage, reliance on algorithmic insights, or data loss due to "Entropy" features.</p>
+            </div>
+
+            <!-- 10. Governance -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">10</span> Governing Law</h2>
+                <p>These Terms shall be governed by the laws of the Republic of Ghana.</p>
+            </div>
+
+            <!-- Contact -->
+            <div class="section-block" style="border: none;">
+                <h2 class="section-title"><span class="section-number">11</span> Contact Us</h2>
+                <p style="font-size: 1.1rem; font-weight: 700;">
+                    <i class='bx bx-envelope'></i> support@novaspherestudio.com
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+</body>
+</html>
