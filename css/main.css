@@ -2,6 +2,16 @@
    1. CORE SETTINGS & VARIABLES
    ========================================= */
 :root {
+    /* === CINEMATIC ENGINE CONTROLS (Light Theme) === */
+    
+    /* TEXT: Dark text because the bottom fades to white/light gray */
+    --hero-text-color: #1a1a1a; 
+    
+    /* OVERLAY: Starts transparent black, fades to solid Light BG color */
+    /* TWEAK: Change 0.1 to 0.5 to make the top darker if needed */
+    --mask-start: rgba(0, 0, 0, 0.1); 
+    --mask-end: var(--bg-color); 
+
     /* MOTION */
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -23,6 +33,16 @@
 }
 
 [data-theme="dark"] {
+    /* === CINEMATIC ENGINE CONTROLS (Dark Theme) === */
+    
+    /* TEXT: White text because the background is deep void */
+    --hero-text-color: #ffffff;
+    
+    /* OVERLAY: Starts semi-dark, fades to solid Dark BG color */
+    /* TWEAK: Change 0.3 to 0.7 for a much darker banner */
+    --mask-start: rgba(0, 0, 0, 0.3);
+    --mask-end: var(--bg-color);
+
     /* COLORS - DARK */
     --bg-color: #050507;
     --text-primary: #e0e0e0;
