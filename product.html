@@ -32,19 +32,23 @@
             transition: transform 0.5s ease;
         }
 
-        /* THE GRADIENT MASK (Visibility Protection) */
+        /* THE DYNAMIC GRADIENT MASK */
         .hero-bg::after {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Fades from semi-transparent black at top to full background color at bottom */
+            z-index: 1;
+            
+            /* USES THE VARIABLES defined in main.css */
             background: linear-gradient(
                 to bottom, 
-                rgba(0,0,0,0.3) 0%, 
-                rgba(0,0,0,0.8) 60%, 
-                var(--bg-color) 100%
+                var(--mask-start) 0%,       /* Top Visibility */
+                rgba(0,0,0,0.1) 40%,        /* Middle (Clean Image) */
+                var(--mask-end) 95%         /* Bottom Blend */
             );
-            z-index: 1;
+            
+            /* OPTIONAL: Blur bottom edge for extra readability */
+            backdrop-filter: blur(2px); 
         }
 
         .hero-layout {
@@ -53,6 +57,19 @@
             display: flex; gap: 30px; align-items: flex-end;
             max-width: 1000px; margin: 0 auto; width: 100%;
             padding: 0 20px; /* Add slight padding for mobile edges */
+        }
+
+        /* TEXT VISIBILITY ENGINE */
+        .hero-text {
+            position: relative;
+            z-index: 2; /* Ensures text sits ON TOP of the mask */
+            color: var(--hero-text-color); /* Adapts to theme */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Update these specific IDs to inherit the color */
+        #app-title, #app-category, #app-tagline {
+            color: inherit; /* Follows the parent .hero-text color */
         }
 
         /* Update Hero Icon to push it up slightly */
@@ -181,7 +198,8 @@
             <div id="app-icon" class="hero-icon"><i class='bx bx-layer'></i></div>
             <div class="hero-text">
                 <h1 id="app-title" style="margin: 0; line-height: 1.2;">App Name</h1>
-                <span id="app-category" style="color: var(--text-secondary); font-size: 1rem;">Category</span>
+                <!-- Removed inline color style so it inherits from .hero-text -->
+                <span id="app-category" style="font-size: 1rem;">Category</span>
                 
                 <!-- PLATFORM ICONS -->
                 <div id="platform-badges" class="platform-badges">
