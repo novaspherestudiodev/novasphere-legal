@@ -132,6 +132,25 @@
             .platform-badges { justify-content: center; }
         }
 
+        /* DESCRIPTION TEXT ENGINE (Added per request) */
+        #app-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8; /* Increases breathing room for text */
+            margin-bottom: 2rem;
+            /* CRITICAL: Ensure 'white-space' is NOT set to 'pre-line' or 'pre-wrap' */
+            white-space: normal; 
+        }
+
+        /* Styling for the **Bold** headers we generate via JS */
+        #app-description strong {
+            color: var(--text-primary); /* Makes headers pop in white/black */
+            font-weight: 700;
+            display: block; /* Forces headers to their own line */
+            margin-top: 1.5rem; /* Adds space above headers */
+            margin-bottom: 0.5rem; /* Adds space below headers */
+        }
+
         /* 4. GALLERY & VIDEO */
         .gallery-scroller {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -197,7 +216,6 @@
             <div id="app-icon" class="hero-icon"><i class='bx bx-layer'></i></div>
             <div class="hero-text">
                 <h1 id="app-title" style="margin: 0; line-height: 1.2;">App Name</h1>
-                <!-- Removed inline color style so it inherits from .hero-text -->
                 <span id="app-category" style="font-size: 1rem;">Category</span>
                 
                 <!-- PLATFORM ICONS -->
@@ -276,7 +294,8 @@
                 <!-- DESCRIPTION -->
                 <h2 class="section-title">Description</h2>
                 <div class="glass glass-card" style="padding: 2rem; margin-bottom: 2rem;">
-                    <p id="app-description" style="white-space: pre-line;">Loading...</p>
+                    <!-- REMOVED inline white-space style so CSS can take control -->
+                    <p id="app-description">Loading...</p>
                     <h3 style="margin-top: 2rem; font-size: 1.1rem;">Features</h3>
                     <ul id="app-features" style="padding-left: 20px; margin-top: 10px; color: var(--text-secondary);"></ul>
                 </div>
