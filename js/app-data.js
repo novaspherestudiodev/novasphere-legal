@@ -64,8 +64,8 @@ const appDatabase = {
         ],
 
         // Default Legal
-        customPrivacy: "", 
-        customTerms: ""    
+        customPrivacy: "apps/kyt/privacy.html", 
+        customTerms: "apps/kyt/terms.html"   
     },
 
    // APP 2: INNERVERSE (REPLACES HYDROSYNC)
