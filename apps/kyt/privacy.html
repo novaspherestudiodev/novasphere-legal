@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Privacy Policy | Kyt</title>
+    
+    <!-- Link to Main CSS (Up 2 Levels) -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        /* PAGE SPECIFIC STYLES (Kyt Tech Blue) */
+        :root {
+            --app-accent: #2563eb; /* Tech Blue */
+            --app-glow: rgba(37, 99, 235, 0.3);
+        }
+
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 120px 2rem 4rem; }
+        
+        .protocol-header { text-align: center; margin-bottom: 4rem; }
+        .protocol-header h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--app-accent); }
+        .protocol-meta { display: inline-flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); background: var(--glass-bg); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--glass-border); }
+        
+        .section-block { margin-bottom: 4rem; }
+        .section-title { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--app-accent); padding-left: 15px; }
+        
+        /* 1. Philosophy Box */
+        .philosophy-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(0,0,0,0));
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 2rem; border-radius: 20px; position: relative; overflow: hidden;
+        }
+        .philosophy-box::before {
+            content: '\bx-cube'; font-family: boxicons;
+            position: absolute; right: -20px; top: -20px; font-size: 10rem;
+            opacity: 0.05; color: var(--app-accent); pointer-events: none;
+        }
+
+        /* 2. Permission Cards */
+        .perm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .perm-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 1.5rem; border-radius: 16px; transition: transform 0.2s;
+        }
+        .perm-card:hover { border-color: var(--app-accent); transform: translateY(-3px); box-shadow: 0 5px 15px var(--app-glow); }
+        .perm-icon { font-size: 1.8rem; color: var(--app-accent); margin-bottom: 1rem; }
+        .perm-name { font-weight: 700; margin-bottom: 0.5rem; display: block; color: var(--text-primary); }
+        .perm-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* Typography */
+        p, li { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+        ul { padding-left: 20px; }
+        strong { color: var(--text-primary); }
+        a { color: var(--app-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        h3 { font-size: 1.1rem; color: var(--text-primary); margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="navbar glass">
+        <a href="../../index.html" class="logo">
+            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+        </a>
+        <div class="nav-links">
+            <a href="../../product.html?app=kyt"><i class='bx bx-arrow-back'></i> Return to App</a>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        
+        <!-- Header -->
+        <div class="protocol-header">
+            <i class='bx bx-cube' style="font-size: 4rem; color: #2563eb; margin-bottom: 1rem;"></i>
+            <h1>Privacy Policy for Kyt</h1>
+            <div class="protocol-meta">
+                <span><i class='bx bx-calendar'></i> Last Updated: December 21, 2025</span>
+                <span><i class='bx bx-building'></i> NovaSphere Studio</span>
+            </div>
+        </div>
+
+        <!-- 1. Introduction -->
+        <div class="section-block">
+            <div class="philosophy-box">
+                <h2 style="color: #2563eb; margin-bottom: 1rem;">1. Introduction</h2>
+                <p>Welcome to Kyt ("Know Your Things"). We believe that your personal data—the details of your home, your assets, your routines, and your life—belongs to you.</p>
+                <p>This Privacy Policy explains how Kyt ("we," "our," or "us") collects, uses, and protects your information when you use our mobile application. Our architecture is designed with a "Local-First" philosophy, meaning your data prioritizes residence on your personal device, with cloud services used primarily for backup, synchronization, and collaboration features.</p>
+                <p>By using Kyt, you agree to the collection and use of information in accordance with this policy.</p>
+            </div>
+        </div>
+
+        <!-- 2. Data Collection -->
+        <div class="section-block">
+            <h2 class="section-title">2. The Data We Collect</h2>
+            <p>We collect data to provide the "Big Brain" intelligence, organizational features, and routine management capabilities of the app. This data falls into two categories:</p>
+            
+            <h3>A. Information You Provide Directly</h3>
+            <ul>
+                <li><strong>Account Information:</strong> Your email address and password (processed securely via Google Firebase Auth) when you create an account.</li>
+                <li><strong>Asset Data:</strong> Information about your items (e.g., "Honda Civic," "Samsung Fridge"), including serial numbers, purchase dates, warranty details, and notes.</li>
+                <li><strong>Playbook & Routine Data:</strong> The custom workflows, habits, and checklists you create. This includes the structure of your playbooks and the progress data generated when you run them (e.g., completion times, habit streaks, and personal notes entered into Input steps).</li>
+                <li><strong>Activity Logs:</strong> Records of maintenance, repairs, and other events you explicitly log.</li>
+                <li><strong>Service Provider Contacts:</strong> Names, phone numbers, and emails of professionals (e.g., plumbers, mechanics) you save to your Services Hub.</li>
+                <li><strong>Legacy Designations:</strong> The name and email address of your designated Digital Executor.</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1.5rem;">B. Device Permissions & Usage</h3>
+            <p>We request specific permissions to enable core features. You may revoke these permissions at any time in your device settings.</p>
+            
+            <div class="perm-grid">
+                
+                <!-- Camera -->
+                <div class="perm-card">
+                    <i class='bx bx-camera perm-icon'></i>
+                    <span class="perm-name">Camera</span>
+                    <span class="perm-desc">
+                        <strong>Why we need it:</strong> To allow you to take photos of receipts, warranty cards, and items to attach to your Kyts.<br><br>
+                        <strong>Privacy Control:</strong> The camera is only active when you tap "Add Document / Media." We do not access your camera in the background.
+                    </span>
+                </div>
+
+                <!-- Storage -->
+                <div class="perm-card">
+                    <i class='bx bx-folder perm-icon'></i>
+                    <span class="perm-name">Storage / Media Library</span>
+                    <span class="perm-desc">
+                        <strong>Why we need it:</strong> To allow you to select local files (images, audio, or video) to attach to your Assets or embed within your Playbook steps (e.g., adding a custom meditation track to a routine).
+                    </span>
+                </div>
+
+                <!-- Biometrics -->
+                <div class="perm-card">
+                    <i class='bx bx-fingerprint perm-icon'></i>
+                    <span class="perm-name">Biometrics</span>
+                    <span class="perm-desc">
+                        <strong>Why we need it:</strong> To enable the "App Lock" feature, allowing you to secure the app with Face ID or Fingerprint.<br><br>
+                        <strong>Privacy Control:</strong> Biometric data never leaves your device. The app simply receives a "Success" or "Fail" signal from your device's operating system. We do not store or transmit your fingerprint or face data.
+                    </span>
+                </div>
+
+                <!-- Internet -->
+                <div class="perm-card">
+                    <i class='bx bx-wifi perm-icon'></i>
+                    <span class="perm-name">Internet</span>
+                    <span class="perm-desc">
+                        <strong>Why we need it:</strong> To synchronize your data to the cloud (for Premium users), verify your account, process payments, and stream external media (e.g., YouTube videos in Playbooks).
+                    </span>
+                </div>
+
+                <!-- Communication -->
+                <div class="perm-card">
+                    <i class='bx bx-phone perm-icon'></i>
+                    <span class="perm-name">Communication</span>
+                    <span class="perm-desc">
+                        <strong>Why we need it:</strong> To allow you to tap on a Service Provider's card to instantly call or email them.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Storage -->
+        <div class="section-block">
+            <h2 class="section-title">3. How We Store Your Data</h2>
+            
+            <h3>Local-First Architecture</h3>
+            <p>Kyt uses a local database (Drift/SQLite) on your device. This means:</p>
+            <ul>
+                <li>You have full access to your data even without an internet connection.</li>
+                <li>If you are a Free Tier user, your Asset Data, Playbooks, and Activity Logs reside only on your device. They are not sent to our cloud servers.</li>
+            </ul>
+
+            <h3>Cloud Synchronization (Premium Tier)</h3>
+            <p>If you subscribe to Kyt Premium, your data is encrypted and synchronized to Google Cloud Firestore. This allows:</p>
+            <ul>
+                <li>Multi-device access (e.g., phone and tablet).</li>
+                <li>Data backup in case of device loss.</li>
+                <li>Collaboration features (e.g., inviting family members to a Kyt or Playbook).</li>
+            </ul>
+        </div>
+
+        <!-- 4. Third Party -->
+        <div class="section-block">
+            <h2 class="section-title">4. Third-Party Services</h2>
+            <p>We use trusted third-party services to operate the app. We do not sell your data to data brokers or advertisers.</p>
+            <ul>
+                <li><strong>Google Firebase:</strong> Used for Authentication, Cloud Database (Firestore), and Crashlytics. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+                <li><strong>Paystack:</strong> Used to process payments for Premium subscriptions. When you upgrade, your payment details are processed securely by Paystack. Kyt does not store your credit card information. <a href="https://paystack.com/privacy">Paystack Privacy Policy</a></li>
+                <li><strong>YouTube API Services:</strong> Some Playbook templates may include embedded YouTube videos (e.g., workout guides). By using these features, you are agreeing to be bound by the YouTube Terms of Service. Kyt does not access, collect, or store your private YouTube user data.</li>
+            </ul>
+        </div>
+
+        <!-- 5. Data Sharing -->
+        <div class="section-block">
+            <h2 class="section-title">5. Data Sharing & Collaboration</h2>
+            <p>Kyt allows you to share data with others. This happens only upon your explicit action:</p>
+            <ul>
+                <li><strong>Kyt & Playbook Collaboration:</strong> If you invite a member to a Kyt (e.g., "Home") or a Playbook (e.g., "Morning Routine"), that user will gain access to view or edit the items within that specific container via our secure cloud service.</li>
+                <li><strong>Template Export:</strong> You may choose to export a Playbook as a template (text/JSON file) to share with friends via other apps (e.g., WhatsApp, Email). Once this data is exported from the app, it is governed by the privacy policy of the app you used to share it.</li>
+                <li><strong>Legacy Access:</strong> In the event of an emergency, your designated Digital Executor may be granted access to your data after a strict identity verification process.</li>
+            </ul>
+        </div>
+
+        <!-- 6. Retention -->
+        <div class="section-block">
+            <h2 class="section-title">6. Data Retention & Deletion</h2>
+            <ul>
+                <li><strong>Your Control:</strong> You can delete specific items, Kyts, Playbooks, or events at any time within the app.</li>
+                <li><strong>Account Deletion:</strong> You may request full account deletion from the Settings menu. Upon deletion, all your data on our servers will be permanently removed.</li>
+                <li><strong>Automatic Cleanup:</strong> To maintain system hygiene, we automatically delete old invitation records and temporary logs after 30 days.</li>
+            </ul>
+        </div>
+
+        <!-- 7. Security -->
+        <div class="section-block">
+            <h2 class="section-title">7. Security</h2>
+            <p>We take security seriously.</p>
+            <ul>
+                <li><strong>Encryption:</strong> Data is encrypted in transit (HTTPS/TLS) and at rest on our servers.</li>
+                <li><strong>App Lock:</strong> We provide a free, local App Lock feature to protect your data from prying eyes if your phone is unlocked.</li>
+                <li><strong>Obfuscation:</strong> Playbook templates shared publicly are obfuscated to protect the intellectual property of the creators.</li>
+            </ul>
+        </div>
+
+        <!-- 8. Children -->
+        <div class="section-block">
+            <h2 class="section-title">8. Children's Privacy</h2>
+            <p>Kyt is not directed to individuals under the age of 13. We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal information, we will take steps to delete such information.</p>
+        </div>
+
+        <!-- 9. Changes -->
+        <div class="section-block">
+            <h2 class="section-title">9. Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+        </div>
+
+        <!-- 10. Contact -->
+        <div class="section-block" style="text-align: center; margin-top: 4rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+            <h2 style="color: #2563eb; font-size: 1.5rem;">10. Contact Us</h2>
+            <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at:</p>
+            <p style="font-size: 1.1rem; font-weight: 700;">
+                <i class='bx bx-envelope'></i> support@kyt.app
+            </p>
+            <p><a href="http://www.kyt.app">www.kyt.app</a></p>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+</body>
+</html>
