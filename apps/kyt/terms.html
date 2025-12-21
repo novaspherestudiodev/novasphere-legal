@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Terms of Service | Kyt</title>
+    
+    <!-- Link to Main CSS (Up 2 Levels) -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        /* PAGE SPECIFIC STYLES (Kyt Tech Blue) */
+        :root {
+            --app-accent: #2563eb; /* Tech Blue */
+        }
+
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 120px 2rem 4rem; }
+        
+        /* Headers */
+        .protocol-header { text-align: center; margin-bottom: 4rem; }
+        .protocol-header h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--app-accent); }
+        .protocol-meta { display: inline-flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); background: var(--glass-bg); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--glass-border); }
+
+        /* Sections */
+        .section-block { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 2rem; }
+        .section-block:last-child { border-bottom: none; }
+        .section-title { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .section-number { color: var(--app-accent); font-weight: 800; font-family: monospace; font-size: 1.2rem; }
+
+        /* HAZARD PANELS */
+        .alert-box {
+            padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;
+            border-left: 4px solid; position: relative;
+        }
+        
+        /* Warning (Amber) - For Safety/Risks */
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1); border-color: #f59e0b;
+        }
+        .alert-warning .alert-icon { color: #f59e0b; }
+
+        /* Danger (Red) - For Data Loss */
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1); border-color: #ef4444;
+        }
+        .alert-danger .alert-icon { color: #ef4444; }
+
+        .alert-title { display: block; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
+
+        /* Typography */
+        p, li { color: var(--text-secondary); margin-bottom: 0.8rem; line-height: 1.7; }
+        ul { padding-left: 20px; margin-bottom: 1rem; }
+        strong { color: var(--text-primary); }
+        a { color: var(--app-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="navbar glass">
+        <a href="../../index.html" class="logo">
+            <i class='bx bx-planet' style="color: var(--accent-color);"></i> NovaSphere
+        </a>
+        <div class="nav-links">
+            <a href="../../product.html?app=kyt"><i class='bx bx-arrow-back'></i> Return to App</a>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        
+        <!-- Header -->
+        <div class="protocol-header">
+            <i class='bx bx-file' style="font-size: 4rem; color: #2563eb; margin-bottom: 1rem;"></i>
+            <h1>Terms of Service</h1>
+            <div class="protocol-meta">
+                <span><i class='bx bx-calendar'></i> Last Updated: Dec 21, 2025</span>
+                <span><i class='bx bx-building'></i> NovaSphere Studio</span>
+            </div>
+        </div>
+
+        <div class="glass glass-card" style="padding: 3rem;">
+
+            <!-- 1. Acceptance -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">01</span> Acceptance of Terms</h2>
+                <p>By downloading, installing, or using the Kyt mobile application ("App" or "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use the Service.</p>
+                <p>Kyt is operated by <strong>NovaSphere Studio</strong> ("we," "us," or "our"), a business operating under the laws of the Republic of Ghana.</p>
+            </div>
+
+            <!-- 2. Description -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">02</span> Description of Service</h2>
+                <p>Kyt is a personal asset management and household operations platform. We provide tools to:</p>
+                <ul>
+                    <li>Organize, track, and manage physical assets (e.g., vehicles, appliances).</li>
+                    <li>Create and execute interactive workflows and routines ("Playbooks").</li>
+                    <li>Manage service provider contacts and maintenance history.</li>
+                    <li>Securely store digital documents and legacy information.</li>
+                </ul>
+                <p>The Service is available in two tiers:</p>
+                <ul>
+                    <li><strong>Free Tier:</strong> Data is stored locally on your device ("Local-First").</li>
+                    <li><strong>Premium Tier:</strong> Includes cloud synchronization, backup, collaboration features, and advanced automated insights.</li>
+                </ul>
+            </div>
+
+            <!-- 3. Security & Data (CRITICAL) -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">03</span> User Accounts & Security</h2>
+                
+                <div class="alert-box alert-danger">
+                    <span class="alert-title alert-icon"><i class='bx bxs-trash'></i> DATA LOSS WARNING (Free Tier)</span>
+                    <p style="color: var(--text-primary);">
+                        <strong>Local-First Architecture:</strong> Your data is stored exclusively on your local device. 
+                        Kyt does not maintain a backup of Free Tier data. 
+                        If you lose your device, delete the App, or clear your app data without a backup, <strong>your data will be permanently lost.</strong> 
+                        We are not liable for such data loss.
+                    </p>
+                </div>
+
+                <h3>3.1 Account Creation</h3>
+                <p>To access certain features (like Cloud Sync), you must register an account. You agree to provide accurate, current, and complete information during the registration process.</p>
+                
+                <h3>3.2 Security Responsibilities</h3>
+                <p><strong>Credentials:</strong> You are responsible for maintaining the confidentiality of your login credentials.</p>
+                <p><strong>App Lock:</strong> Kyt provides an optional "App Lock" feature. You acknowledge that this relies on your device's native security protocols. We are not liable for unauthorized access resulting from a compromised device PIN or biometric profile.</p>
+            </div>
+
+            <!-- 4. YouTube -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">04</span> YouTube & Third-Party Content</h2>
+                <p>Kyt uses the YouTube API Services to allow you to embed and play videos within Playbooks (e.g., workout guides).</p>
+                <p>By using these features, you agree to be bound by the <a href="https://www.youtube.com/t/terms" target="_blank">YouTube Terms of Service</a>.</p>
+                <p>Kyt does not own or control third-party content accessed via external links or embedded players. We are not responsible for the availability or accuracy of such content.</p>
+            </div>
+
+            <!-- 5. Health & Safety (CRITICAL) -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">05</span> Playbooks & Safety Disclaimer</h2>
+                
+                <div class="alert-box alert-warning">
+                    <span class="alert-title alert-icon"><i class='bx bx-run'></i> Assumption of Risk</span>
+                    <p>Playbooks involving physical activity, home repair, or machinery carry inherent risks.</p>
+                    <ul>
+                        <li><strong>Medical:</strong> Consult a physician before starting any fitness routine found in a Playbook.</li>
+                        <li><strong>Technical:</strong> Consult the manufacturer's manual before performing maintenance on vehicles or appliances.</li>
+                    </ul>
+                    <p>Kyt is <strong>not liable</strong> for any injury, health issues, property damage, or financial loss resulting from your execution of a Playbook.</p>
+                </div>
+
+                <p><strong>5.1 Not Professional Advice:</strong> Templates provided by Kyt are for informational and organizational purposes only. They do not constitute professional medical, legal, financial, or technical advice.</p>
+            </div>
+
+            <!-- 6. Subscriptions -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">06</span> Subscriptions & Payments</h2>
+                <ul>
+                    <li><strong>Premium Features:</strong> Kyt Premium is offered on a subscription basis (Monthly or Yearly).</li>
+                    <li><strong>Processing:</strong> Payments are processed via Paystack or Apple/Google Stores. We do not store your full credit card information.</li>
+                    <li><strong>Renewals:</strong> Subscriptions automatically renew unless canceled 24 hours before the end of the period.</li>
+                    <li><strong>No Refunds:</strong> Payments are non-refundable and there are no credits for partially used periods, except where required by applicable Ghanaian law.</li>
+                </ul>
+            </div>
+
+            <!-- 7. Automation -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">07</span> Automated Insights ("Big Brain")</h2>
+                <p>The "Big Brain" feature generates reminders based on your input.</p>
+                <ul>
+                    <li><strong>Accuracy:</strong> You are solely responsible for the accuracy of the data entered (e.g., lease expiry dates, medication dosages).</li>
+                    <li><strong>Failures:</strong> Kyt is not liable for missed deadlines, lapsed warranties, or expired documents resulting from incorrect data entry, software bugs, or device failure.</li>
+                </ul>
+            </div>
+
+            <!-- 8. Legacy -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">08</span> Legacy Planning</h2>
+                <p>Kyt allows Premium users to designate a "Digital Executor" to access data in an emergency.</p>
+                <p><strong>Not a Legal Will:</strong> This feature is a data access tool, not a legal testament. It does not supersede the <em>Wills Act, 1971 (Act 360)</em> or other inheritance laws of Ghana.</p>
+                <p><strong>Verification:</strong> We reserve the right to demand strict proof of identity and legal documentation before granting access.</p>
+            </div>
+
+            <!-- 9. User Content -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">09</span> User Content & Sharing</h2>
+                <p>You retain ownership of all data ("User Content") you enter into Kyt. By using Cloud Sync, you grant us a limited license to host and encrypt your data solely to provide the Service.</p>
+            </div>
+
+            <!-- 10. Prohibited Conduct -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">10</span> Prohibited Conduct</h2>
+                <p>You agree not to use the App for illegal purposes, reverse engineer the App, or exploit sharing features to distribute malware or spam.</p>
+            </div>
+
+            <!-- 11. IP -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">11</span> Intellectual Property</h2>
+                <p>The Kyt App, including its "Big Brain" logic, source code, Playbook architecture, logo, and visual design, is the exclusive property of <strong>NovaSphere Studio</strong> and is protected by copyright laws.</p>
+            </div>
+
+            <!-- 12. Liability -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">12</span> Limitation of Liability</h2>
+                <p>To the maximum extent permitted by applicable law, Kyt and its developers shall not be liable for any indirect, incidental, special, or consequential damages, including loss of profits, data, or goodwill.</p>
+            </div>
+
+            <!-- 13. Governing Law -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">13</span> Governing Law & Dispute Resolution</h2>
+                <p><strong>13.1 Governing Law:</strong> These Terms shall be governed by the laws of the Republic of Ghana.</p>
+                <p><strong>13.2 Dispute Resolution:</strong> Any dispute shall first be attempted to be settled amicably. If that fails, the dispute shall be referred to arbitration in Accra, Ghana, in accordance with the <em>Alternative Dispute Resolution Act, 2010 (Act 798)</em>.</p>
+            </div>
+
+            <!-- 14. Changes -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">14</span> Changes to Terms</h2>
+                <p>We reserve the right to modify these Terms at any time. We will provide notice of significant changes through the App. Continued use constitutes acceptance.</p>
+            </div>
+
+            <!-- 15. Contact -->
+            <div class="section-block" style="border: none;">
+                <h2 class="section-title"><span class="section-number">15</span> Contact Us</h2>
+                <p style="font-size: 1.1rem; font-weight: 700;">
+                    <i class='bx bx-envelope'></i> legal@kyt.app
+                </p>
+                <p><a href="http://www.kyt.app" target="_blank">www.kyt.app</a></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+</body>
+</html>
