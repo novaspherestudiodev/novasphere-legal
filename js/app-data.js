@@ -459,16 +459,27 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('whats-new-text').textContent = data.whatsNew;
     document.getElementById('whats-new-date').textContent = data.updated;
 
-    // GALLERY
+   // GALLERY GENERATOR 
     const galleryContainer = document.getElementById('gallery-container');
+    
     if(data.screenshots.length > 0) {
-        galleryContainer.innerHTML = data.screenshots.map(src => `
-            <div class="gallery-item skeleton">
-                <img src="${src}" alt="Screenshot" onload="this.parentElement.classList.remove('skeleton')" onerror="this.src='https://placehold.co/300x600/1a1a1a/FFF?text=No+Image'">
-            </div>
-        `).join('');
+        galleryContainer.innerHTML = data.screenshots.map(item => {
+            // Check if it's the Old String format or New Object format
+            const src = (typeof item === 'string') ? item : item.src;
+            const caption = (typeof item === 'string') ? '' : item.caption;
+            
+            // Only render caption div if text exists
+            const captionHTML = caption ? `<div class="gallery-caption">${caption}</div>` : '';
+
+            return `
+                <div class="gallery-item skeleton">
+                    <img src="${src}" alt="Screenshot" onload="this.parentElement.classList.remove('skeleton')" onerror="this.src='https://placehold.co/300x600/1a1a1a/FFF?text=No+Image'">
+                    ${captionHTML}
+                </div>
+            `;
+        }).join('');
     } else {
-        galleryContainer.innerHTML = `<p style="padding:0 2rem; opacity:0.6;">No screenshots available.</p>`;
+        galleryContainer.innerHTML = `<p style="padding:0 2rem; opacity:0.6;">No intel available.</p>`;
     }
 
     // VIDEO
