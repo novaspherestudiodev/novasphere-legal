@@ -179,6 +179,25 @@
             padding: 8px 16px; border-radius: 8px; text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
             font-size: 0.8rem; transition: transform 0.2s;
         }
+
+        /* Make the first button (Itch.io) glow slightly to indicate it's the main one */
+        .store-btn:first-child {
+            background: var(--accent-color); /* Uses the app's specific color */
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .store-btn:first-child:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        /* Keep the second button (GitHub) subtle/dark */
+        .store-btn:nth-child(2) {
+            background: rgba(0,0,0,0.5);
+            opacity: 0.8;
+        }
+
         .store-btn:hover { transform: translateY(-2px); border-color: var(--accent-color); }
         .store-btn i { font-size: 1.4rem; }
         .store-text { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
@@ -439,7 +458,6 @@
 
     <script src="js/theme.js"></script>
     <script src="js/app-data.js"></script>
-
     <script>
         function closeInstallModal() {
             document.getElementById('install-modal').classList.remove('active');
@@ -452,8 +470,6 @@
     </script>
 </body>
 </html>
-
-
 
 
 <!-- <!DOCTYPE html>
