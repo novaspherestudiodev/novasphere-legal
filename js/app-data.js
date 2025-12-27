@@ -60,7 +60,20 @@ const appDatabase = {
             "🔒 Local-First & Biometric Lock"
         ],
         downloads: [
-            { name: "Google Play", icon: "bxl-play-store", link: "#" }
+            // PRIMARY CHANNEL: Itch.io (The Storefront)
+            { 
+                name: "Itch.io", 
+                icon: "bxs-store", // Official Store Icon
+                link: "https://novaspherestudio.itch.io/kyt" // REPLACE with your real Itch link
+            },
+            
+            // SECONDARY CHANNEL: GitHub Releases (The Direct Uplink)
+            { 
+                name: "Direct APK", 
+                icon: "bxl-github", // GitHub Icon
+                // This triggers the Installation Modal because it says "Direct"
+                link: "https://github.com/NovaSphereDev/studio/releases/download/v1.0.0/kyt-v1.0.apk" 
+            }
         ],
 
         // Default Legal
@@ -139,7 +152,20 @@ const appDatabase = {
             "🗑️ Entropy System (Fading Memories)"
         ],
         downloads: [
-            { name: "Google Play", icon: "bxl-play-store", link: "#" }
+            // PRIMARY CHANNEL: Itch.io (The Storefront)
+            { 
+                name: "Itch.io", 
+                icon: "bxs-store", // Official Store Icon
+                link: "https://novaspherestudio.itch.io/kyt" // REPLACE with your real Itch link
+            },
+            
+            // SECONDARY CHANNEL: GitHub Releases (The Direct Uplink)
+            { 
+                name: "Direct APK", 
+                icon: "bxl-github", // GitHub Icon
+                // This triggers the Installation Modal because it says "Direct"
+                link: "https://github.com/NovaSphereDev/studio/releases/download/v1.0.0/kyt-v1.0.apk" 
+            }
         ],
 
         customPrivacy: "apps/innerverse/privacy.html", 
@@ -205,8 +231,20 @@ const appDatabase = {
         ],
         
         downloads: [
-            { name: "Google Play", icon: "bxl-play-store", link: "#" }, 
-            { name: "Windows (Soon)", icon: "bxl-windows", link: "#" } 
+            // PRIMARY CHANNEL: Itch.io (The Storefront)
+            { 
+                name: "Itch.io", 
+                icon: "bxs-store", // Official Store Icon
+                link: "https://novaspherestudio.itch.io/kyt" // REPLACE with your real Itch link
+            },
+            
+            // SECONDARY CHANNEL: GitHub Releases (The Direct Uplink)
+            { 
+                name: "Direct APK", 
+                icon: "bxl-github", // GitHub Icon
+                // This triggers the Installation Modal because it says "Direct"
+                link: "https://github.com/NovaSphereDev/studio/releases/download/v1.0.0/kyt-v1.0.apk" 
+            }
         ],
 
         // CUSTOM LEGAL PROTOCOL
