@@ -22,12 +22,25 @@ const appDatabase = {
         banner: "linear-gradient(to right, #1e3a8a, #2563eb)", 
         
         // SCREENSHOTS
-        screenshots: [
-            "apps/kyt/screen1.jpg",
-            "apps/kyt/screen2.jpg",
-            "apps/kyt/screen3.jpg",
-            "apps/kyt/screen4.jpg"
+       screenshots: [
+            { 
+                src: "apps/kyt/screen1.jpg", 
+                caption: "The Sovereign Vault: AES-256 Encrypted Dashboard." 
+            },
+            { 
+                src: "apps/kyt/screen2.jpg", 
+                caption: "The War Room: Simulating financial survival scenarios." 
+            },
+            { 
+                src: "apps/kyt/screen3.jpg", 
+                caption: "Visual Intelligence: Sunburst charts of your spending." 
+            },
+            { 
+                src: "apps/kyt/screen4.jpg", 
+                caption: "Offline FX: Real-time currency conversion without internet." 
+            }
         ],
+       
         videoPreview: "", 
 
         // STATS
@@ -100,13 +113,25 @@ const appDatabase = {
         banner: "linear-gradient(to right, #2e1065, #a855f7)", // Deep Space gradient
         
         // SCREENSHOTS
-        screenshots: [
-            "apps/innerverse/screen1.jpg",
-            "apps/innerverse/screen2.jpg",
-            "apps/innerverse/screen3.jpg",
-            "apps/innerverse/screen4.jpg",
-            "apps/innerverse/screen5.jpg"
+       screenshots: [
+            { 
+                src: "apps/innerverse/screen1.jpg", 
+                caption: "The Sovereign Vault: AES-256 Encrypted Dashboard." 
+            },
+            { 
+                src: "apps/innerverse/screen2.jpg", 
+                caption: "The War Room: Simulating financial survival scenarios." 
+            },
+            { 
+                src: "apps/innerverse/screen3.jpg", 
+                caption: "Visual Intelligence: Sunburst charts of your spending." 
+            },
+            { 
+                src: "apps/innerverse/screen4.jpg", 
+                caption: "Offline FX: Real-time currency conversion without internet." 
+            }
         ],
+       
         videoPreview: "", 
 
         // STATS
@@ -191,11 +216,22 @@ const appDatabase = {
         
         // SCREENSHOTS:
         screenshots: [
-            "apps/novawallet/screen1.jpg",
-            "apps/novawallet/screen2.jpg",
-            "apps/novawallet/screen3.jpg",
-            "apps/novawallet/screen4.jpg",
-            "apps/novawallet/screen5.jpg"
+            { 
+                src: "apps/novawallet/screen1.jpg", 
+                caption: "The Sovereign Vault: AES-256 Encrypted Dashboard." 
+            },
+            { 
+                src: "apps/novawallet/screen2.jpg", 
+                caption: "The War Room: Simulating financial survival scenarios." 
+            },
+            { 
+                src: "apps/novawallet/screen3.jpg", 
+                caption: "Visual Intelligence: Sunburst charts of your spending." 
+            },
+            { 
+                src: "apps/novawallet/screen4.jpg", 
+                caption: "Offline FX: Real-time currency conversion without internet." 
+            }
         ],
         
         // Video Link 
