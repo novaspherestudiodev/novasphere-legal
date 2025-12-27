@@ -105,21 +105,45 @@
 
             <!-- Right: Form -->
             <div class="glass glass-card reveal-pop delay-200" style="padding: 2.5rem;">
-                <form action="#" method="POST">
+                
+                <!-- FORM START -->
+                <form id="contact-form" action="https://formsubmit.co/novaspherestudio.dev@gmail.com" method="POST">
+                    
+                    <!-- 1. SPAM PROTECTION (Honeypot - keep hidden) -->
+                    <input type="text" name="_honey" style="display:none">
+
+                    <!-- 2. CONFIGURATION -->
+                    <!-- Disable Captcha to keep it sleek (Optional) -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Email Subject Line -->
+                    <input type="hidden" name="_subject" value="New Transmission: NovaSphere Site">
+                    <!-- Make the email look nice -->
+                    <input type="hidden" name="_template" value="table">
+
+                    <!-- 3. INPUTS -->
                     <div class="form-group">
-                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Name</label>
-                        <input type="text" name="name" class="form-input" required placeholder="John Doe">
+                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Identity</label>
+                        <input type="text" name="name" class="form-input" required placeholder="Enter your name">
                     </div>
+
                     <div class="form-group">
-                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Email</label>
-                        <input type="email" name="email" class="form-input" required placeholder="john@example.com">
+                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Frequency (Email)</label>
+                        <input type="email" name="email" class="form-input" required placeholder="contact@email.com">
                     </div>
+
                     <div class="form-group">
-                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Message</label>
-                        <textarea name="message" class="form-input" rows="5" required placeholder="Tell me about your project..."></textarea>
+                        <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">Transmission</label>
+                        <textarea name="message" class="form-input" rows="5" required placeholder="Briefing details..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+
+                    <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">
+                        Send Transmission
+                    </button>
+                    
+                    <!-- STATUS MESSAGE (Hidden by default) -->
+                    <p id="form-status" style="text-align: center; margin-top: 15px; font-size: 0.9rem; display: none;"></p>
                 </form>
+
             </div>
         </div>
     </div>
