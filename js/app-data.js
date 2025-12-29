@@ -20,7 +20,7 @@ const appDatabase = {
         // CINEMATIC BANNER
         headerBanner: "apps/kyt/kyt_banner.png", 
         banner: "linear-gradient(to right, #1e3a8a, #2563eb)", 
-        
+        virusTestScreen: "apps/kyt/virus_scan.jpeg",
         // SCREENSHOTS
        screenshots: [
             { 
@@ -111,7 +111,7 @@ const appDatabase = {
         // CINEMATIC BANNER
         headerBanner: "apps/innerverse/innerverse_banner.png", // Empty = Fallback to gradient below
         banner: "linear-gradient(to right, #2e1065, #a855f7)", // Deep Space gradient
-        
+        virusTestScreen: "apps/innerverse/virus_scan.jpeg",
         // SCREENSHOTS
        screenshots: [
             { 
@@ -217,7 +217,7 @@ const appDatabase = {
         // CINEMATIC BANNER
         headerBanner: "apps/novawallet/nova_wallet_banner.png", 
         banner: "linear-gradient(to right, #000000, #f59e0b)", 
-        
+        virusTestScreen: "apps/novawallet/virus_scan.jpeg",
         // SCREENSHOTS:
         screenshots: [
             { 
