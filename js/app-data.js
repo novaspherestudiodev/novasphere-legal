@@ -28,19 +28,39 @@ const appDatabase = {
         screenshots: [
              { 
                  src: "apps/kyt/screen1.jpg", 
-                 caption: "The Sovereign Vault: AES-256 Encrypted Dashboard." 
+                 caption: "Global Net Worth: Aggregate unlimited multi-currency wallets into a single, unified financial truth." 
              },
              { 
                  src: "apps/kyt/screen2.jpg", 
-                 caption: "The War Room: Simulating financial survival scenarios." 
+                 caption: "Client Intelligence: Track Trust Scores, calculate payment velocity, and generate PDF invoices in seconds." 
              },
              { 
                  src: "apps/kyt/screen3.jpg", 
-                 caption: "Visual Intelligence: Sunburst charts of your spending." 
+                 caption: "The Command Deck: Full operational control over cash flow, automation rules, and recurring cycles." 
              },
              { 
                  src: "apps/kyt/screen4.jpg", 
-                 caption: "Offline FX: Real-time currency conversion without internet." 
+                 caption: "Visual Intelligence: X-Ray your finances. Trace the flow of every dollar from income source to final expense." 
+             },
+             { 
+                 src: "apps/kyt/screen5.jpg", 
+                 caption: "The War Room: Predict your exact financial survival date under crisis conditions with the 'Total War' simulator." 
+             },
+             { 
+                 src: "apps/kyt/screen6.jpg", 
+                 caption: "Entropy Engine: Visualize how inflation decay and forex shocks impact your real purchasing power in real-time." 
+             },
+             { 
+                 src: "apps/kyt/screen7.jpg", 
+                 caption: "The Debt Reactor: Monitor liabilities as volatile elements. Deploy capital to neutralize debts before they breach." 
+             },
+             { 
+                 src: "apps/kyt/screen8.jpg", 
+                 caption: "Sovereign Cloud: Military-grade AES-256 encryption. You hold the keys, you own the data. Zero server-side tracking." 
+             },
+             { 
+                 src: "apps/kyt/screen9.jpg", 
+                 caption: "Client Intelligence: Manage relationships with the Tactical Dossier. Monitor algorithmic Trust Scores, track Payment Velocity, and deploy PDF invoices in seconds." 
              }
          ],
         
