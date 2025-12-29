@@ -45,9 +45,6 @@
                 rgba(0,0,0,0.1) 40%,        /* Middle (Clean Image) */
                 var(--mask-end) 95%         /* Bottom Blend */
             );
-            
-            /* OPTIONAL: Blur bottom edge for extra readability */
-            /*backdrop-filter: blur(2px);*/ 
         }
 
         .hero-layout {
@@ -132,13 +129,12 @@
             .platform-badges { justify-content: center; }
         }
 
-        /* DESCRIPTION TEXT ENGINE (Added per request) */
+        /* DESCRIPTION TEXT ENGINE */
         #app-description {
             font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.8; /* Increases breathing room for text */
             margin-bottom: 2rem;
-            /* CRITICAL: Ensure 'white-space' is NOT set to 'pre-line' or 'pre-wrap' */
             white-space: normal; 
         }
 
@@ -152,7 +148,6 @@
         }
 
         /* 4. GALLERY & VIDEO */
-       /* 4. GALLERY & VIDEO */
         .gallery-scroller {
             display: flex; 
             overflow-x: auto; 
@@ -190,24 +185,17 @@
             left: 0;
             width: 100%;
             padding: 15px;
-            
-            /* Glassmorphism Background */
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(4px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            
-            /* Typography */
             color: #fff;
             font-size: 0.85rem;
             font-weight: 500;
             text-align: center;
             line-height: 1.4;
-            
-            /* Transition Setup */
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Always show caption (Remove this rule if you only want it on hover) */
         .gallery-item .gallery-caption {
             transform: translateY(0); 
         }
@@ -219,6 +207,7 @@
             background: #000;
         }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
         /* 5. DOWNLOAD BUTTONS */
         .store-badge-grid { display: flex; gap: 10px; margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
         @media(min-width: 769px) { .store-badge-grid { justify-content: flex-start; } }
@@ -229,9 +218,8 @@
             font-size: 0.8rem; transition: transform 0.2s;
         }
 
-        /* Make the first button (Itch.io) glow slightly to indicate it's the main one */
         .store-btn:first-child {
-            background: var(--accent-color); /* Uses the app's specific color */
+            background: var(--accent-color);
             border-color: var(--accent-color);
             box-shadow: 0 4px 15px var(--accent-glow);
         }
@@ -241,7 +229,6 @@
             box-shadow: 0 8px 25px var(--accent-glow);
         }
 
-        /* Keep the second button (GitHub) subtle/dark */
         .store-btn:nth-child(2) {
             background: rgba(0,0,0,0.5);
             opacity: 0.8;
@@ -298,6 +285,10 @@
             padding: 4px 10px; border-radius: 6px; font-size: 0.8rem;
             font-weight: 700; border: 1px solid var(--glass-border);
         }
+
+        /* Security Card Interactive Hover */
+        #security-card { cursor: pointer; }
+        #security-card:hover { transform: scale(1.02); background: rgba(16, 185, 129, 0.05); }
     </style>
 </head>
 <body>
@@ -319,9 +310,8 @@
         </div>
     </nav>
 
-    <!-- NEW HERO SECTION (Full Width) -->
+    <!-- HERO SECTION -->
     <div class="app-hero">
-        <!-- Hero Background moved inside to support the Mask Engine -->
         <div id="hero-bg" class="hero-bg"></div>
         
         <div class="hero-layout">
@@ -330,12 +320,10 @@
                 <h1 id="app-title" style="margin: 0; line-height: 1.2;">App Name</h1>
                 <span id="app-category" style="font-size: 1rem;">Category</span>
                 
-                <!-- PLATFORM ICONS -->
                 <div id="platform-badges" class="platform-badges">
                     <!-- Injected via JS -->
                 </div>
 
-                <!-- WARNING ALERT -->
                 <div id="device-warning" class="device-warning">
                     <i class='bx bx-error'></i> 
                     <span>Desktop Required for this application.</span>
@@ -353,7 +341,7 @@
     <!-- MAIN CONTAINER -->
     <div class="container">
         
-        <!-- STATS BAR (Moved here to sit below the Hero) -->
+        <!-- STATS BAR -->
         <div class="stats-bar">
             <div class="stat-item">
                 <span class="stat-value">
@@ -406,7 +394,6 @@
                 <!-- DESCRIPTION -->
                 <h2 class="section-title">Description</h2>
                 <div class="glass glass-card" style="padding: 2rem; margin-bottom: 2rem;">
-                    <!-- REMOVED inline white-space style so CSS can take control -->
                     <p id="app-description">Loading...</p>
                     <h3 style="margin-top: 2rem; font-size: 1.1rem;">Features</h3>
                     <ul id="app-features" style="padding-left: 20px; margin-top: 10px; color: var(--text-secondary);"></ul>
@@ -439,6 +426,18 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- [STEP A] UPDATED SECURITY CARD: CLICKABLE WITH ID -->
+                <div id="security-card" class="glass glass-card" style="padding: 1.5rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 15px; transition: transform 0.2s; border-left: 4px solid #10b981;">
+                    <i class='bx bx-shield-quarter' style="font-size: 2rem; color: #10b981;"></i>
+                    <div>
+                        <h5 style="margin: 0; color: #10b981;">Security Audit</h5>
+                        <p id="security-status-text" style="font-size: 0.8rem; margin: 0; opacity: 0.8;">Verified Safe</p>
+                    </div>
+                    <!-- Small arrow to indicate clickability -->
+                    <i class='bx bx-chevron-right' style="margin-left: auto; color: var(--text-secondary); opacity: 0.5;"></i>
+                </div>
+
             </div>
         </div>
 
@@ -449,97 +448,132 @@
     </footer>
 
     <!-- DIRECT UPLINK MODAL (Installation Guide) -->
-<div id="install-modal" class="modal-overlay" style="z-index: 9999;">
-    <div class="glass modal-content" style="max-width: 600px;">
-        <button class="close-modal" onclick="closeInstallModal()">&times;</button>
-        
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <i class='bx bx-cloud-download' style="font-size: 4rem; color: var(--accent-color);"></i>
-            <h2 style="margin-top: 1rem;">Direct Uplink Protocol</h2>
-            <p style="font-size: 0.9rem; opacity: 0.8;">Bypassing "Walled Garden" restrictions...</p>
-        </div>
-
-        <!-- The 3-Step Guide -->
-        <div class="install-steps">
-            <!-- Step 1 -->
-            <div class="step-card">
-                <div class="step-number">01</div>
-                <div class="step-info">
-                    <strong>Ignore the Warning</strong>
-                    <p>Android will warn: <em>"File might be harmful."</em> This is standard for all Sovereign apps outside the Play Store.</p>
-                    <span class="step-action">Tap "Download Anyway"</span>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="step-card">
-                <div class="step-number">02</div>
-                <div class="step-info">
-                    <strong>Authorize Source</strong>
-                    <p>If prompted, go to Settings and enable installs from your browser.</p>
-                    <span class="step-action">Toggle "Allow from this source" ON</span>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="step-card">
-                <div class="step-number">03</div>
-                <div class="step-info">
-                    <strong>Initialize</strong>
-                    <p>Open the downloaded file and confirm installation.</p>
-                    <span class="step-action"><i class='bx bx-rocket'></i> Launch App</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Trust Badge -->
-        <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; display: flex; align-items: center; gap: 15px;">
-            <i class='bx bx-shield-quarter' style="font-size: 2rem; color: #10b981;"></i>
-            <div>
-                <strong style="color: #10b981; display: block;">Cryptographic Signature Verified</strong>
-                <span style="font-size: 0.8rem; opacity: 0.8;">Build signed by NovaSphere Studio Developer Key.</span>
-            </div>
-        </div>
-
-        <!-- SECURITY OVERRIDE BLOCK (Hidden by default, activated via JS) -->
-        <div id="security-override-block" style="display: none; margin-top: 2rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
-            <h3 style="color: #f59e0b; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; margin-bottom: 1rem;">
-                <i class='bx bxs-error'></i> Security Protocol: Override Required
-            </h3>
+    <div id="install-modal" class="modal-overlay" style="z-index: 9999;">
+        <div class="glass modal-content" style="max-width: 600px;">
+            <button class="close-modal" onclick="closeInstallModal()">&times;</button>
             
-            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
-                Play Protect may flag this app because it uses <strong>"God Mode" Permissions</strong> (Exact Alarms, AR Core) that are unknown to standard scanners. This is a <strong>False Positive</strong>.
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <i class='bx bx-cloud-download' style="font-size: 4rem; color: var(--accent-color);"></i>
+                <h2 style="margin-top: 1rem;">Direct Uplink Protocol</h2>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Bypassing "Walled Garden" restrictions...</p>
+            </div>
+
+            <!-- The 3-Step Guide -->
+            <div class="install-steps">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-info">
+                        <strong>Ignore the Warning</strong>
+                        <p>Android will warn: <em>"File might be harmful."</em> This is standard for all Sovereign apps outside the Play Store.</p>
+                        <span class="step-action">Tap "Download Anyway"</span>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-info">
+                        <strong>Authorize Source</strong>
+                        <p>If prompted, go to Settings and enable installs from your browser.</p>
+                        <span class="step-action">Toggle "Allow from this source" ON</span>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-info">
+                        <strong>Initialize</strong>
+                        <p>Open the downloaded file and confirm installation.</p>
+                        <span class="step-action"><i class='bx bx-rocket'></i> Launch App</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Badge (Original static one in install modal) -->
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; display: flex; align-items: center; gap: 15px;">
+                <i class='bx bx-shield-quarter' style="font-size: 2rem; color: #10b981;"></i>
+                <div>
+                    <strong style="color: #10b981; display: block;">Cryptographic Signature Verified</strong>
+                    <span style="font-size: 0.8rem; opacity: 0.8;">Build signed by NovaSphere Studio Developer Key.</span>
+                </div>
+            </div>
+
+            <!-- SECURITY OVERRIDE BLOCK -->
+            <div id="security-override-block" style="display: none; margin-top: 2rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
+                <h3 style="color: #f59e0b; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; margin-bottom: 1rem;">
+                    <i class='bx bxs-error'></i> Security Protocol: Override Required
+                </h3>
+                
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+                    Play Protect may flag this app because it uses <strong>"God Mode" Permissions</strong> (Exact Alarms, AR Core) that are unknown to standard scanners. This is a <strong>False Positive</strong>.
+                </p>
+
+                <div style="background: #000; border-radius: 16px; padding: 1rem; text-align: center; margin-bottom: 1rem;">
+                    <img id="security-screenshot" src="" alt="Play Protect Bypass" style="width: 100%; max-width: 250px; border-radius: 8px; border: 1px solid #333;">
+                    <p style="color: #fff; font-size: 0.85rem; margin-top: 10px; font-weight: 600;">
+                        Tap "More details" &rarr; "Install anyway"
+                    </p>
+                </div>
+            </div>
+
+            <button onclick="closeInstallModal()" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Understood</button>
+        </div>
+    </div>
+
+    <!-- [STEP B] NEW SECURITY PROOF MODAL -->
+    <div id="proof-modal" class="modal-overlay" style="z-index: 10000;">
+        <div class="glass modal-content" style="max-width: 500px; text-align: center; padding: 2rem;">
+            <button class="close-modal" onclick="document.getElementById('proof-modal').classList.remove('active')">&times;</button>
+            
+            <h3 style="color: #10b981; margin-bottom: 0.5rem;">
+                <i class='bx bx-check-shield'></i> System Integrity Verified
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                This build has passed all cryptographic signature checks and virus scans.
             </p>
 
-            <div style="background: #000; border-radius: 16px; padding: 1rem; text-align: center; margin-bottom: 1rem;">
-                <!-- Placeholder Image - You will link this in DB -->
-                <img id="security-screenshot" src="" alt="Play Protect Bypass" style="width: 100%; max-width: 250px; border-radius: 8px; border: 1px solid #333;">
-                <p style="color: #fff; font-size: 0.85rem; margin-top: 10px; font-weight: 600;">
-                    Tap "More details" &rarr; "Install anyway"
-                </p>
+            <!-- The Screenshot Container -->
+            <div style="background: #000; padding: 5px; border-radius: 12px; border: 1px solid var(--glass-border);">
+                <!-- NOTE: You will need to set the src of this image in your JS or Manually -->
+                <img id="proof-image" src="" alt="Virus Scan Result" style="width: 100%; border-radius: 8px; display: block;">
+            </div>
+
+            <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                <i class='bx bx-info-circle'></i> Scan Source: Google Play Protect / VirusTotal
             </div>
         </div>
-
-        <!-- Single Close Button -->
-        <button onclick="closeInstallModal()" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Understood</button>
     </div>
-</div>
 
     <script src="js/theme.js"></script>
     <script src="js/app-data.js"></script>
     <script>
+        // Existing Install Modal Logic
         function closeInstallModal() {
             document.getElementById('install-modal').classList.remove('active');
         }
         
-        // Close on click outside
         document.getElementById('install-modal').addEventListener('click', (e) => {
             if (e.target.id === 'install-modal') closeInstallModal();
         });
+
+        // NEW: Logic to open the Proof Modal when clicking the security card
+        // This ensures the modal actually opens when you click the card
+        const securityCard = document.getElementById('security-card');
+        const proofModal = document.getElementById('proof-modal');
+
+        if(securityCard) {
+            securityCard.addEventListener('click', () => {
+                proofModal.classList.add('active');
+            });
+        }
+
+        // Close Proof Modal on click outside
+        if(proofModal) {
+            proofModal.addEventListener('click', (e) => {
+                if (e.target.id === 'proof-modal') {
+                    proofModal.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>
-
-
-
-    
