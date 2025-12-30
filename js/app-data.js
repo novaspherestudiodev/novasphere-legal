@@ -134,19 +134,35 @@ const appDatabase = {
         screenshots: [
              { 
                  src: "apps/innerverse/screen1.jpg", 
-                 caption: "The Sovereign Vault: AES-256 Encrypted Dashboard." 
+                 caption: "The InnerScape: Your emotions visualized as a living landscape." 
              },
              { 
                  src: "apps/innerverse/screen2.jpg", 
-                 caption: "The War Room: Simulating financial survival scenarios." 
+                 caption: "Scroll through time: See your journey from valleys to peaks." 
              },
              { 
                  src: "apps/innerverse/screen3.jpg", 
-                 caption: "Visual Intelligence: Sunburst charts of your spending." 
+                 caption: "Connect your thoughts in a living 3D network." 
              },
              { 
                  src: "apps/innerverse/screen4.jpg", 
-                 caption: "Offline FX: Real-time currency conversion without internet." 
+                 caption: "Map your memories: Explore the galaxy of your past." 
+             },
+             { 
+                 src: "apps/innerverse/screen5.jpg", 
+                 caption: "Nurture your ideas from seeds to towering trees." 
+             },
+             { 
+                 src: "apps/innerverse/screen6.jpg", 
+                 caption: "Panic Protocol: Emergency messages from your calm self." 
+             },
+             { 
+                 src: "apps/innerverse/screen7.jpg", 
+                 caption: "he Whirl: Navigate empathy with evolving characters." 
+             },
+             { 
+                 src: "apps/innerverse/screen8.jpg", 
+                 caption: "MindMaze: Daily questions to unlock deep self-discovery." 
              }
          ],
         
