@@ -92,7 +92,7 @@ const appDatabase = {
              { 
                  name: "Itch.io", 
                  icon: "bxs-store", // Official Store Icon
-                 link: "https://novaspherestudio.itch.io/kyt" // REPLACE with your real Itch link
+                 link: "https://novaspherestudiodev.itch.io/kyt" // REPLACE with your real Itch link
              },
              
              // SECONDARY CHANNEL: GitHub Releases (The Direct Uplink)
@@ -221,7 +221,7 @@ const appDatabase = {
              { 
                  name: "Itch.io", 
                  icon: "bxs-store", // Official Store Icon
-                 link: "https://novaspherestudio.itch.io/kyt" // REPLACE with your real Itch link
+                 link: "https://novaspherestudiodev.itch.io/innerverse" // REPLACE with your real Itch link
              },
              
              // SECONDARY CHANNEL: GitHub Releases (The Direct Uplink)
@@ -334,7 +334,7 @@ const appDatabase = {
              { 
                  name: "Itch.io", 
                  icon: "bxs-store", // Official Store Icon
-                 link: "https://novaspherestudio.itch.io/kyt" // REPLACE with your real Itch link
+                 link: "https://novaspherestudiodev.itch.io/novawallet" // REPLACE with your real Itch link
              },
              
              // SECONDARY CHANNEL: GitHub Releases (The Direct Uplink)
