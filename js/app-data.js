@@ -65,7 +65,7 @@ const appDatabase = {
          chartPos: "New Release",
          
          version: "1.0.0",
-         updated: "Dec 18, 2025",
+         updated: "Dec 30, 2025",
          size: "82 MB",
          
          whatsNew: "Welcome to Kyt 1.0! Your personal operations manual has arrived. This initial release combines powerful asset management with our advanced Playbook engine.",
@@ -181,7 +181,7 @@ const appDatabase = {
          chartPos: "New Release",
          
          version: "1.0.0",
-         updated: "Dec 18, 2025",
+         updated: "Dec 30, 2025",
          size: "72 MB",
          
          whatsNew: "Protocol: GENESIS Initiated. The simulation is live.\n• New: The Mycelial Network (Physics-based thought graph)\n• New: Bio-Sync (Heartbeat synchronization)\n• New: Spectral AR (Location-based memory ghosts)\n• New: Temporal Duets (Split-screen past self interaction)",
@@ -307,7 +307,7 @@ const appDatabase = {
          chartPos: "New Release",
          
          version: "1.0.0",
-         updated: "Dec 17, 2025",
+         updated: "Dec 30, 2025",
          size: "83 MB",
          
          whatsNew: "Genesis Launch. Deployed the 'War Room' simulation engine, Visual Intelligence sunburst charts, and the Entropy Engine. Your financial operating system is now online.",
@@ -376,7 +376,7 @@ const appDatabase = {
          chartPos: "Classified",
          
          version: "Alpha 0.1",
-         updated: "Q1 2026",
+         updated: "Q2 2026",
          size: "Unknown",
          
          whatsNew: "System Initialization Pending... \nSecure Uplink Established. \nAwaiting Decryption Key.",
