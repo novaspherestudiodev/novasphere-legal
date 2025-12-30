@@ -66,7 +66,7 @@ const appDatabase = {
          
          version: "1.0.0",
          updated: "Dec 18, 2025",
-         size: "42 MB",
+         size: "82 MB",
          
          whatsNew: "Welcome to Kyt 1.0! Your personal operations manual has arrived. This initial release combines powerful asset management with our advanced Playbook engine.",
  
@@ -100,7 +100,7 @@ const appDatabase = {
                  name: "Direct APK", 
                  icon: "bxl-github", // GitHub Icon
                  // This triggers the Installation Modal because it says "Direct"
-                 link: "https://github.com/NovaSphereDev/studio/releases/download/v1.0.0/kyt-v1.0.apk" 
+                 link: "https://github.com/novaspherestudiodev/novasphere-legal/releases/download/v1.0.0-kyt/app-release.apk" 
              }
          ],
  
@@ -182,7 +182,7 @@ const appDatabase = {
          
          version: "1.0.0",
          updated: "Dec 18, 2025",
-         size: "45 MB",
+         size: "72 MB",
          
          whatsNew: "Protocol: GENESIS Initiated. The simulation is live.\n• New: The Mycelial Network (Physics-based thought graph)\n• New: Bio-Sync (Heartbeat synchronization)\n• New: Spectral AR (Location-based memory ghosts)\n• New: Temporal Duets (Split-screen past self interaction)",
  
@@ -229,7 +229,7 @@ const appDatabase = {
                  name: "Direct APK", 
                  icon: "bxl-github", // GitHub Icon
                  // This triggers the Installation Modal because it says "Direct"
-                 link: "https://github.com/NovaSphereDev/studio/releases/download/v1.0.0/kyt-v1.0.apk" 
+                 link: "https://github.com/novaspherestudiodev/novasphere-legal/releases/download/v1.0.0-innerverse/app-apkpure-release.apk" 
              }
          ],
  
@@ -308,7 +308,7 @@ const appDatabase = {
          
          version: "1.0.0",
          updated: "Dec 17, 2025",
-         size: "38 MB",
+         size: "83 MB",
          
          whatsNew: "Genesis Launch. Deployed the 'War Room' simulation engine, Visual Intelligence sunburst charts, and the Entropy Engine. Your financial operating system is now online.",
  
@@ -342,7 +342,7 @@ const appDatabase = {
                  name: "Direct APK", 
                  icon: "bxl-github", // GitHub Icon
                  // This triggers the Installation Modal because it says "Direct"
-                 link: "https://github.com/NovaSphereDev/studio/releases/download/v1.0.0/kyt-v1.0.apk" 
+                 link: "https://github.com/novaspherestudiodev/novasphere-legal/releases/download/v1.0.0-novawallet/app-release.apk" 
              }
          ],
  
