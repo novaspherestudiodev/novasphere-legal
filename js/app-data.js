@@ -229,7 +229,7 @@ const appDatabase = {
                  name: "Direct APK", 
                  icon: "bxl-github", // GitHub Icon
                  // This triggers the Installation Modal because it says "Direct"
-                 link: "https://github.com/novaspherestudiodev/novasphere-legal/releases/download/v1.0.0-innerverse/app-apkpure-release.apk" 
+                 link: "https://github.com/novaspherestudiodev/novasphere-legal/releases/download/v1.0.0-innerverse/innerverse.apk" 
              }
          ],
  
