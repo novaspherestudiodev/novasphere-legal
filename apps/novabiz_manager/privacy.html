@@ -1,1 +1,226 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Data Telemetry & Privacy Protocol | NovaBiz</title>
+    
+    <!-- Link to Main CSS (Up 2 Levels) -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        /* PAGE SPECIFIC STYLES (NovaBiz Cyan Theme) */
+        :root {
+            --app-accent: #0ea5e9; /* Cybernetic Cyan */
+            --app-glow: rgba(14, 165, 233, 0.3);
+        }
+
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 120px 2rem 4rem; }
+        
+        .protocol-header { text-align: center; margin-bottom: 4rem; }
+        .protocol-header h1 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--app-accent); letter-spacing: 1px; text-transform: uppercase; }
+        .protocol-meta { display: inline-flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); background: var(--glass-bg); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--glass-border); }
+        
+        .section-block { margin-bottom: 4rem; }
+        .section-title { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--app-accent); padding-left: 15px; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* 1. Philosophy Box */
+        .philosophy-box {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(0,0,0,0));
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 2rem; border-radius: 20px; position: relative; overflow: hidden;
+        }
+        .philosophy-box::before {
+            content: '\bx-data'; font-family: boxicons;
+            position: absolute; right: -20px; top: -20px; font-size: 10rem;
+            opacity: 0.05; color: var(--app-accent); pointer-events: none;
+        }
+
+        /* 2. Permission Cards (Sensor Grid) */
+        .perm-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media(min-width: 768px) { .perm-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .perm-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 1.5rem; border-radius: 16px; transition: transform 0.2s;
+            position: relative; overflow: hidden;
+        }
+        .perm-card:hover { border-color: var(--app-accent); transform: translateY(-3px); box-shadow: 0 5px 15px var(--app-glow); }
+        .perm-icon { font-size: 2rem; color: var(--app-accent); margin-bottom: 1rem; }
+        .perm-name { font-weight: 800; margin-bottom: 0.5rem; display: block; color: var(--text-primary); text-transform: uppercase; font-size: 0.95rem; }
+        .perm-platform { font-size: 0.75rem; color: var(--app-accent); margin-bottom: 10px; display: inline-block; border: 1px solid var(--app-glow); padding: 2px 8px; border-radius: 4px; }
+        .perm-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px;}
+        .perm-privacy { font-size: 0.85rem; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 8px; border-radius: 6px; border-left: 2px solid #10b981; }
+
+        /* Danger Box (Phoenix Protocol) */
+        .danger-box {
+            background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; border-left: 4px solid #ef4444;
+        }
+
+        /* Status Terminal */
+        .status-terminal {
+            background: #000; color: #10b981; font-family: monospace; padding: 15px; 
+            border-radius: 8px; text-align: center; border: 1px solid #333; font-size: 1.1rem;
+            letter-spacing: 2px; margin-top: 3rem;
+        }
+
+        /* Typography */
+        p, li { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+        ul { padding-left: 20px; }
+        strong { color: var(--text-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="navbar glass">
+        <a href="../../index.html" class="logo">
+            <i class='bx bx-planet' style="color: var(--app-accent);"></i> NovaSphere
+        </a>
+        <div class="nav-links">
+            <a href="../../product.html?app=novabiz_manager"><i class='bx bx-arrow-back'></i> Return to Terminal</a>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        
+        <!-- Header -->
+        <div class="protocol-header">
+            <i class='bx bx-radar' style="font-size: 4rem; color: var(--app-accent); margin-bottom: 1rem;"></i>
+            <h1>Data Telemetry & Privacy Protocol</h1>
+            <div class="protocol-meta">
+                <span><i class='bx bx-calendar'></i> Effective: April 2026</span>
+                <span><i class='bx bx-globe'></i> Global South / Republic of Ghana</span>
+            </div>
+            <p style="margin-top: 15px; font-family: monospace; color: var(--app-accent); letter-spacing: 1px;">SYSTEM: NOVABIZ CYBERNETIC OS</p>
+        </div>
+
+        <!-- 1. Philosophy -->
+        <div class="section-block">
+            <div class="philosophy-box">
+                <h2 style="color: var(--app-accent); margin-bottom: 1rem; text-transform: uppercase; font-size: 1.3rem;">1. The Sovereign Data Philosophy</h2>
+                <p>NovaBiz operates on an "Offline-First, Sovereign Data" architecture. Unlike standard cloud-based applications that harvest and monetize your business intelligence, the NovaBiz Engine computes reality directly on your local hardware.</p>
+                <p>Your inventory, financial ledgers, and personnel logs live inside an encrypted SQLite database on your Android device or PC terminal. When Cloud Sync is activated, data is transmitted via secure, encrypted channels to our centralized nodes — Supabase — purely for backup and multi-device continuity.</p>
+                <p><strong>We do not sell your data. We do not analyze your profits. Your empire belongs to you.</strong></p>
+            </div>
+        </div>
+
+        <!-- 2. Hardware Sensors -->
+        <div class="section-block">
+            <h2 class="section-title">2. Hardware Sensor Clearances & Justifications</h2>
+            <p>To function as a tactical business operating system, NovaBiz requires direct access to your device’s hardware sensors. We request these clearances solely to power specific operational mechanics.</p>
+            
+            <div class="perm-grid">
+                
+                <!-- A. Camera -->
+                <div class="perm-card">
+                    <i class='bx bx-scan perm-icon'></i>
+                    <span class="perm-name">A. Optical Sensors (Camera)</span>
+                    <span class="perm-platform">Platforms: Android, PC (if equipped)</span>
+                    <div class="perm-desc">
+                        <strong>The Justification:</strong> The camera is the optic nerve of the system. We require this permission to power the Omni-Lens AR Scanner (for rapid barcode acquisition), the Site Diary (to capture timestamped visual proof of construction progress), the Asset Vault (to digitize and encrypt documents), and to capture Commander/Operative identification avatars.
+                    </div>
+                    <div class="perm-privacy">
+                        <strong>Privacy Stance:</strong> The optical feed is processed locally on the device's Edge AI. We do not stream your camera feed to our servers.
+                    </div>
+                </div>
+
+                <!-- B. Location -->
+                <div class="perm-card">
+                    <i class='bx bx-map-alt perm-icon'></i>
+                    <span class="perm-name">B. Geospatial Matrix (Location & GPS)</span>
+                    <span class="perm-platform">Platforms: Android, PC (Network-based)</span>
+                    <div class="perm-desc">
+                        <strong>The Justification:</strong> Spatial awareness is critical for the Roaming Merchant and Builder protocols. We require background and foreground location data to:
+                        <ul style="margin-top: 5px; margin-bottom: 0;">
+                            <li>Activate the <strong>Price Shield</strong> (automatically adjusting prices when you enter specific Geofenced zones like an Airport or Market).</li>
+                            <li>Generate the <strong>Spatial Heatmap</strong> (plotting your exact profit density across the city).</li>
+                            <li>Stamp the <strong>Shadow Chain</strong> (recording the exact GPS coordinates of a transaction or deleted invoice to provide an unbreakable alibi against staff theft).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- C. Contacts -->
+                <div class="perm-card">
+                    <i class='bx bx-network-chart perm-icon'></i>
+                    <span class="perm-name">C. Neural Network (Contacts & Address Book)</span>
+                    <span class="perm-platform">Platforms: Android</span>
+                    <div class="perm-desc">
+                        <strong>The Justification:</strong> To power the Asset Reclamation Matrix and Debt Proxy, we require read-only access to your contacts. This allows you to rapidly whitelist VIP Debtors and assign liabilities to existing social connections.
+                    </div>
+                    <div class="perm-privacy" style="margin-top: 10px;">
+                        <strong>Privacy Stance:</strong> We NEVER auto-message your contacts. All WhatsApp proxy messages and automated legal demands are initiated by your explicit physical command. Your contact list is not uploaded to our global servers; it is merely filtered locally.
+                    </div>
+                </div>
+
+                <!-- D. Storage -->
+                <div class="perm-card">
+                    <i class='bx bx-hdd perm-icon'></i>
+                    <span class="perm-name">D. Local Vault (Storage & Filesystem)</span>
+                    <span class="perm-platform">Platforms: Android, PC (Windows/macOS)</span>
+                    <div class="perm-desc">
+                        <strong>The Justification:</strong> We require write/read access to your hard drive to execute the Isotope Extraction Protocol. This allows the system to generate, compress, and save heavy .nvz encrypted database backups, output Diplomatic PDF Invoices, and securely store heavily encrypted client deliverables.
+                    </div>
+                </div>
+
+                <!-- E. Telemetry -->
+                <div class="perm-card">
+                    <i class='bx bx-broadcast perm-icon'></i>
+                    <span class="perm-name">E. Forensic Telemetry (Device State & Network)</span>
+                    <span class="perm-platform">Platforms: Android, PC</span>
+                    <div class="perm-desc">
+                        <strong>The Justification:</strong> To power the Watchtower Security Log, the app reads your device's current battery level, Wi-Fi SSID, and hardware signature. If an operative deletes a transaction, this data is permanently bound to the event to prove exactly which device and which network was used to commit the breach.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. Financial -->
+        <div class="section-block">
+            <h2 class="section-title">3. Financial Intermediaries (Orbital Relay)</h2>
+            <p>NovaBiz integrates with institutional payment gateways — Paystack, Stripe — to process your Mercenary Contract (Subscription) and receive client settlements.</p>
+            <p><strong>NovaSphere Studio does NOT process, view, or store your raw credit card numbers or Momo PINs.</strong> All financial tokenization is handled securely by the respective gateway's PCI-DSS compliant airlocks.</p>
+        </div>
+
+        <!-- 4. Incineration -->
+        <div class="section-block">
+            <h2 class="section-title">4. Data Incineration (The Phoenix Protocol)</h2>
+            <div class="danger-box">
+                <strong style="color: #ef4444; font-size: 1.1rem; display: block; margin-bottom: 8px;"><i class='bx bxs-flame'></i> TOTAL ERASURE</strong>
+                <p style="color: var(--text-primary); margin-bottom: 0;">You retain ultimate control over your data’s existence. If you execute the Kill Switch — <strong>PIN 6666</strong> —, the software will initiate a DoD 5220.22-M standard 3-pass overwrite of your local database. Your local operational history will be incinerated beyond the reach of any forensic recovery tool.</p>
+            </div>
+        </div>
+
+        <!-- 5. Compliance -->
+        <div class="section-block">
+            <h2 class="section-title">5. Compliance With Regional Directives</h2>
+            <p>This protocol is drafted in strict adherence to the <strong>Data Protection Act, 2012 (Act 843)</strong> of the Republic of Ghana. By executing the startup sequence and checking the compliance boxes on the Legal Codex interface, you acknowledge that you understand the mechanics of the NovaBiz system and authorize these hardware and data workflows.</p>
+        </div>
+
+        <!-- Status Sign-off -->
+        <div class="status-terminal">
+            > STATUS: LEGAL PERIMETER SECURED_ <span style="animation: blink 1s infinite;">█</span>
+        </div>
+
+        <!-- 6. Added Contact Section for standard compliance -->
+        <div class="section-block" style="text-align: center; margin-top: 4rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+            <h2 style="color: var(--app-accent); font-size: 1.2rem; text-transform: uppercase;">Command Center Uplink</h2>
+            <p>Direct inquiries regarding this telemetry protocol to NovaSphere Studio:</p>
+            <p style="font-size: 1.1rem; font-weight: 700;">
+                <i class='bx bx-envelope'></i> <a href="mailto:novaspherestudio.dev+novabiz@gmail.com" style="color: var(--app-accent); text-decoration: none;">novaspherestudio.dev+novabiz@gmail.com</a>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+    <style>
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+</body>
+</html>
