@@ -410,8 +410,8 @@ const appDatabase = {
         ],
 
         // Legal 
-        customPrivacy: "apps/novabiz/privacy.html", 
-        customTerms: "apps/novabiz/terms.html",
+        customPrivacy: "apps/novabiz_manager/privacy.html", 
+        customTerms: "apps/novabiz_manager/terms.html",
         
         // Security Proof (If you scanned the .exe with VirusTotal)
         virusTestScreen: "apps/novabiz/virus_scan.jpg",
