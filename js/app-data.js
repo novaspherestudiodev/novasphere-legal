@@ -351,7 +351,7 @@ const appDatabase = {
          customTerms: "apps/novawallet/terms.html"    
      },
      // APP 5: NOVABIZ MANAGER
-    "novabiz": {
+    "novabiz_manager": {
         title: "NovaBiz Manager",
         tagline: "The sovereign desktop command center for your enterprise.",
         category: "Business OS",
