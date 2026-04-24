@@ -350,6 +350,73 @@ const appDatabase = {
          customPrivacy: "apps/novawallet/privacy.html", 
          customTerms: "apps/novawallet/terms.html"    
      },
+     // APP 5: NOVABIZ MANAGER
+    "novabiz": {
+        title: "NovaBiz Manager",
+        tagline: "The sovereign desktop command center for your enterprise.",
+        category: "Business OS",
+        
+        // Tells the site this is Desktop Only
+        platforms: ["pc"], 
+
+        iconClass: "bx-briefcase", 
+        iconImg: "apps/novabiz_manager/icon.png", 
+        accentColor: "#0ea5e9", // Cyan/Corporate Blue
+        headerBanner: "", // Add a 1920x1080 banner image here if you have one
+        banner: "linear-gradient(to right, #0f172a, #0ea5e9)", 
+        
+        screenshots:[
+            { src: "apps/novabiz_manager/screen1.jpg", caption: "Dashboard Overview" },
+            { src: "apps/novabiz_manager/screen2.jpg", caption: "Client Management" }
+        ],
+        videoPreview: "", 
+
+        rating: "New",
+        reviewsCount: "Genesis",
+        ageRating: "Everyone",
+        chartPos: "New Release",
+        
+        version: "1.0.0",
+        updated: "April 2026",
+        size: "120 MB", // Update with your actual .exe size
+        
+        whatsNew: "NovaBiz Genesis Build deployed. Full offline-first business management capability online.",
+
+        // I have put placeholder text here. You will need to write the real marketing copy.
+        description: `Stop relying on web-based subscriptions to run your business. **NovaBiz Manager** is a sovereign, offline-first desktop application designed to give you absolute control over your enterprise data.
+        
+        Whether you are managing clients, tracking invoices, or analyzing revenue, NovaBiz processes everything locally on your machine. 
+        
+        **Why NovaBiz?**
+        • **Zero Latency:** No loading screens or server outages.
+        • **Data Sovereignty:** Your client data never leaves your hard drive.
+        • **Pro-Grade Analytics:** Generate beautiful, actionable reports instantly.`,
+        
+        features:[
+            "💼 Client & Lead Tracking",
+            "📄 Offline Invoice Generation",
+            "📊 Visual Revenue Analytics",
+            "🔒 Local-First AES Encryption"
+        ],
+        
+        // The Download Links
+        downloads:[
+            { 
+                name: "Windows (.exe)", 
+                icon: "bxl-windows", 
+                // We will link this to GitHub Releases just like the APKs
+                link: "https://github.com/novaspherestudiodev/novasphere-legal/releases/download/v1.0.0-novabiz/NovaBiz-Setup.exe" 
+            }
+        ],
+
+        // Legal 
+        customPrivacy: "apps/novabiz/privacy.html", 
+        customTerms: "apps/novabiz/terms.html",
+        
+        // Security Proof (If you scanned the .exe with VirusTotal)
+        virusTestScreen: "apps/novabiz/virus_scan.jpg",
+        showSecurityOverride: false
+    },
     // APP 4: PROJECT ONYX (CLASSIFIED)
      "project-onyx": {
          title: "Project ONYX",
