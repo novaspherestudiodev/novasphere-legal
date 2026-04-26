@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Privacy Policy & Permissions Manifest | NovaBiz OS</title>
+    
+    <!-- Link to Main CSS (Up 2 Levels) -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <style>
+        /* PAGE SPECIFIC STYLES (NovaBiz OS Emerald Theme) */
+        :root {
+            --app-accent: #059669; /* Matrix Emerald Green */
+            --app-glow: rgba(5, 150, 105, 0.3);
+        }
+
+        .legal-container { max-width: 900px; margin: 0 auto; padding: 120px 2rem 4rem; }
+        
+        /* Headers */
+        .protocol-header { text-align: center; margin-bottom: 4rem; }
+        .protocol-header h1 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--app-accent); letter-spacing: 1px; text-transform: uppercase; }
+        .protocol-meta { display: inline-flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); background: var(--glass-bg); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--glass-border); }
+
+        /* Sections */
+        .section-block { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 2rem; }
+        .section-block:last-child { border-bottom: none; }
+        .section-title { font-size: 1.4rem; color: var(--text-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-number { color: #000; background: var(--app-accent); font-weight: 800; font-family: monospace; font-size: 1.2rem; padding: 4px 8px; border-radius: 4px; box-shadow: 0 0 10px var(--app-glow);}
+
+        /* HAZARD PANELS (Terminal Aesthetic) */
+        .alert-box {
+            padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;
+            border-left: 4px solid; position: relative; background: #000;
+            border-top: 1px solid #333; border-right: 1px solid #333; border-bottom: 1px solid #333;
+        }
+        
+        /* Safe Zone (Emerald) */
+        .alert-safe { border-left-color: var(--app-accent); }
+        .alert-safe .alert-icon { color: var(--app-accent); }
+
+        /* Warning (Amber) */
+        .alert-warning { border-left-color: #f59e0b; }
+        .alert-warning .alert-icon { color: #f59e0b; }
+
+        .alert-title { display: block; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;}
+
+        /* 4. Permission Cards (Hardware Grid) */
+        .perm-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem;}
+        @media(min-width: 768px) { .perm-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .perm-card {
+            background: #000; border: 1px solid #333;
+            padding: 1.5rem; border-radius: 8px; transition: transform 0.2s;
+            position: relative; overflow: hidden;
+        }
+        .perm-card:hover { border-color: var(--app-accent); transform: translateY(-3px); box-shadow: 0 5px 15px var(--app-glow); }
+        .perm-icon { font-size: 2rem; color: var(--app-accent); margin-bottom: 1rem; }
+        .perm-name { font-weight: 800; margin-bottom: 0.8rem; display: block; color: var(--text-primary); text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px;}
+        .perm-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;}
+
+        /* Status Terminal */
+        .status-terminal {
+            background: #000; color: var(--app-accent); font-family: monospace; padding: 15px; 
+            border-radius: 8px; text-align: center; border: 1px solid #111; font-size: 1.1rem;
+            letter-spacing: 2px; margin-top: 3rem;
+        }
+
+        /* Typography */
+        p, li { color: var(--text-secondary); margin-bottom: 0.8rem; line-height: 1.7; }
+        ul { padding-left: 20px; margin-bottom: 1rem; }
+        strong { color: var(--text-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="navbar glass">
+        <a href="../../index.html" class="logo">
+            <i class='bx bx-planet' style="color: var(--app-accent);"></i> NovaSphere
+        </a>
+        <div class="nav-links">
+            <a href="../../product.html?app=novabiz_os"><i class='bx bx-arrow-back'></i> Return to Terminal</a>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        
+        <!-- Header -->
+        <div class="protocol-header">
+            <i class='bx bx-shield-alt-2' style="font-size: 4rem; color: var(--app-accent); margin-bottom: 1rem; text-shadow: 0 0 20px var(--app-glow);"></i>
+            <h1>Enterprise Privacy Policy & Permissions Manifest</h1>
+            <div class="protocol-meta">
+                <span><i class='bx bx-calendar'></i> Effective: April 25, 2026</span>
+                <span><i class='bx bx-globe'></i> Jurisdiction: Republic of Ghana (Data Protection Act, 2012)</span>
+            </div>
+            <p style="margin-top: 15px; font-family: monospace; color: var(--app-accent); letter-spacing: 1px;">ENTITY: NOVASPHERE STUDIO | SYSTEM: NOVABIZ OS</p>
+        </div>
+
+        <div class="glass glass-card" style="padding: 3rem;">
+
+            <!-- 1. Philosophy -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">01</span> The Philosophy of Data Sovereignty</h2>
+                <p>NovaBiz OS operates on a strict Offline-First Cryptographic Architecture. We believe that your business data belongs to you. Unlike cloud-dependent SaaS platforms that harvest and analyze your financial ledgers and client data on remote servers, NovaBiz OS confines your operational data strictly to your physical hardware.</p>
+                <p>NovaSphere Studio acts as the architect of the software, but You (The Enterprise) remain the sole Data Controller of all information processed within the matrix.</p>
+            </div>
+
+            <!-- 2. Data Confinement -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">02</span> Data Confinement (What We Do Not Collect)</h2>
+                <p>NovaSphere Studio has zero access to your internal operations. <strong>We DO NOT collect, transmit, or monitor:</strong></p>
+                <ul>
+                    <li><strong>Entity DNA (CRM):</strong> Your client names, phone numbers, loyalty tiers, and metadata.</li>
+                    <li><strong>Financial Ledgers:</strong> Your revenue, transaction histories, invoices, and pricing configurations.</li>
+                    <li><strong>Operational Directives:</strong> Staff shift schedules, physical inventory levels, and internal tasks.</li>
+                    <li><strong>Biometric Pins:</strong> Your staff access codes and Master Boss PINs.</li>
+                    <li><strong>Encrypted Documents:</strong> ID scans and contracts uploaded into the Personnel Uplink.</li>
+                </ul>
+                
+                <div class="alert-box alert-safe">
+                    <span class="alert-title alert-icon"><i class='bx bx-lock-alt'></i> LOCAL ISAR VAULT</span>
+                    <p style="margin-bottom: 0;">All of the above is encrypted and mathematically sealed inside the Local Isar Database Vault located on your physical hard drive.</p>
+                </div>
+            </div>
+
+            <!-- 3. Telemetry -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">03</span> System Telemetry (What We Do Collect)</h2>
+                <p>To ensure the OS functions securely, NovaSphere Studio only communicates with the software for vital system health checks:</p>
+                <ul>
+                    <li><strong>License Authentication:</strong> When you renew your Kernel License, the system transmits a digital handshake (containing your PC's unique hardware identifier) to verify payment validity via our secure gateway (Paystack).</li>
+                    <li><strong>Version Pinging:</strong> The OS routinely checks the NovaSphere Global GitHub Servers to verify if you are running a compromised executable or if a critical security patch is available.</li>
+                    <li><strong>Crash Diagnostics (Optional):</strong> If you utilize the NovaSphere Uplink to manually report an anomaly, the diagnostic data you choose to send via email will be collected to engineer a patch.</li>
+                </ul>
+            </div>
+
+            <!-- 4. Hardware Permissions Grid -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">04</span> Required System Permissions & Why We Need Them</h2>
+                <p>To execute Level-5 automation, NovaBiz OS requires specific hardware and OS-level permissions upon installation. By authorizing the Software, you grant access to the following protocols:</p>
+
+                <div class="perm-grid">
+                    
+                    <!-- A. Storage -->
+                    <div class="perm-card">
+                        <i class='bx bx-hdd perm-icon'></i>
+                        <span class="perm-name">A. Local Storage & File System (Read/Write)</span>
+                        <div class="perm-desc">
+                            <strong>Why:</strong> To establish the Hidden Cryptographic Vault (AppData / Application Support) where your database is safely buried. This permission is also used to import/crop images (Staff Avatars, Asset Photos, Documents) from your PC, and to export PDF financial ledgers to your hard drive.
+                        </div>
+                    </div>
+
+                    <!-- B. Network -->
+                    <div class="perm-card">
+                        <i class='bx bx-wifi perm-icon'></i>
+                        <span class="perm-name">B. Network & Internet Communications</span>
+                        <div class="perm-desc">
+                            <strong>Why:</strong> To execute secure Paystack license renewals, ping the NovaSphere servers for critical updates, and route automated messages (WhatsApp/SMS) from the Comms Boss out to your clients.
+                        </div>
+                    </div>
+
+                    <!-- C. Fingerprint -->
+                    <div class="perm-card">
+                        <i class='bx bx-fingerprint perm-icon'></i>
+                        <span class="perm-name">C. Hardware/Device Fingerprinting</span>
+                        <div class="perm-desc">
+                            <strong>Why:</strong> To generate a unique cryptographic signature bound to your motherboard. This prevents software piracy, enforces the 14-Day Free Trial countdown, and ensures your license key cannot be cloned to another facility.
+                        </div>
+                    </div>
+
+                    <!-- D. Printer -->
+                    <div class="perm-card">
+                        <i class='bx bx-printer perm-icon'></i>
+                        <span class="perm-name">D. Spooler & USB / Printer Interfacing</span>
+                        <div class="perm-desc">
+                            <strong>Why:</strong> To autonomously route digital invoices directly to external hardware, such as 80mm Thermal POS receipt printers or standard A4 desk printers.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 5. Third Party -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">05</span> Third-Party Uplinks</h2>
+                <p>Certain Boss Modules rely on external neural links. When triggered, the OS passes limited, necessary data to these verified providers:</p>
+                <ul>
+                    <li><strong>Paystack:</strong> For processing secure enterprise subscription payments. No credit card data ever touches the NovaBiz OS database; it is handled entirely within Paystack’s PCI-compliant matrix.</li>
+                    <li><strong>WhatsApp / SMS Gateways (e.g., Hubtel):</strong> The Comms Boss passes phone numbers and message templates to your native WhatsApp desktop client or designated SMS API to execute client communications.</li>
+                </ul>
+            </div>
+
+            <!-- 6. Security Endpoint -->
+            <div class="section-block">
+                <h2 class="section-title"><span class="section-number">06</span> Security Endpoint</h2>
+                
+                <div class="alert-box alert-warning">
+                    <span class="alert-title alert-icon"><i class='bx bx-error'></i> PHYSICAL SECURITY RESPONSIBILITY</span>
+                    <p style="margin-bottom: 0;">While NovaSphere Studio has engineered the OS with robust local encryption, <strong>The Enterprise is responsible for its physical security</strong>. Leaving your PC unlocked, sharing the Master Boss PIN, or failing to maintain basic Windows/macOS firewall protocols compromises your matrix. We strongly advise backing up your system vault periodically.</p>
+                </div>
+            </div>
+
+            <!-- 7. Acceptance -->
+            <div class="section-block" style="border: none; padding-bottom: 0;">
+                <h2 class="section-title"><span class="section-number">07</span> Acceptance of Protocols</h2>
+                <p>By initializing the NovaBiz OS Kernel and engaging the matrix, you acknowledge that you have read, understood, and consented to this Privacy Policy and Permissions Manifest.</p>
+            </div>
+
+            <!-- Status Sign-off -->
+            <div class="status-terminal">
+                > PROTOCOL VERIFIED. MATRIX SECURED_ <span style="animation: blink 1s infinite;">█</span>
+            </div>
+
+            <!-- Contact -->
+            <div class="section-block" style="border: none; text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                <h2 style="color: var(--app-accent); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 15px;">Mainframe Support Uplink</h2>
+                <p style="font-size: 1.1rem; font-weight: 700;">
+                    <i class='bx bx-envelope'></i> <a href="mailto:novaspherestudio.dev+novabizos@gmail.com" style="color: var(--text-primary); text-decoration: none;">novaspherestudio.dev+novabizos@gmail.com</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+    <style>
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+</body>
+</html>
