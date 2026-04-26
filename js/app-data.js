@@ -417,6 +417,65 @@ const appDatabase = {
         virusTestScreen: "apps/novabiz/virus_scan.jpg",
         showSecurityOverride: false
     },
+    // APP 6: NOVABIZ OS
+    "novabiz_os": {
+        title: "NOVABIZ OS",
+        tagline: "The foundational cybernetic operating system for your enterprise.",
+        category: "System Core",
+        
+        // PC Only
+        platforms: ["pc"], 
+
+        iconClass: "bx-server", // Server/Mainframe icon
+        iconImg: "apps/novabiz_os/icon.png", 
+        accentColor: "#059669", // Matrix Emerald Green
+        headerBanner: "", 
+        banner: "linear-gradient(to right, #022c22, #059669)", // Dark Green Gradient
+        
+        screenshots:[
+            // Add your screenshot paths here later
+        ],
+        videoPreview: "", 
+
+        rating: "New",
+        reviewsCount: "Genesis",
+        ageRating: "Professional",
+        chartPos: "System Core",
+        
+        version: "1.0.0",
+        updated: "May 2026", // Adjust as needed
+        size: "150 MB", // Adjust as needed
+        
+        whatsNew: "Genesis Kernel Compiled. Offline-first infrastructure deployed.",
+
+        // Placeholder description - Send me your actual text when ready!
+        description: `**NOVABIZ OS** is the heavy-duty foundational architecture for your business. Where the Manager handles the daily operations, the OS provides the deep-level system integrations, terminal access, and local server routing required for a truly sovereign enterprise.
+        
+        **System Capabilities:**
+        • **Bare-Metal Performance:** Operates closer to the hardware for maximum efficiency.
+        • **Local Server Node:** Turns your PC into a secure, offline terminal.
+        • **Advanced Telemetry:** Deep-dive diagnostics into your business data.`,
+        
+        features:[
+            "💻 Core System Infrastructure",
+            "🔐 Bare-Metal AES Encryption",
+            "📡 Local Terminal Routing",
+            "⚙️ Advanced Developer Analytics"
+        ],
+        
+        downloads:[
+            { 
+                name: "Windows (.exe)", 
+                icon: "bxl-windows", 
+                link: "https://github.com/novaspherestudiodev/novasphere-legal/releases/download/v1.0.0-novabizos/NovaBiz-OS-Setup.exe" // Update when you upload to GitHub Releases
+            }
+        ],
+
+        customPrivacy: "apps/novabiz_os/privacy.html", 
+        customTerms: "apps/novabiz_os/terms.html",
+        virusTestScreen: "apps/novabiz_os/virus_scan.jpg",
+        showSecurityOverride: false
+    },
     // APP 4: PROJECT ONYX (CLASSIFIED)
      "project-onyx": {
          title: "Project ONYX",
